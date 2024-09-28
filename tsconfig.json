@@ -1,0 +1,59 @@
+{
+    "compilerOptions": {
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "noEmit": true,
+        "esModuleInterop": true,
+        "module": "esnext",
+        "moduleResolution": "bundler",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "jsx": "preserve",
+        "incremental": true,
+        "plugins": [
+            {
+                "name": "next"
+            }
+        ],
+        "paths": {
+            "@/*": ["./src/*"]
+        }
+    },
+    "include": [
+        "next-env.d.ts",
+        "**/*.ts",
+        "**/*.tsx",
+        ".next/types/**/*.ts",
+        "src/components/Announcements.jsx",
+        "src/components/AttendanceChart.jsx",
+        "src/components/AttendanceChartContainer.jsx",
+        "src/components/BigCalendarContainer.jsx",
+        "src/components/BigCalender.jsx",
+        "src/components/CountChart.jsx",
+        "src/components/CountChartContainer.jsx",
+        "src/components/EventCalendar.jsx",
+        "src/components/EventList.jsx",
+        "src/components/EventCalendarContainer.jsx",
+        "src/components/FinanceChart.jsx",
+        "src/components/FormContainer.jsx",
+        "src/components/FormModal.jsx",
+        "src/components/InputField.sx",
+        "src/components/InputField.jsx",
+        "src/components/Menu.jsx",
+        "src/components/Pagination.jsx",
+        "src/components/Navbar.jsx",
+        "src/components/Table.jsx",
+        "src/components/StudentAttendanceCard.jsx",
+        "src/components/Performance.jsx",
+        "src/components/TableSearch.jsx",
+        "src/components/UserCard.jsx",
+        "src/components/forms/SubjectForm.jsx",
+        "src/components/forms/StudentForm.jsx",
+        "src/components/forms/ExamForm.jsx",
+        "src/components/forms/ClassForm.jsx",
+        "src/components/forms/TeacherForm.jsx"
+    ],
+    "exclude": ["node_modules"]
+}

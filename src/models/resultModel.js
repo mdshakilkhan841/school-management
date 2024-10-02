@@ -4,11 +4,6 @@ const { Schema } = mongoose;
 
 const resultSchema = new Schema(
     {
-        id: {
-            type: Number,
-            required: true,
-            unique: true,
-        },
         score: {
             type: Number,
             required: true,

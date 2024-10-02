@@ -3,12 +3,7 @@ const { Schema } = mongoose;
 
 const teacherSchema = new Schema(
     {
-        id: {
-            type: String,
-            required: true,
-            unique: true,
-        },
-        username: {
+        teacherId: {
             type: String,
             required: true,
             unique: true,
@@ -43,7 +38,6 @@ const teacherSchema = new Schema(
         img: { type: String },
         bloodType: {
             type: String,
-            required: true,
         },
         sex: {
             type: String,

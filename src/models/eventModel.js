@@ -3,18 +3,12 @@ const { Schema } = mongoose;
 
 const eventSchema = new Schema(
     {
-        id: {
-            type: Number,
-            required: true,
-            unique: true,
-        },
         title: {
             type: String,
             required: true,
         },
         description: {
             type: String,
-            required: true,
         },
         startTime: {
             type: Date,

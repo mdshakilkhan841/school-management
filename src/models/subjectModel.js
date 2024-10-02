@@ -4,8 +4,8 @@ const { Schema } = mongoose;
 
 const subjectSchema = new Schema(
     {
-        id: {
-            type: Number,
+        subjectCode: {
+            type: string,
             required: true,
             unique: true,
         },

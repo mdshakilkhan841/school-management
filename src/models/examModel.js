@@ -4,8 +4,8 @@ const { Schema } = mongoose;
 
 const examSchema = new Schema(
     {
-        id: {
-            type: Number,
+        examCode: {
+            type: string,
             required: true,
             unique: true,
         },

@@ -25,11 +25,7 @@ const ExamForm = ({ type, data, setOpen, relatedData }) => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm <
-    ExamSchema >
-    {
-        resolver: zodResolver(examSchema),
-    };
+    } = useForm();
 
     // AFTER REACT 19 IT'LL BE USEACTIONSTATE
 
@@ -67,6 +63,13 @@ const ExamForm = ({ type, data, setOpen, relatedData }) => {
             </h1>
 
             <div className="flex justify-between flex-wrap gap-4">
+                <InputField
+                    label="Exam Code"
+                    name="examCode"
+                    defaultValue={data?.title}
+                    register={register}
+                    error={errors?.title}
+                />
                 <InputField
                     label="Exam title"
                     name="title"

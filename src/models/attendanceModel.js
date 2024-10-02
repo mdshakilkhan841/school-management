@@ -3,11 +3,6 @@ const { Schema } = mongoose;
 
 const attendanceSchema = new Schema(
     {
-        id: {
-            type: Number,
-            required: true,
-            unique: true,
-        },
         date: {
             type: Date,
             required: true,

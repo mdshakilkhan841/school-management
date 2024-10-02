@@ -4,12 +4,7 @@ const { Schema } = mongoose;
 
 const parentSchema = new Schema(
     {
-        id: {
-            type: String,
-            required: true,
-            unique: true,
-        },
-        username: {
+        parentId: {
             type: String,
             required: true,
             unique: true,

@@ -4,11 +4,6 @@ const { Schema } = mongoose;
 
 const gradeSchema = new Schema(
     {
-        id: {
-            type: Number,
-            required: true,
-            unique: true,
-        },
         level: {
             type: Number,
             required: true,

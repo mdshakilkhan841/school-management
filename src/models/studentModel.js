@@ -3,12 +3,7 @@ const { Schema } = mongoose;
 
 const studentSchema = new Schema(
     {
-        id: {
-            type: String,
-            required: true,
-            unique: true,
-        },
-        username: {
+        studentId: {
             type: String,
             required: true,
             unique: true,
@@ -43,7 +38,6 @@ const studentSchema = new Schema(
         img: { type: String },
         bloodType: {
             type: String,
-            required: true,
         },
         sex: {
             type: String,
@@ -52,13 +46,12 @@ const studentSchema = new Schema(
         },
         parentId: {
             type: String,
-            required: true,
         },
         classId: {
             type: Number,
             required: true,
         },
-        gradeId: {
+        sectionId: {
             type: Number,
             required: true,
         },

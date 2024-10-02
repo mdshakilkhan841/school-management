@@ -25,11 +25,7 @@ const ClassForm = ({ type, data, setOpen, relatedData }) => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm <
-    ClassSchema >
-    {
-        resolver: zodResolver(classSchema),
-    };
+    } = useForm();
 
     // AFTER REACT 19 IT'LL BE USEACTIONSTATE
 
@@ -67,8 +63,31 @@ const ClassForm = ({ type, data, setOpen, relatedData }) => {
             </h1>
 
             <div className="flex justify-between flex-wrap gap-4">
+                <div className="flex flex-col gap-2 w-full md:w-1/4">
+                    <label className="text-xs text-gray-500">Class</label>
+                    <select
+                        className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full"
+                        {...register("gradeId")}
+                        defaultValue={data?.gradeId}
+                    >
+                        {grades.map((grade) => (
+                            <option
+                                value={grade.id}
+                                key={grade.id}
+                                selected={data && grade.id === data.gradeId}
+                            >
+                                {grade.level}
+                            </option>
+                        ))}
+                    </select>
+                    {errors.gradeId?.message && (
+                        <p className="text-xs text-red-400">
+                            {errors.gradeId.message.toString()}
+                        </p>
+                    )}
+                </div>
                 <InputField
-                    label="Class name"
+                    label="Section"
                     name="name"
                     defaultValue={data?.name}
                     register={register}
@@ -113,29 +132,6 @@ const ClassForm = ({ type, data, setOpen, relatedData }) => {
                     {errors.supervisorId?.message && (
                         <p className="text-xs text-red-400">
                             {errors.supervisorId.message.toString()}
-                        </p>
-                    )}
-                </div>
-                <div className="flex flex-col gap-2 w-full md:w-1/4">
-                    <label className="text-xs text-gray-500">Grade</label>
-                    <select
-                        className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full"
-                        {...register("gradeId")}
-                        defaultValue={data?.gradeId}
-                    >
-                        {grades.map((grade) => (
-                            <option
-                                value={grade.id}
-                                key={grade.id}
-                                selected={data && grade.id === data.gradeId}
-                            >
-                                {grade.level}
-                            </option>
-                        ))}
-                    </select>
-                    {errors.gradeId?.message && (
-                        <p className="text-xs text-red-400">
-                            {errors.gradeId.message.toString()}
                         </p>
                     )}
                 </div>

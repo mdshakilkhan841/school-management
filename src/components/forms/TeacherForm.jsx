@@ -17,11 +17,7 @@ const TeacherForm = ({ type, data, setOpen, relatedData }) => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm <
-    TeacherSchema >
-    {
-        resolver: zodResolver(teacherSchema),
-    };
+    } = useForm();
 
     const [img, setImg] = useState();
 

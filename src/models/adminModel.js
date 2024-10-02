@@ -2,12 +2,11 @@ import mongoose from "mongoose";
 
 const adminSchema = new mongoose.Schema(
     {
-        id: {
+        refId: {
             type: String,
-            required: true,
             unique: true,
         },
-        username: {
+        adminId: {
             type: String,
             required: true,
             unique: true,
@@ -29,6 +28,17 @@ const adminSchema = new mongoose.Schema(
             type: String,
             unique: true,
             sparse: true,
+        },
+        img: { type: String },
+        bloodType: {
+            type: String,
+        },
+        sex: {
+            type: String,
+            enum: ["MALE", "FEMALE"],
+        },
+        birthday: {
+            type: Date,
         },
     },
     { timestamps: true }

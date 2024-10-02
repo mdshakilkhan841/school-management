@@ -4,12 +4,11 @@ const { Schema } = mongoose;
 
 const classSchema = new Schema(
     {
-        id: {
+        class: {
             type: Number,
             required: true,
-            unique: true,
         },
-        name: {
+        section: {
             type: String,
             required: true,
             unique: true,
@@ -31,10 +30,6 @@ const classSchema = new Schema(
                 ref: "Student",
             },
         ],
-        gradeId: {
-            type: Number,
-            required: true,
-        },
         events: [
             {
                 type: Schema.Types.ObjectId,

@@ -27,11 +27,7 @@ const StudentForm = ({ type, data, setOpen, relatedData }) => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm <
-    StudentSchema >
-    {
-        resolver: zodResolver(studentSchema),
-    };
+    } = useForm();
 
     const [img, setImg] = useState();
 
@@ -75,7 +71,7 @@ const StudentForm = ({ type, data, setOpen, relatedData }) => {
             </span>
             <div className="flex justify-between flex-wrap gap-4">
                 <InputField
-                    label="Username"
+                    label="Student ID"
                     name="username"
                     defaultValue={data?.username}
                     register={register}

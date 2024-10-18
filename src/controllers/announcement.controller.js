@@ -1,17 +1,10 @@
-import { auth } from "@/auth";
 import connectDB from "@/lib/mongoose";
 import User from "@/models/userModel";
 
 await connectDB();
 
-export async function getAnnouncements() {
+export async function getAnnouncements(userId, role) {
     try {
-        const session = await auth();
-        const { userId, role } = session.user;
-
-        console.log("🚀 ~ Announcements ~ role:", role);
-        console.log("🚀 ~ Announcements ~ userId:", userId);
-
         // Role-based pipeline selection
         const pipelines = {
             student: studentPipeline(userId, role),

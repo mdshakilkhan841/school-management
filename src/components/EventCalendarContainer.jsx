@@ -3,6 +3,7 @@ import EventCalendar from "./EventCalendar.jsx";
 import EventList from "./EventList.jsx";
 
 const EventCalendarContainer = async ({ searchParams }) => {
+    console.log("🚀 ~ EventCalendarContainer ~ searchParams:", searchParams)
     const { date } = searchParams;
     return (
         <div className="bg-white p-4 rounded-md">

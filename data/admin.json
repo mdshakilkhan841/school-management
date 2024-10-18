@@ -1,0 +1,67 @@
+[
+    {
+        "adminId": "admin1",
+        "role": "ADMIN",
+        "name": "Sigrid",
+        "surname": "Simonis",
+        "email": "Merl_Nader@yahoo.com",
+        "img": "https://avatars.githubusercontent.com/u/76033960",
+        "bloodType": "B-",
+        "sex": "FEMALE",
+        "birthday": "2023-11-05T00:15:17.788Z",
+        "createdAt": "2024-10-05T13:16:06.827Z",
+        "updatedAt": "2024-10-05T13:16:06.828Z"
+    },
+    {
+        "adminId": "admin2",
+        "role": "ADMIN",
+        "name": "Gracie",
+        "surname": "Kris",
+        "email": "Luigi_Parisian@hotmail.com",
+        "img": "https://avatars.githubusercontent.com/u/94721424",
+        "bloodType": "A+",
+        "sex": "FEMALE",
+        "birthday": "2024-01-08T01:51:00.530Z",
+        "createdAt": "2024-10-05T13:16:06.829Z",
+        "updatedAt": "2024-10-05T13:16:06.829Z"
+    },
+    {
+        "adminId": "admin3",
+        "role": "ADMIN",
+        "name": "Dusty",
+        "surname": "Herman",
+        "email": "Foster_Morissette@yahoo.com",
+        "img": "https://avatars.githubusercontent.com/u/2465499",
+        "bloodType": "O-",
+        "sex": "FEMALE",
+        "birthday": "2023-11-23T15:02:54.511Z",
+        "createdAt": "2024-10-05T13:16:06.829Z",
+        "updatedAt": "2024-10-05T13:16:06.829Z"
+    },
+    {
+        "adminId": "admin4",
+        "role": "ADMIN",
+        "name": "Jany",
+        "surname": "Hills",
+        "email": "Jamal_Jakubowski76@yahoo.com",
+        "img": "https://avatars.githubusercontent.com/u/35960595",
+        "bloodType": "B-",
+        "sex": "MALE",
+        "birthday": "2024-07-01T20:36:03.487Z",
+        "createdAt": "2024-10-05T13:16:06.830Z",
+        "updatedAt": "2024-10-05T13:16:06.830Z"
+    },
+    {
+        "adminId": "admin5",
+        "role": "ADMIN",
+        "name": "Lily",
+        "surname": "Jerde",
+        "email": "Dejah15@yahoo.com",
+        "img": "https://avatars.githubusercontent.com/u/63050453",
+        "bloodType": "B+",
+        "sex": "FEMALE",
+        "birthday": "2024-09-20T04:40:55.656Z",
+        "createdAt": "2024-10-05T13:16:06.831Z",
+        "updatedAt": "2024-10-05T13:16:06.831Z"
+    }
+]

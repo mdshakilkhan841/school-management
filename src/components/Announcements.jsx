@@ -1,3 +1,4 @@
+import { getAnnouncements } from "@/controllers/announcement.controller";
 import prisma from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
 
@@ -20,6 +21,9 @@ const Announcements = async () => {
             }),
         },
     });
+
+    const announcements = await getAnnouncements();
+    console.log("🚀 ~ Announcements ~ announcements:", announcements);
 
     return (
         <div className="bg-white p-4 rounded-md">

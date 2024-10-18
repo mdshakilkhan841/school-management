@@ -1,0 +1,261 @@
+[
+    {
+        "userId": "student1",
+        "password": "33xypR6zEz",
+        "role": "student",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "student2",
+        "password": "Rlhg!)hq@0",
+        "role": "student",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "student3",
+        "password": "F5zGBtJDqH",
+        "role": "student",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "student4",
+        "password": "xS&hZ*!C2x",
+        "role": "student",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "student5",
+        "password": "R4XTVK($80",
+        "role": "student",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "student6",
+        "password": "vk$^TXhOLO",
+        "role": "student",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "student7",
+        "password": "u8A^0AOzIR",
+        "role": "student",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "student8",
+        "password": "DK0MI$OV)1",
+        "role": "student",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "student9",
+        "password": "VtLImRSBfM",
+        "role": "student",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "student10",
+        "password": "Hk6)E*c7$#",
+        "role": "student",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "student11",
+        "password": "l6YdGH7Eu1",
+        "role": "student",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "student12",
+        "password": "!$ewBoCa2X",
+        "role": "student",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "student13",
+        "password": "92P&%4wE7)",
+        "role": "student",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "student14",
+        "password": "AT7k2Dw&os",
+        "role": "student",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "student15",
+        "password": "X^9dWdD^(w",
+        "role": "student",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "student16",
+        "password": "5F9xodjqj7",
+        "role": "student",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "student17",
+        "password": "YiyFLC2oaU",
+        "role": "student",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "student18",
+        "password": "FMpyqFIj0g",
+        "role": "student",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "student19",
+        "password": "LqbvLhEd9!",
+        "role": "student",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "student20",
+        "password": "*uZ0M$&f))",
+        "role": "student",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "student21",
+        "password": "ktU0L1Ku1(",
+        "role": "student",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "student22",
+        "password": "3j2iHq6yu$",
+        "role": "student",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "student23",
+        "password": "np$G5QEnkE",
+        "role": "student",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "student24",
+        "password": "idhCZvpxW$",
+        "role": "student",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "student25",
+        "password": "A**8ZwHkQ!",
+        "role": "student",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "teacher1",
+        "password": "cpo(ZtiSaS",
+        "role": "teacher",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "teacher2",
+        "password": "PpByl196CR",
+        "role": "teacher",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "teacher3",
+        "password": "Eh8fg8T@a7",
+        "role": "teacher",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "teacher4",
+        "password": "E!q1&V37lr",
+        "role": "teacher",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "teacher5",
+        "password": "knem@RlXm7",
+        "role": "teacher",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "parent1",
+        "password": "r2I$Fgdb0y",
+        "role": "parent",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "parent2",
+        "password": "IR4P!EmCEN",
+        "role": "parent",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "parent3",
+        "password": "r2!GpjbrMc",
+        "role": "parent",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "parent4",
+        "password": "O4h5$hegbr",
+        "role": "parent",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "parent5",
+        "password": "E0y7^SiEbh",
+        "role": "parent",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "admin1",
+        "password": "U^dy8bT1a(",
+        "role": "admin",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    },
+    {
+        "userId": "admin2",
+        "password": "aGqoSG^ej9",
+        "role": "admin",
+        "createdAt": "2024-10-03T19:46:42.883Z",
+        "updatedAt": "2024-10-03T19:46:42.883Z"
+    }
+]

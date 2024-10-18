@@ -2,10 +2,6 @@ import mongoose from "mongoose";
 
 const adminSchema = new mongoose.Schema(
     {
-        refId: {
-            type: String,
-            unique: true,
-        },
         adminId: {
             type: String,
             required: true,

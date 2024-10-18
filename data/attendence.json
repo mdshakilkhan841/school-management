@@ -1,0 +1,402 @@
+[
+    {
+        "date": "2024-10-04T19:49:47.561Z",
+        "present": false,
+        "studentId": "student24",
+        "lessonId": 7,
+        "createdAt": "2024-10-05T13:03:19.043Z",
+        "updatedAt": "2024-10-05T13:03:19.044Z"
+    },
+    {
+        "date": "2024-10-04T19:31:29.023Z",
+        "present": true,
+        "studentId": "student2",
+        "lessonId": 2,
+        "createdAt": "2024-10-05T13:03:19.045Z",
+        "updatedAt": "2024-10-05T13:03:19.045Z"
+    },
+    {
+        "date": "2024-10-04T23:52:44.697Z",
+        "present": true,
+        "studentId": "student19",
+        "lessonId": 8,
+        "createdAt": "2024-10-05T13:03:19.045Z",
+        "updatedAt": "2024-10-05T13:03:19.045Z"
+    },
+    {
+        "date": "2024-10-05T00:26:27.304Z",
+        "present": false,
+        "studentId": "student21",
+        "lessonId": 8,
+        "createdAt": "2024-10-05T13:03:19.045Z",
+        "updatedAt": "2024-10-05T13:03:19.045Z"
+    },
+    {
+        "date": "2024-10-04T14:31:04.721Z",
+        "present": true,
+        "studentId": "student25",
+        "lessonId": 9,
+        "createdAt": "2024-10-05T13:03:19.045Z",
+        "updatedAt": "2024-10-05T13:03:19.045Z"
+    },
+    {
+        "date": "2024-10-04T17:11:15.596Z",
+        "present": true,
+        "studentId": "student8",
+        "lessonId": 3,
+        "createdAt": "2024-10-05T13:03:19.045Z",
+        "updatedAt": "2024-10-05T13:03:19.045Z"
+    },
+    {
+        "date": "2024-10-04T14:23:32.861Z",
+        "present": false,
+        "studentId": "student13",
+        "lessonId": 3,
+        "createdAt": "2024-10-05T13:03:19.045Z",
+        "updatedAt": "2024-10-05T13:03:19.045Z"
+    },
+    {
+        "date": "2024-10-05T06:20:15.853Z",
+        "present": true,
+        "studentId": "student6",
+        "lessonId": 10,
+        "createdAt": "2024-10-05T13:03:19.045Z",
+        "updatedAt": "2024-10-05T13:03:19.045Z"
+    },
+    {
+        "date": "2024-10-04T17:37:21.387Z",
+        "present": false,
+        "studentId": "student20",
+        "lessonId": 8,
+        "createdAt": "2024-10-05T13:03:19.046Z",
+        "updatedAt": "2024-10-05T13:03:19.046Z"
+    },
+    {
+        "date": "2024-10-05T06:49:07.466Z",
+        "present": false,
+        "studentId": "student9",
+        "lessonId": 8,
+        "createdAt": "2024-10-05T13:03:19.046Z",
+        "updatedAt": "2024-10-05T13:03:19.046Z"
+    },
+    {
+        "date": "2024-10-05T06:54:42.873Z",
+        "present": true,
+        "studentId": "student24",
+        "lessonId": 8,
+        "createdAt": "2024-10-05T13:03:19.046Z",
+        "updatedAt": "2024-10-05T13:03:19.046Z"
+    },
+    {
+        "date": "2024-10-05T10:33:53.741Z",
+        "present": false,
+        "studentId": "student22",
+        "lessonId": 5,
+        "createdAt": "2024-10-05T13:03:19.046Z",
+        "updatedAt": "2024-10-05T13:03:19.046Z"
+    },
+    {
+        "date": "2024-10-04T18:10:35.102Z",
+        "present": false,
+        "studentId": "student14",
+        "lessonId": 8,
+        "createdAt": "2024-10-05T13:03:19.046Z",
+        "updatedAt": "2024-10-05T13:03:19.046Z"
+    },
+    {
+        "date": "2024-10-05T11:02:17.490Z",
+        "present": true,
+        "studentId": "student2",
+        "lessonId": 3,
+        "createdAt": "2024-10-05T13:03:19.046Z",
+        "updatedAt": "2024-10-05T13:03:19.046Z"
+    },
+    {
+        "date": "2024-10-05T06:58:23.064Z",
+        "present": true,
+        "studentId": "student5",
+        "lessonId": 6,
+        "createdAt": "2024-10-05T13:03:19.046Z",
+        "updatedAt": "2024-10-05T13:03:19.046Z"
+    },
+    {
+        "date": "2024-10-05T10:46:09.083Z",
+        "present": true,
+        "studentId": "student16",
+        "lessonId": 6,
+        "createdAt": "2024-10-05T13:03:19.046Z",
+        "updatedAt": "2024-10-05T13:03:19.046Z"
+    },
+    {
+        "date": "2024-10-04T22:35:16.576Z",
+        "present": false,
+        "studentId": "student5",
+        "lessonId": 7,
+        "createdAt": "2024-10-05T13:03:19.047Z",
+        "updatedAt": "2024-10-05T13:03:19.047Z"
+    },
+    {
+        "date": "2024-10-05T05:49:31.476Z",
+        "present": true,
+        "studentId": "student10",
+        "lessonId": 8,
+        "createdAt": "2024-10-05T13:03:19.047Z",
+        "updatedAt": "2024-10-05T13:03:19.047Z"
+    },
+    {
+        "date": "2024-10-04T22:02:35.458Z",
+        "present": false,
+        "studentId": "student10",
+        "lessonId": 4,
+        "createdAt": "2024-10-05T13:03:19.047Z",
+        "updatedAt": "2024-10-05T13:03:19.047Z"
+    },
+    {
+        "date": "2024-10-04T19:52:09.749Z",
+        "present": true,
+        "studentId": "student14",
+        "lessonId": 2,
+        "createdAt": "2024-10-05T13:03:19.047Z",
+        "updatedAt": "2024-10-05T13:03:19.047Z"
+    },
+    {
+        "date": "2024-10-04T22:55:01.620Z",
+        "present": false,
+        "studentId": "student13",
+        "lessonId": 8,
+        "createdAt": "2024-10-05T13:03:19.047Z",
+        "updatedAt": "2024-10-05T13:03:19.047Z"
+    },
+    {
+        "date": "2024-10-04T21:55:55.433Z",
+        "present": false,
+        "studentId": "student8",
+        "lessonId": 3,
+        "createdAt": "2024-10-05T13:03:19.047Z",
+        "updatedAt": "2024-10-05T13:03:19.047Z"
+    },
+    {
+        "date": "2024-10-04T17:54:23.470Z",
+        "present": true,
+        "studentId": "student2",
+        "lessonId": 2,
+        "createdAt": "2024-10-05T13:03:19.047Z",
+        "updatedAt": "2024-10-05T13:03:19.047Z"
+    },
+    {
+        "date": "2024-10-05T09:53:09.107Z",
+        "present": false,
+        "studentId": "student14",
+        "lessonId": 5,
+        "createdAt": "2024-10-05T13:03:19.047Z",
+        "updatedAt": "2024-10-05T13:03:19.047Z"
+    },
+    {
+        "date": "2024-10-05T07:42:21.415Z",
+        "present": false,
+        "studentId": "student12",
+        "lessonId": 7,
+        "createdAt": "2024-10-05T13:03:19.047Z",
+        "updatedAt": "2024-10-05T13:03:19.047Z"
+    },
+    {
+        "date": "2024-10-05T04:43:20.926Z",
+        "present": false,
+        "studentId": "student2",
+        "lessonId": 9,
+        "createdAt": "2024-10-05T13:03:19.047Z",
+        "updatedAt": "2024-10-05T13:03:19.047Z"
+    },
+    {
+        "date": "2024-10-05T02:12:22.942Z",
+        "present": true,
+        "studentId": "student1",
+        "lessonId": 5,
+        "createdAt": "2024-10-05T13:03:19.047Z",
+        "updatedAt": "2024-10-05T13:03:19.047Z"
+    },
+    {
+        "date": "2024-10-05T01:17:23.783Z",
+        "present": true,
+        "studentId": "student10",
+        "lessonId": 2,
+        "createdAt": "2024-10-05T13:03:19.047Z",
+        "updatedAt": "2024-10-05T13:03:19.047Z"
+    },
+    {
+        "date": "2024-10-05T01:27:23.282Z",
+        "present": false,
+        "studentId": "student8",
+        "lessonId": 1,
+        "createdAt": "2024-10-05T13:03:19.047Z",
+        "updatedAt": "2024-10-05T13:03:19.047Z"
+    },
+    {
+        "date": "2024-10-05T02:17:05.669Z",
+        "present": true,
+        "studentId": "student6",
+        "lessonId": 4,
+        "createdAt": "2024-10-05T13:03:19.047Z",
+        "updatedAt": "2024-10-05T13:03:19.047Z"
+    },
+    {
+        "date": "2024-10-04T21:35:23.244Z",
+        "present": false,
+        "studentId": "student1",
+        "lessonId": 5,
+        "createdAt": "2024-10-05T13:03:19.047Z",
+        "updatedAt": "2024-10-05T13:03:19.047Z"
+    },
+    {
+        "date": "2024-10-04T23:35:33.657Z",
+        "present": false,
+        "studentId": "student16",
+        "lessonId": 1,
+        "createdAt": "2024-10-05T13:03:19.047Z",
+        "updatedAt": "2024-10-05T13:03:19.047Z"
+    },
+    {
+        "date": "2024-10-05T09:02:31.992Z",
+        "present": false,
+        "studentId": "student5",
+        "lessonId": 1,
+        "createdAt": "2024-10-05T13:03:19.047Z",
+        "updatedAt": "2024-10-05T13:03:19.047Z"
+    },
+    {
+        "date": "2024-10-05T10:55:27.448Z",
+        "present": true,
+        "studentId": "student3",
+        "lessonId": 2,
+        "createdAt": "2024-10-05T13:03:19.047Z",
+        "updatedAt": "2024-10-05T13:03:19.047Z"
+    },
+    {
+        "date": "2024-10-05T00:17:51.693Z",
+        "present": false,
+        "studentId": "student21",
+        "lessonId": 6,
+        "createdAt": "2024-10-05T13:03:19.047Z",
+        "updatedAt": "2024-10-05T13:03:19.047Z"
+    },
+    {
+        "date": "2024-10-05T12:23:21.787Z",
+        "present": true,
+        "studentId": "student5",
+        "lessonId": 6,
+        "createdAt": "2024-10-05T13:03:19.047Z",
+        "updatedAt": "2024-10-05T13:03:19.047Z"
+    },
+    {
+        "date": "2024-10-05T02:20:41.163Z",
+        "present": false,
+        "studentId": "student22",
+        "lessonId": 10,
+        "createdAt": "2024-10-05T13:03:19.047Z",
+        "updatedAt": "2024-10-05T13:03:19.047Z"
+    },
+    {
+        "date": "2024-10-05T01:51:59.323Z",
+        "present": false,
+        "studentId": "student7",
+        "lessonId": 7,
+        "createdAt": "2024-10-05T13:03:19.047Z",
+        "updatedAt": "2024-10-05T13:03:19.047Z"
+    },
+    {
+        "date": "2024-10-05T10:39:58.844Z",
+        "present": true,
+        "studentId": "student3",
+        "lessonId": 4,
+        "createdAt": "2024-10-05T13:03:19.047Z",
+        "updatedAt": "2024-10-05T13:03:19.047Z"
+    },
+    {
+        "date": "2024-10-04T13:15:14.822Z",
+        "present": true,
+        "studentId": "student19",
+        "lessonId": 8,
+        "createdAt": "2024-10-05T13:03:19.047Z",
+        "updatedAt": "2024-10-05T13:03:19.047Z"
+    },
+    {
+        "date": "2024-10-05T02:37:02.631Z",
+        "present": false,
+        "studentId": "student2",
+        "lessonId": 9,
+        "createdAt": "2024-10-05T13:03:19.048Z",
+        "updatedAt": "2024-10-05T13:03:19.048Z"
+    },
+    {
+        "date": "2024-10-05T07:34:31.955Z",
+        "present": true,
+        "studentId": "student2",
+        "lessonId": 7,
+        "createdAt": "2024-10-05T13:03:19.048Z",
+        "updatedAt": "2024-10-05T13:03:19.048Z"
+    },
+    {
+        "date": "2024-10-04T13:46:16.325Z",
+        "present": false,
+        "studentId": "student13",
+        "lessonId": 7,
+        "createdAt": "2024-10-05T13:03:19.048Z",
+        "updatedAt": "2024-10-05T13:03:19.048Z"
+    },
+    {
+        "date": "2024-10-04T18:07:21.904Z",
+        "present": false,
+        "studentId": "student17",
+        "lessonId": 8,
+        "createdAt": "2024-10-05T13:03:19.048Z",
+        "updatedAt": "2024-10-05T13:03:19.048Z"
+    },
+    {
+        "date": "2024-10-05T04:43:21.306Z",
+        "present": true,
+        "studentId": "student18",
+        "lessonId": 1,
+        "createdAt": "2024-10-05T13:03:19.048Z",
+        "updatedAt": "2024-10-05T13:03:19.048Z"
+    },
+    {
+        "date": "2024-10-04T20:31:32.601Z",
+        "present": false,
+        "studentId": "student8",
+        "lessonId": 3,
+        "createdAt": "2024-10-05T13:03:19.048Z",
+        "updatedAt": "2024-10-05T13:03:19.048Z"
+    },
+    {
+        "date": "2024-10-05T06:59:51.592Z",
+        "present": false,
+        "studentId": "student24",
+        "lessonId": 10,
+        "createdAt": "2024-10-05T13:03:19.048Z",
+        "updatedAt": "2024-10-05T13:03:19.048Z"
+    },
+    {
+        "date": "2024-10-05T02:54:46.939Z",
+        "present": true,
+        "studentId": "student12",
+        "lessonId": 1,
+        "createdAt": "2024-10-05T13:03:19.048Z",
+        "updatedAt": "2024-10-05T13:03:19.048Z"
+    },
+    {
+        "date": "2024-10-04T15:17:08.372Z",
+        "present": true,
+        "studentId": "student14",
+        "lessonId": 9,
+        "createdAt": "2024-10-05T13:03:19.048Z",
+        "updatedAt": "2024-10-05T13:03:19.048Z"
+    },
+    {
+        "date": "2024-10-04T18:04:10.315Z",
+        "present": false,
+        "studentId": "student24",
+        "lessonId": 4,
+        "createdAt": "2024-10-05T13:03:19.048Z",
+        "updatedAt": "2024-10-05T13:03:19.048Z"
+    }
+]

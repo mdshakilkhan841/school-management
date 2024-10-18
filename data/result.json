@@ -1,0 +1,802 @@
+[
+            {
+                "score": 10,
+                "examId": 2,
+                "assignmentId": 13,
+                "studentId": "student16",
+                "createdAt": "2024-10-03T21:05:56.623Z",
+                "updatedAt": "2024-10-03T21:05:56.623Z"
+            },
+            {
+                "score": 36,
+                "examId": 16,
+                "assignmentId": 12,
+                "studentId": "student15",
+                "createdAt": "2024-10-03T21:05:56.623Z",
+                "updatedAt": "2024-10-03T21:05:56.623Z"
+            },
+            {
+                "score": 85,
+                "examId": 16,
+                "assignmentId": 8,
+                "studentId": "student3",
+                "createdAt": "2024-10-03T21:05:56.623Z",
+                "updatedAt": "2024-10-03T21:05:56.623Z"
+            },
+            {
+                "score": 41,
+                "examId": 7,
+                "assignmentId": 17,
+                "studentId": "student19",
+                "createdAt": "2024-10-03T21:05:56.623Z",
+                "updatedAt": "2024-10-03T21:05:56.623Z"
+            },
+            {
+                "score": 27,
+                "examId": 10,
+                "assignmentId": 18,
+                "studentId": "student24",
+                "createdAt": "2024-10-03T21:05:56.623Z",
+                "updatedAt": "2024-10-03T21:05:56.623Z"
+            },
+            {
+                "score": 4,
+                "examId": 19,
+                "assignmentId": 17,
+                "studentId": "student5",
+                "createdAt": "2024-10-03T21:05:56.623Z",
+                "updatedAt": "2024-10-03T21:05:56.623Z"
+            },
+            {
+                "score": 86,
+                "examId": 1,
+                "assignmentId": 12,
+                "studentId": "student19",
+                "createdAt": "2024-10-03T21:05:56.623Z",
+                "updatedAt": "2024-10-03T21:05:56.623Z"
+            },
+            {
+                "score": 39,
+                "examId": 6,
+                "assignmentId": 5,
+                "studentId": "student15",
+                "createdAt": "2024-10-03T21:05:56.623Z",
+                "updatedAt": "2024-10-03T21:05:56.623Z"
+            },
+            {
+                "score": 77,
+                "examId": 16,
+                "assignmentId": 13,
+                "studentId": "student21",
+                "createdAt": "2024-10-03T21:05:56.623Z",
+                "updatedAt": "2024-10-03T21:05:56.623Z"
+            },
+            {
+                "score": 38,
+                "examId": 18,
+                "assignmentId": 18,
+                "studentId": "student3",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 39,
+                "examId": 6,
+                "assignmentId": 18,
+                "studentId": "student10",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 1,
+                "examId": 18,
+                "assignmentId": 8,
+                "studentId": "student2",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 7,
+                "examId": 16,
+                "assignmentId": 7,
+                "studentId": "student19",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 18,
+                "examId": 9,
+                "assignmentId": 2,
+                "studentId": "student9",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 70,
+                "examId": 4,
+                "assignmentId": 15,
+                "studentId": "student4",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 10,
+                "examId": 4,
+                "assignmentId": 9,
+                "studentId": "student9",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 22,
+                "examId": 16,
+                "assignmentId": 9,
+                "studentId": "student6",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 82,
+                "examId": 19,
+                "assignmentId": 8,
+                "studentId": "student8",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 30,
+                "examId": 16,
+                "assignmentId": 20,
+                "studentId": "student23",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 100,
+                "examId": 1,
+                "assignmentId": 3,
+                "studentId": "student6",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 98,
+                "examId": 17,
+                "assignmentId": 13,
+                "studentId": "student9",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 19,
+                "examId": 6,
+                "assignmentId": 8,
+                "studentId": "student2",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 29,
+                "examId": 11,
+                "assignmentId": 11,
+                "studentId": "student1",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 15,
+                "examId": 10,
+                "assignmentId": 12,
+                "studentId": "student16",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 84,
+                "examId": 3,
+                "assignmentId": 14,
+                "studentId": "student15",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 11,
+                "examId": 2,
+                "assignmentId": 15,
+                "studentId": "student25",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 81,
+                "examId": 5,
+                "assignmentId": 15,
+                "studentId": "student21",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 70,
+                "examId": 17,
+                "assignmentId": 20,
+                "studentId": "student4",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 41,
+                "examId": 17,
+                "assignmentId": 11,
+                "studentId": "student2",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 92,
+                "examId": 8,
+                "assignmentId": 16,
+                "studentId": "student21",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 63,
+                "examId": 4,
+                "assignmentId": 19,
+                "studentId": "student21",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 12,
+                "examId": 17,
+                "assignmentId": 7,
+                "studentId": "student11",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 83,
+                "examId": 9,
+                "assignmentId": 19,
+                "studentId": "student19",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 15,
+                "examId": 2,
+                "assignmentId": 11,
+                "studentId": "student18",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 35,
+                "examId": 2,
+                "assignmentId": 19,
+                "studentId": "student4",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 97,
+                "examId": 14,
+                "assignmentId": 11,
+                "studentId": "student2",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 36,
+                "examId": 20,
+                "assignmentId": 3,
+                "studentId": "student13",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 16,
+                "examId": 2,
+                "assignmentId": 10,
+                "studentId": "student6",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 89,
+                "examId": 6,
+                "assignmentId": 19,
+                "studentId": "student7",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 7,
+                "examId": 15,
+                "assignmentId": 14,
+                "studentId": "student5",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 31,
+                "examId": 11,
+                "assignmentId": 1,
+                "studentId": "student22",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 21,
+                "examId": 12,
+                "assignmentId": 12,
+                "studentId": "student6",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 97,
+                "examId": 14,
+                "assignmentId": 10,
+                "studentId": "student20",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 59,
+                "examId": 7,
+                "assignmentId": 12,
+                "studentId": "student18",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 30,
+                "examId": 10,
+                "assignmentId": 4,
+                "studentId": "student8",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 68,
+                "examId": 8,
+                "assignmentId": 18,
+                "studentId": "student8",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 62,
+                "examId": 20,
+                "assignmentId": 4,
+                "studentId": "student14",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 24,
+                "examId": 7,
+                "assignmentId": 14,
+                "studentId": "student6",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 40,
+                "examId": 2,
+                "assignmentId": 8,
+                "studentId": "student8",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 0,
+                "examId": 7,
+                "assignmentId": 15,
+                "studentId": "student14",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 92,
+                "examId": 6,
+                "assignmentId": 8,
+                "studentId": "student11",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 45,
+                "examId": 10,
+                "assignmentId": 9,
+                "studentId": "student25",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 98,
+                "examId": 5,
+                "assignmentId": 11,
+                "studentId": "student25",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 23,
+                "examId": 15,
+                "assignmentId": 5,
+                "studentId": "student6",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 38,
+                "examId": 18,
+                "assignmentId": 17,
+                "studentId": "student19",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 9,
+                "examId": 5,
+                "assignmentId": 7,
+                "studentId": "student18",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 53,
+                "examId": 13,
+                "assignmentId": 9,
+                "studentId": "student21",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 54,
+                "examId": 19,
+                "assignmentId": 1,
+                "studentId": "student13",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 15,
+                "examId": 1,
+                "assignmentId": 12,
+                "studentId": "student11",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 92,
+                "examId": 9,
+                "assignmentId": 13,
+                "studentId": "student21",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 8,
+                "examId": 1,
+                "assignmentId": 11,
+                "studentId": "student25",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 34,
+                "examId": 14,
+                "assignmentId": 17,
+                "studentId": "student2",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 33,
+                "examId": 8,
+                "assignmentId": 9,
+                "studentId": "student19",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 12,
+                "examId": 3,
+                "assignmentId": 4,
+                "studentId": "student7",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 62,
+                "examId": 1,
+                "assignmentId": 14,
+                "studentId": "student12",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 1,
+                "examId": 15,
+                "assignmentId": 3,
+                "studentId": "student23",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 96,
+                "examId": 16,
+                "assignmentId": 15,
+                "studentId": "student15",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 23,
+                "examId": 17,
+                "assignmentId": 19,
+                "studentId": "student1",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 93,
+                "examId": 17,
+                "assignmentId": 13,
+                "studentId": "student5",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 52,
+                "examId": 3,
+                "assignmentId": 19,
+                "studentId": "student6",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 62,
+                "examId": 15,
+                "assignmentId": 6,
+                "studentId": "student24",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 34,
+                "examId": 9,
+                "assignmentId": 12,
+                "studentId": "student3",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 15,
+                "examId": 10,
+                "assignmentId": 11,
+                "studentId": "student9",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 90,
+                "examId": 19,
+                "assignmentId": 19,
+                "studentId": "student1",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 55,
+                "examId": 13,
+                "assignmentId": 2,
+                "studentId": "student5",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 83,
+                "examId": 13,
+                "assignmentId": 4,
+                "studentId": "student14",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 40,
+                "examId": 10,
+                "assignmentId": 1,
+                "studentId": "student11",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 86,
+                "examId": 13,
+                "assignmentId": 17,
+                "studentId": "student6",
+                "createdAt": "2024-10-03T21:05:56.624Z",
+                "updatedAt": "2024-10-03T21:05:56.624Z"
+            },
+            {
+                "score": 85,
+                "examId": 9,
+                "assignmentId": 10,
+                "studentId": "student8",
+                "createdAt": "2024-10-03T21:05:56.625Z",
+                "updatedAt": "2024-10-03T21:05:56.625Z"
+            },
+            {
+                "score": 74,
+                "examId": 20,
+                "assignmentId": 17,
+                "studentId": "student15",
+                "createdAt": "2024-10-03T21:05:56.625Z",
+                "updatedAt": "2024-10-03T21:05:56.625Z"
+            },
+            {
+                "score": 21,
+                "examId": 6,
+                "assignmentId": 9,
+                "studentId": "student6",
+                "createdAt": "2024-10-03T21:05:56.625Z",
+                "updatedAt": "2024-10-03T21:05:56.625Z"
+            },
+            {
+                "score": 29,
+                "examId": 17,
+                "assignmentId": 5,
+                "studentId": "student2",
+                "createdAt": "2024-10-03T21:05:56.625Z",
+                "updatedAt": "2024-10-03T21:05:56.625Z"
+            },
+            {
+                "score": 54,
+                "examId": 13,
+                "assignmentId": 5,
+                "studentId": "student2",
+                "createdAt": "2024-10-03T21:05:56.625Z",
+                "updatedAt": "2024-10-03T21:05:56.625Z"
+            },
+            {
+                "score": 13,
+                "examId": 5,
+                "assignmentId": 3,
+                "studentId": "student15",
+                "createdAt": "2024-10-03T21:05:56.625Z",
+                "updatedAt": "2024-10-03T21:05:56.625Z"
+            },
+            {
+                "score": 21,
+                "examId": 9,
+                "assignmentId": 12,
+                "studentId": "student9",
+                "createdAt": "2024-10-03T21:05:56.625Z",
+                "updatedAt": "2024-10-03T21:05:56.625Z"
+            },
+            {
+                "score": 70,
+                "examId": 15,
+                "assignmentId": 19,
+                "studentId": "student20",
+                "createdAt": "2024-10-03T21:05:56.625Z",
+                "updatedAt": "2024-10-03T21:05:56.625Z"
+            },
+            {
+                "score": 64,
+                "examId": 20,
+                "assignmentId": 1,
+                "studentId": "student4",
+                "createdAt": "2024-10-03T21:05:56.625Z",
+                "updatedAt": "2024-10-03T21:05:56.625Z"
+            },
+            {
+                "score": 75,
+                "examId": 20,
+                "assignmentId": 4,
+                "studentId": "student9",
+                "createdAt": "2024-10-03T21:05:56.625Z",
+                "updatedAt": "2024-10-03T21:05:56.625Z"
+            },
+            {
+                "score": 25,
+                "examId": 16,
+                "assignmentId": 18,
+                "studentId": "student14",
+                "createdAt": "2024-10-03T21:05:56.625Z",
+                "updatedAt": "2024-10-03T21:05:56.625Z"
+            },
+            {
+                "score": 71,
+                "examId": 4,
+                "assignmentId": 12,
+                "studentId": "student10",
+                "createdAt": "2024-10-03T21:05:56.625Z",
+                "updatedAt": "2024-10-03T21:05:56.625Z"
+            },
+            {
+                "score": 97,
+                "examId": 15,
+                "assignmentId": 3,
+                "studentId": "student15",
+                "createdAt": "2024-10-03T21:05:56.625Z",
+                "updatedAt": "2024-10-03T21:05:56.625Z"
+            },
+            {
+                "score": 28,
+                "examId": 5,
+                "assignmentId": 11,
+                "studentId": "student13",
+                "createdAt": "2024-10-03T21:05:56.625Z",
+                "updatedAt": "2024-10-03T21:05:56.625Z"
+            },
+            {
+                "score": 95,
+                "examId": 3,
+                "assignmentId": 12,
+                "studentId": "student19",
+                "createdAt": "2024-10-03T21:05:56.625Z",
+                "updatedAt": "2024-10-03T21:05:56.625Z"
+            },
+            {
+                "score": 85,
+                "examId": 1,
+                "assignmentId": 15,
+                "studentId": "student20",
+                "createdAt": "2024-10-03T21:05:56.625Z",
+                "updatedAt": "2024-10-03T21:05:56.625Z"
+            },
+            {
+                "score": 33,
+                "examId": 3,
+                "assignmentId": 18,
+                "studentId": "student6",
+                "createdAt": "2024-10-03T21:05:56.625Z",
+                "updatedAt": "2024-10-03T21:05:56.625Z"
+            },
+            {
+                "score": 10,
+                "examId": 12,
+                "assignmentId": 5,
+                "studentId": "student24",
+                "createdAt": "2024-10-03T21:05:56.625Z",
+                "updatedAt": "2024-10-03T21:05:56.625Z"
+            },
+            {
+                "score": 99,
+                "examId": 16,
+                "assignmentId": 6,
+                "studentId": "student20",
+                "createdAt": "2024-10-03T21:05:56.625Z",
+                "updatedAt": "2024-10-03T21:05:56.625Z"
+            },
+            {
+                "score": 55,
+                "examId": 17,
+                "assignmentId": 12,
+                "studentId": "student15",
+                "createdAt": "2024-10-03T21:05:56.625Z",
+                "updatedAt": "2024-10-03T21:05:56.625Z"
+            },
+            {
+                "score": 22,
+                "examId": 20,
+                "assignmentId": 11,
+                "studentId": "student6",
+                "createdAt": "2024-10-03T21:05:56.625Z",
+                "updatedAt": "2024-10-03T21:05:56.625Z"
+            },
+            {
+                "score": 35,
+                "examId": 11,
+                "assignmentId": 20,
+                "studentId": "student11",
+                "createdAt": "2024-10-03T21:05:56.625Z",
+                "updatedAt": "2024-10-03T21:05:56.625Z"
+            }
+        ]

@@ -1,0 +1,122 @@
+[
+    {
+        "class": 3,
+        "section": "S1",
+        "capacity": 37,
+        "supervisorId": "teacher1",
+        "lessons": [],
+        "students": [],
+        "events": [],
+        "announcements": [],
+        "createdAt": "2024-10-05T12:56:54.253Z",
+        "updatedAt": "2024-10-05T12:56:54.254Z"
+    },
+    {
+        "class": 7,
+        "section": "S2",
+        "capacity": 48,
+        "supervisorId": "teacher2",
+        "lessons": [],
+        "students": [],
+        "events": [],
+        "announcements": [],
+        "createdAt": "2024-10-05T12:56:54.254Z",
+        "updatedAt": "2024-10-05T12:56:54.254Z"
+    },
+    {
+        "class": 1,
+        "section": "S3",
+        "capacity": 21,
+        "supervisorId": "teacher5",
+        "lessons": [],
+        "students": [],
+        "events": [],
+        "announcements": [],
+        "createdAt": "2024-10-05T12:56:54.254Z",
+        "updatedAt": "2024-10-05T12:56:54.254Z"
+    },
+    {
+        "class": 2,
+        "section": "S4",
+        "capacity": 37,
+        "supervisorId": "teacher4",
+        "lessons": [],
+        "students": [],
+        "events": [],
+        "announcements": [],
+        "createdAt": "2024-10-05T12:56:54.254Z",
+        "updatedAt": "2024-10-05T12:56:54.254Z"
+    },
+    {
+        "class": 10,
+        "section": "S5",
+        "capacity": 41,
+        "supervisorId": "teacher5",
+        "lessons": [],
+        "students": [],
+        "events": [],
+        "announcements": [],
+        "createdAt": "2024-10-05T12:56:54.254Z",
+        "updatedAt": "2024-10-05T12:56:54.254Z"
+    },
+    {
+        "class": 6,
+        "section": "S6",
+        "capacity": 45,
+        "supervisorId": "teacher1",
+        "lessons": [],
+        "students": [],
+        "events": [],
+        "announcements": [],
+        "createdAt": "2024-10-05T12:56:54.254Z",
+        "updatedAt": "2024-10-05T12:56:54.254Z"
+    },
+    {
+        "class": 11,
+        "section": "S7",
+        "capacity": 32,
+        "supervisorId": "teacher8",
+        "lessons": [],
+        "students": [],
+        "events": [],
+        "announcements": [],
+        "createdAt": "2024-10-05T12:56:54.254Z",
+        "updatedAt": "2024-10-05T12:56:54.254Z"
+    },
+    {
+        "class": 11,
+        "section": "S8",
+        "capacity": 35,
+        "supervisorId": "teacher5",
+        "lessons": [],
+        "students": [],
+        "events": [],
+        "announcements": [],
+        "createdAt": "2024-10-05T12:56:54.254Z",
+        "updatedAt": "2024-10-05T12:56:54.254Z"
+    },
+    {
+        "class": 2,
+        "section": "S9",
+        "capacity": 23,
+        "supervisorId": "teacher5",
+        "lessons": [],
+        "students": [],
+        "events": [],
+        "announcements": [],
+        "createdAt": "2024-10-05T12:56:54.254Z",
+        "updatedAt": "2024-10-05T12:56:54.254Z"
+    },
+    {
+        "class": 8,
+        "section": "S10",
+        "capacity": 34,
+        "supervisorId": "teacher9",
+        "lessons": [],
+        "students": [],
+        "events": [],
+        "announcements": [],
+        "createdAt": "2024-10-05T12:56:54.254Z",
+        "updatedAt": "2024-10-05T12:56:54.254Z"
+    }
+]

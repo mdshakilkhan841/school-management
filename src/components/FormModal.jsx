@@ -123,6 +123,13 @@ const FormModal = ({ table, type, data, id, relatedData }) => {
             }
         }, [state, router]);
 
+        const FormComponent = forms[table];
+        console.log("🚀 ~ Form ~ FormComponent:", FormComponent)
+
+        if (!FormComponent) {
+            return <div>Form for {table} not found!</div>; // Add a fallback for unknown forms
+        }
+
         return type === "delete" && id ? (
             <form action={formAction} className="p-4 flex flex-col gap-4">
                 <input type="text | number" name="id" value={id} hidden />

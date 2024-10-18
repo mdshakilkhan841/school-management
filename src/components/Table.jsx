@@ -1,4 +1,5 @@
 const Table = ({ columns, renderRow, data }) => {
+    console.log("🚀 ~ Table ~ data:", data)
     return (
         <table className="w-full mt-4">
             <thead>

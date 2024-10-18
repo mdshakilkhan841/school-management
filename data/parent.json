@@ -1,0 +1,122 @@
+[
+    {
+        "parentId": "parent1",
+        "role": "PARENT",
+        "name": "Deanna",
+        "surname": "Hirthe",
+        "email": "Emmitt_Lowe@hotmail.com",
+        "phone": "(674) 753-9774 x6463",
+        "address": "37662 Wehner Pike",
+        "students": [],
+        "createdAt": "2024-10-03T21:12:09.024Z",
+        "updatedAt": "2024-10-03T21:12:09.025Z"
+    },
+    {
+        "parentId": "parent2",
+        "role": "PARENT",
+        "name": "Ross",
+        "surname": "White-Rosenbaum",
+        "email": "Danielle_Strosin69@gmail.com",
+        "phone": "649.705.8700",
+        "address": "76459 Camren Valleys",
+        "students": [],
+        "createdAt": "2024-10-03T21:12:09.025Z",
+        "updatedAt": "2024-10-03T21:12:09.025Z"
+    },
+    {
+        "parentId": "parent3",
+        "role": "PARENT",
+        "name": "Rachel",
+        "surname": "Ziemann",
+        "email": "Lamont.Marks@hotmail.com",
+        "phone": "(206) 396-0736 x25442",
+        "address": "301 Thad Station",
+        "students": [],
+        "createdAt": "2024-10-03T21:12:09.026Z",
+        "updatedAt": "2024-10-03T21:12:09.026Z"
+    },
+    {
+        "parentId": "parent4",
+        "role": "PARENT",
+        "name": "Gerson",
+        "surname": "Kohler",
+        "email": "Tony63@yahoo.com",
+        "phone": "1-401-595-2080 x90536",
+        "address": "235 Carmine Plains",
+        "students": [],
+        "createdAt": "2024-10-03T21:12:09.026Z",
+        "updatedAt": "2024-10-03T21:12:09.026Z"
+    },
+    {
+        "parentId": "parent5",
+        "role": "PARENT",
+        "name": "Ahmad",
+        "surname": "Jaskolski",
+        "email": "Raegan.Barrows63@hotmail.com",
+        "phone": "(655) 846-8153 x57635",
+        "address": "35789 Rodrick Squares",
+        "students": [],
+        "createdAt": "2024-10-03T21:12:09.027Z",
+        "updatedAt": "2024-10-03T21:12:09.027Z"
+    },
+    {
+        "parentId": "parent6",
+        "role": "PARENT",
+        "name": "Julianne",
+        "surname": "Larkin",
+        "email": "Antonette71@gmail.com",
+        "phone": "(351) 443-0796",
+        "address": "3519 Ward Ports",
+        "students": [],
+        "createdAt": "2024-10-03T21:12:09.027Z",
+        "updatedAt": "2024-10-03T21:12:09.027Z"
+    },
+    {
+        "parentId": "parent7",
+        "role": "PARENT",
+        "name": "Mavis",
+        "surname": "Schoen",
+        "email": "Frank.Skiles52@hotmail.com",
+        "phone": "(599) 921-6510 x5830",
+        "address": "113 E Broadway Street",
+        "students": [],
+        "createdAt": "2024-10-03T21:12:09.027Z",
+        "updatedAt": "2024-10-03T21:12:09.027Z"
+    },
+    {
+        "parentId": "parent8",
+        "role": "PARENT",
+        "name": "Noe",
+        "surname": "Schumm",
+        "email": "Ali_Welch90@gmail.com",
+        "phone": "1-555-998-1364 x286",
+        "address": "73758 Pine Street",
+        "students": [],
+        "createdAt": "2024-10-03T21:12:09.027Z",
+        "updatedAt": "2024-10-03T21:12:09.027Z"
+    },
+    {
+        "parentId": "parent9",
+        "role": "PARENT",
+        "name": "Johnathon",
+        "surname": "Barton",
+        "email": "Fred.Purdy@gmail.com",
+        "phone": "(624) 593-4985 x722",
+        "address": "6236 Lakin Causeway",
+        "students": [],
+        "createdAt": "2024-10-03T21:12:09.028Z",
+        "updatedAt": "2024-10-03T21:12:09.028Z"
+    },
+    {
+        "parentId": "parent10",
+        "role": "PARENT",
+        "name": "Berneice",
+        "surname": "Hudson",
+        "email": "Antwon.Wisoky@yahoo.com",
+        "phone": "1-314-442-2586 x31435",
+        "address": "6412 Kylee Fords",
+        "students": [],
+        "createdAt": "2024-10-03T21:12:09.028Z",
+        "updatedAt": "2024-10-03T21:12:09.028Z"
+    }
+]

@@ -1,0 +1,82 @@
+[
+    {
+        "subjectCode": "SUBJ1",
+        "name": "Mathematics",
+        "teachers": [],
+        "lessons": [],
+        "createdAt": "2024-10-03T19:57:54.142Z",
+        "updatedAt": "2024-10-03T19:57:54.142Z"
+    },
+    {
+        "subjectCode": "SUBJ2",
+        "name": "Physics",
+        "teachers": [],
+        "lessons": [],
+        "createdAt": "2024-10-03T19:57:54.142Z",
+        "updatedAt": "2024-10-03T19:57:54.142Z"
+    },
+    {
+        "subjectCode": "SUBJ3",
+        "name": "Chemistry",
+        "teachers": [],
+        "lessons": [],
+        "createdAt": "2024-10-03T19:57:54.142Z",
+        "updatedAt": "2024-10-03T19:57:54.142Z"
+    },
+    {
+        "subjectCode": "SUBJ4",
+        "name": "Biology",
+        "teachers": [],
+        "lessons": [],
+        "createdAt": "2024-10-03T19:57:54.142Z",
+        "updatedAt": "2024-10-03T19:57:54.142Z"
+    },
+    {
+        "subjectCode": "SUBJ5",
+        "name": "History",
+        "teachers": [],
+        "lessons": [],
+        "createdAt": "2024-10-03T19:57:54.142Z",
+        "updatedAt": "2024-10-03T19:57:54.142Z"
+    },
+    {
+        "subjectCode": "SUBJ6",
+        "name": "Geography",
+        "teachers": [],
+        "lessons": [],
+        "createdAt": "2024-10-03T19:57:54.142Z",
+        "updatedAt": "2024-10-03T19:57:54.142Z"
+    },
+    {
+        "subjectCode": "SUBJ7",
+        "name": "English",
+        "teachers": [],
+        "lessons": [],
+        "createdAt": "2024-10-03T19:57:54.142Z",
+        "updatedAt": "2024-10-03T19:57:54.142Z"
+    },
+    {
+        "subjectCode": "SUBJ8",
+        "name": "Computer Science",
+        "teachers": [],
+        "lessons": [],
+        "createdAt": "2024-10-03T19:57:54.142Z",
+        "updatedAt": "2024-10-03T19:57:54.142Z"
+    },
+    {
+        "subjectCode": "SUBJ9",
+        "name": "Physical Education",
+        "teachers": [],
+        "lessons": [],
+        "createdAt": "2024-10-03T19:57:54.142Z",
+        "updatedAt": "2024-10-03T19:57:54.142Z"
+    },
+    {
+        "subjectCode": "SUBJ10",
+        "name": "Art",
+        "teachers": [],
+        "lessons": [],
+        "createdAt": "2024-10-03T19:57:54.142Z",
+        "updatedAt": "2024-10-03T19:57:54.142Z"
+    }
+]

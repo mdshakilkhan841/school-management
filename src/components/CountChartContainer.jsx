@@ -1,15 +1,12 @@
 import Image from "next/image";
 import CountChart from "./CountChart.jsx";
-import prisma from "@/lib/prisma";
+import { getStudentsCount } from "@/controllers/student.controller.js";
 
 const CountChartContainer = async () => {
-    const data = await prisma.student.groupBy({
-        by: ["sex"],
-        _count: true,
-    });
+    const totalStudents = await getStudentsCount();
 
-    const boys = data.find((d) => d.sex === "MALE")?._count || 0;
-    const girls = data.find((d) => d.sex === "FEMALE")?._count || 0;
+    const boys = totalStudents.find(({ _id }) => _id === "MALE")?.count ?? 0;
+    const girls = totalStudents.find(({ _id }) => _id === "FEMALE")?.count ?? 0;
 
     return (
         <div className="bg-white rounded-xl w-full h-full p-4">

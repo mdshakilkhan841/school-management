@@ -1,15 +1,11 @@
-import prisma from "@/lib/prisma";
+import { getTotalUsers } from "@/controllers/user.controller";
 import Image from "next/image";
 
 const UserCard = async ({ type }) => {
-    const modelMap = {
-        admin: prisma.admin,
-        teacher: prisma.teacher,
-        student: prisma.student,
-        parent: prisma.parent,
-    };
-
-    const data = await modelMap[type].count();
+    
+    //User Types: admin, teacher, student, parent
+    const count = await getTotalUsers(type);
+    console.log("🚀 ~ UserCard ~ count:", count)
 
     return (
         <div className="rounded-2xl odd:bg-lamaPurple even:bg-lamaYellow p-4 flex-1 min-w-[130px]">
@@ -19,7 +15,7 @@ const UserCard = async ({ type }) => {
                 </span>
                 <Image src="/more.png" alt="" width={20} height={20} />
             </div>
-            <h1 className="text-2xl font-semibold my-4">{data}</h1>
+            <h1 className="text-2xl font-semibold my-4">{count ?? 0}</h1>
             <h2 className="capitalize text-sm font-medium text-gray-500">
                 {type}s
             </h2>

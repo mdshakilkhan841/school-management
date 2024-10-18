@@ -23,8 +23,7 @@ const studentSchema = new Schema(
         },
         email: {
             type: String,
-            unique: true,
-            sparse: true,
+            required: true,
         },
         phone: {
             type: String,
@@ -47,12 +46,12 @@ const studentSchema = new Schema(
         parentId: {
             type: String,
         },
-        classId: {
+        class: {
             type: Number,
             required: true,
         },
-        sectionId: {
-            type: Number,
+        section: {
+            type: String,
             required: true,
         },
         attendances: [

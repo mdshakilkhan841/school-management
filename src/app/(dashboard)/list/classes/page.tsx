@@ -9,7 +9,7 @@ import Image from "next/image";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 
-type ClassList = Class & { supervisor: Teacher };
+type ClassList = Class & { supervisor: Teacher | null };
 
 const ClassListPage = async (props: {
   searchParams: Promise<{ [key: string]: string | undefined }>;
@@ -57,7 +57,7 @@ const ClassListPage = async (props: {
       <td className="hidden md:table-cell">{item.capacity}</td>
       <td className="hidden md:table-cell">{item.name[0]}</td>
       <td className="hidden md:table-cell">
-        {item.supervisor.name + " " + item.supervisor.surname}
+        {item.supervisor ? (item.supervisor.name + " " + item.supervisor.surname) : "-"}
       </td>
       <td>
         <div className="flex items-center gap-2">

@@ -1,8 +1,8 @@
-import Announcements from "@/components/Announcements";
-import BigCalendarContainer from "@/components/BigCalendarContainer";
-import BigCalendar from "@/components/BigCalender";
-import FormContainer from "@/components/FormContainer";
-import Performance from "@/components/Performance";
+import Announcements from "@/components/dashboard/Announcements";
+import BigCalendarContainer from "@/components/calendar/BigCalendarContainer";
+import BigCalendar from "@/components/calendar/BigCalender";
+import FormContainer from "@/components/forms/FormContainer";
+import Performance from "@/components/dashboard/Performance";
 import prisma from "@/lib/prisma";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";

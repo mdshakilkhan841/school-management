@@ -36,19 +36,19 @@ const deleteActionMap = {
 // import TeacherForm from "./forms/TeacherForm";
 // import StudentForm from "./forms/StudentForm";
 
-const TeacherForm = dynamic(() => import("./forms/TeacherForm"), {
+const TeacherForm = dynamic(() => import("./TeacherForm"), {
   loading: () => <h1>Loading...</h1>,
 });
-const StudentForm = dynamic(() => import("./forms/StudentForm"), {
+const StudentForm = dynamic(() => import("./StudentForm"), {
   loading: () => <h1>Loading...</h1>,
 });
-const SubjectForm = dynamic(() => import("./forms/SubjectForm"), {
+const SubjectForm = dynamic(() => import("./SubjectForm"), {
   loading: () => <h1>Loading...</h1>,
 });
-const ClassForm = dynamic(() => import("./forms/ClassForm"), {
+const ClassForm = dynamic(() => import("./ClassForm"), {
   loading: () => <h1>Loading...</h1>,
 });
-const ExamForm = dynamic(() => import("./forms/ExamForm"), {
+const ExamForm = dynamic(() => import("./ExamForm"), {
   loading: () => <h1>Loading...</h1>,
 });
 // TODO: OTHER FORMS

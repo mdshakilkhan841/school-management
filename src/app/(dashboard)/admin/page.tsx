@@ -1,9 +1,9 @@
-import Announcements from "@/components/Announcements";
-import AttendanceChartContainer from "@/components/AttendanceChartContainer";
-import CountChartContainer from "@/components/CountChartContainer";
-import EventCalendarContainer from "@/components/EventCalendarContainer";
-import FinanceChart from "@/components/FinanceChart";
-import UserCard from "@/components/UserCard";
+import Announcements from "@/components/dashboard/Announcements";
+import AttendanceChartContainer from "@/components/charts/AttendanceChartContainer";
+import CountChartContainer from "@/components/charts/CountChartContainer";
+import EventCalendarContainer from "@/components/dashboard/EventCalendarContainer";
+import FinanceChart from "@/components/charts/FinanceChart";
+import UserCard from "@/components/dashboard/UserCard";
 
 const AdminPage = async (props: {
   searchParams: Promise<{ [keys: string]: string | undefined }>;

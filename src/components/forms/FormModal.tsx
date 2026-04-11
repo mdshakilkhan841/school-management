@@ -10,6 +10,7 @@ import {
   deleteAssignment,
   deleteResult,
   deleteAttendance,
+  deleteEvent,
 } from "@/lib/actions";
 import dynamic from "next/dynamic";
 import Image from "next/image";
@@ -30,7 +31,7 @@ const deleteActionMap = {
   assignment: deleteAssignment,
   result: deleteResult,
   attendance: deleteAttendance,
-  event: deleteSubject,
+  event: deleteEvent,
   announcement: deleteSubject,
 };
 
@@ -39,19 +40,19 @@ const deleteActionMap = {
 // import TeacherForm from "./forms/TeacherForm";
 // import StudentForm from "./forms/StudentForm";
 
-const TeacherForm = dynamic(() => import("./TeacherForm"), {
+const TeacherForm = dynamic(() => import("@/components/forms/TeacherForm"), {
   loading: () => <h1>Loading...</h1>,
 });
-const StudentForm = dynamic(() => import("./StudentForm"), {
+const StudentForm = dynamic(() => import("@/components/forms/StudentForm"), {
   loading: () => <h1>Loading...</h1>,
 });
-const SubjectForm = dynamic(() => import("./SubjectForm"), {
+const SubjectForm = dynamic(() => import("@/components/forms/SubjectForm"), {
   loading: () => <h1>Loading...</h1>,
 });
-const ClassForm = dynamic(() => import("./ClassForm"), {
+const ClassForm = dynamic(() => import("@/components/forms/ClassForm"), {
   loading: () => <h1>Loading...</h1>,
 });
-const ExamForm = dynamic(() => import("./ExamForm"), {
+const ExamForm = dynamic(() => import("@/components/forms/ExamForm"), {
   loading: () => <h1>Loading...</h1>,
 });
 const LessonForm = dynamic(() => import("@/components/forms/LessonForm"), {
@@ -64,6 +65,9 @@ const ResultForm = dynamic(() => import("@/components/forms/ResultForm"), {
   loading: () => <h1>Loading...</h1>,
 });
 const AttendanceForm = dynamic(() => import("@/components/forms/AttendanceForm"), {
+  loading: () => <h1>Loading...</h1>,
+});
+const EventForm = dynamic(() => import("@/components/forms/EventForm"), {
   loading: () => <h1>Loading...</h1>,
 });
 // TODO: OTHER FORMS
@@ -143,6 +147,14 @@ const forms: {
   ),
   attendance: (setOpen, type, data, relatedData) => (
     <AttendanceForm
+      type={type}
+      data={data}
+      setOpen={setOpen}
+      relatedData={relatedData}
+    />
+  ),
+  event: (setOpen, type, data, relatedData) => (
+    <EventForm
       type={type}
       data={data}
       setOpen={setOpen}

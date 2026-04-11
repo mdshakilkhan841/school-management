@@ -1,15 +1,13 @@
 import Announcements from "@/components/dashboard/Announcements";
 import BigCalendarContainer from "@/components/calendar/BigCalendarContainer";
-import BigCalendar from "@/components/calendar/BigCalender";
 import FormContainer from "@/components/forms/FormContainer";
 import Performance from "@/components/dashboard/Performance";
-import prisma from "@/lib/prisma";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
-import { Teacher } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { getTeacherById } from "@/services/teacherService";
 
 const SingleTeacherPage = async (props: {
   params: Promise<{ id: string }>;
@@ -18,26 +16,12 @@ const SingleTeacherPage = async (props: {
   const session = await auth.api.getSession({ headers: await headers() });
   const role = session?.user?.role as string;
 
-  const teacher:
-    | (Teacher & {
-        _count: { subjects: number; lessons: number; classes: number };
-      })
-    | null = await prisma.teacher.findUnique({
-    where: { id },
-    include: {
-      _count: {
-        select: {
-          subjects: true,
-          lessons: true,
-          classes: true,
-        },
-      },
-    },
-  });
+  const teacher = await getTeacherById(id);
 
   if (!teacher) {
     return notFound();
   }
+
   return (
     <div className="flex-1 p-4 flex flex-col gap-4 xl:flex-row">
       {/* LEFT */}

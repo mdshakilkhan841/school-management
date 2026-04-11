@@ -9,7 +9,7 @@ import {
   TeacherSchema,
 } from "./formValidationSchemas";
 import prisma from "./prisma";
-import { hash } from "bcryptjs";
+import { auth } from "./auth";
 
 type CurrentState = { success: boolean; error: boolean };
 
@@ -142,28 +142,18 @@ export const createTeacher = async (
   data: TeacherSchema
 ) => {
   try {
-    const hashedPassword = await hash(data.password || "password123", 10);
-    const user = await prisma.user.create({
-      data: {
-        id: data.username,
-        name: `${data.name} ${data.surname}`,
+    const { user } = await auth.api.createUser({
+      body: {
         email: data.email || `${data.username}@system.local`,
-        emailVerified: true,
+        password: data.password || "password123",
+        name: `${data.name} ${data.surname}`,
         role: "teacher",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        accounts: {
-          create: {
-            id: crypto.randomUUID(),
-            accountId: data.username,
-            providerId: "credential",
-            password: hashedPassword,
-            createdAt: new Date(),
-            updatedAt: new Date(),
-          }
-        }
       }
     });
+
+    if (!user) {
+        return { success: false, error: true };
+    }
 
     await prisma.teacher.create({
       data: {
@@ -286,28 +276,18 @@ export const createStudent = async (
       return { success: false, error: true };
     }
 
-    const hashedPassword = await hash(data.password || "password123", 10);
-    const user = await prisma.user.create({
-      data: {
-        id: data.username,
-        name: `${data.name} ${data.surname}`,
+    const { user } = await auth.api.createUser({
+      body: {
         email: data.email || `${data.username}@system.local`,
-        emailVerified: true,
+        password: data.password || "password123",
+        name: `${data.name} ${data.surname}`,
         role: "student",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        accounts: {
-          create: {
-            id: crypto.randomUUID(),
-            accountId: data.username,
-            providerId: "credential",
-            password: hashedPassword,
-            createdAt: new Date(),
-            updatedAt: new Date(),
-          }
-        }
       }
     });
+
+    if (!user) {
+        return { success: false, error: true };
+    }
 
     await prisma.student.create({
       data: {

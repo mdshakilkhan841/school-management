@@ -4,6 +4,7 @@ import { Prisma } from "@prisma/client";
 
 export const getTeachersList = async (queryParams: { [key: string]: string | undefined }, page: number) => {
   const query: Prisma.TeacherWhereInput = {};
+  const orderBy: Prisma.TeacherOrderByWithRelationInput = {};
 
   if (queryParams) {
     for (const [key, value] of Object.entries(queryParams)) {
@@ -17,7 +18,19 @@ export const getTeachersList = async (queryParams: { [key: string]: string | und
             };
             break;
           case "search":
-            query.name = { contains: value, mode: "insensitive" };
+            query.OR = [
+              { name: { contains: value, mode: "insensitive" } },
+              { surname: { contains: value, mode: "insensitive" } },
+              { username: { contains: value, mode: "insensitive" } },
+            ];
+            break;
+          case "sort":
+            const [field, order] = value.split(":");
+            if (field === "name") {
+              orderBy.name = order as Prisma.SortOrder;
+            } else if (field === "username") {
+              orderBy.username = order as Prisma.SortOrder;
+            }
             break;
           default:
             break;
@@ -33,6 +46,7 @@ export const getTeachersList = async (queryParams: { [key: string]: string | und
         subjects: true,
         classes: true,
       },
+      orderBy: Object.keys(orderBy).length > 0 ? orderBy : { id: "asc" },
       take: ITEM_PER_PAGE,
       skip: ITEM_PER_PAGE * (page - 1),
     }),

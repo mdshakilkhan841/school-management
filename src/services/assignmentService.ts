@@ -12,6 +12,8 @@ export const getAssignmentsList = async (
     lesson: {},
   };
 
+  const orderBy: Prisma.AssignmentOrderByWithRelationInput = {};
+
   if (queryParams) {
     for (const [key, value] of Object.entries(queryParams)) {
       if (value !== undefined) {
@@ -26,6 +28,14 @@ export const getAssignmentsList = async (
             query.lesson!.subject = {
               name: { contains: value, mode: "insensitive" },
             };
+            break;
+          case "sort":
+            const [field, order] = value.split(":");
+            if (field === "title") {
+              orderBy.title = order as Prisma.SortOrder;
+            } else if (field === "dueDate") {
+              orderBy.dueDate = order as Prisma.SortOrder;
+            }
             break;
           default:
             break;
@@ -75,6 +85,7 @@ export const getAssignmentsList = async (
           },
         },
       },
+      orderBy: Object.keys(orderBy).length > 0 ? orderBy : { id: "asc" },
       take: ITEM_PER_PAGE,
       skip: ITEM_PER_PAGE * (page - 1),
     }),

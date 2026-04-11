@@ -10,6 +10,8 @@ export const getResultsList = async (
 ) => {
   const query: Prisma.ResultWhereInput = {};
 
+  const orderBy: Prisma.ResultOrderByWithRelationInput = {};
+
   if (queryParams) {
     for (const [key, value] of Object.entries(queryParams)) {
       if (value !== undefined) {
@@ -22,6 +24,12 @@ export const getResultsList = async (
               { exam: { title: { contains: value, mode: "insensitive" } } },
               { student: { name: { contains: value, mode: "insensitive" } } },
             ];
+            break;
+          case "sort":
+            const [field, order] = value.split(":");
+            if (field === "score") {
+              orderBy.score = order as Prisma.SortOrder;
+            }
             break;
           default:
             break;
@@ -78,6 +86,7 @@ export const getResultsList = async (
           },
         },
       },
+      orderBy: Object.keys(orderBy).length > 0 ? orderBy : { id: "asc" },
       take: ITEM_PER_PAGE,
       skip: ITEM_PER_PAGE * (page - 1),
     }),

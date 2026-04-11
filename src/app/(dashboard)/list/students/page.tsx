@@ -2,12 +2,14 @@ import FormContainer from "@/components/forms/FormContainer";
 import Pagination from "@/components/list/Pagination";
 import Table from "@/components/list/Table";
 import TableSearch from "@/components/list/TableSearch";
+import FilterAndSort from "@/components/list/FilterSort";
 import { getStudentsList } from "@/services/studentService";
 import { Student, Class } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
+import prisma from "@/lib/prisma";
 
 type StudentList = Student & { class: Class };
 
@@ -99,6 +101,17 @@ const StudentListPage = async (props: {
 
   const { data, count } = await getStudentsList(queryParams, p);
 
+  // Fetch classes for filter
+  const classes = await prisma.class.findMany({
+    select: { id: true, name: true },
+  });
+
+  const filterOptions = classes.map((c) => ({
+    label: c.name,
+    field: "classId",
+    value: c.id.toString(),
+  }));
+
   return (
     <div className="bg-white p-4 rounded-md flex-1 m-4 mt-0">
       {/* TOP */}
@@ -107,12 +120,7 @@ const StudentListPage = async (props: {
         <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
           <TableSearch />
           <div className="flex items-center gap-4 self-end">
-            <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
-              <Image src="/filter.png" alt="" width={14} height={14} />
-            </button>
-            <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
-              <Image src="/sort.png" alt="" width={14} height={14} />
-            </button>
+            <FilterAndSort sortField="name" filterOptions={filterOptions} />
             {role === "admin" && (
               // <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
               //   <Image src="/plus.png" alt="" width={14} height={14} />

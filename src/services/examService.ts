@@ -12,6 +12,8 @@ export const getExamsList = async (
     lesson: {},
   };
 
+  const orderBy: Prisma.ExamOrderByWithRelationInput = {};
+
   if (queryParams) {
     for (const [key, value] of Object.entries(queryParams)) {
       if (value !== undefined) {
@@ -26,6 +28,14 @@ export const getExamsList = async (
             query.lesson!.subject = {
               name: { contains: value, mode: "insensitive" },
             };
+            break;
+          case "sort":
+            const [field, order] = value.split(":");
+            if (field === "title") {
+              orderBy.title = order as Prisma.SortOrder;
+            } else if (field === "startTime") {
+              orderBy.startTime = order as Prisma.SortOrder;
+            }
             break;
           default:
             break;
@@ -75,6 +85,7 @@ export const getExamsList = async (
           },
         },
       },
+      orderBy: Object.keys(orderBy).length > 0 ? orderBy : { id: "asc" },
       take: ITEM_PER_PAGE,
       skip: ITEM_PER_PAGE * (page - 1),
     }),

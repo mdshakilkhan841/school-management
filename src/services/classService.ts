@@ -5,6 +5,8 @@ import { Prisma } from "@prisma/client";
 export const getClassesList = async (queryParams: { [key: string]: string | undefined }, page: number) => {
   const query: Prisma.ClassWhereInput = {};
 
+  const orderBy: Prisma.ClassOrderByWithRelationInput = {};
+
   if (queryParams) {
     for (const [key, value] of Object.entries(queryParams)) {
       if (value !== undefined) {
@@ -14,6 +16,14 @@ export const getClassesList = async (queryParams: { [key: string]: string | unde
             break;
           case "search":
             query.name = { contains: value, mode: "insensitive" };
+            break;
+          case "sort":
+            const [field, order] = value.split(":");
+            if (field === "name") {
+              orderBy.name = order as Prisma.SortOrder;
+            } else if (field === "capacity") {
+              orderBy.capacity = order as Prisma.SortOrder;
+            }
             break;
           default:
             break;
@@ -28,6 +38,7 @@ export const getClassesList = async (queryParams: { [key: string]: string | unde
       include: {
         supervisor: true,
       },
+      orderBy: Object.keys(orderBy).length > 0 ? orderBy : { id: "asc" },
       take: ITEM_PER_PAGE,
       skip: ITEM_PER_PAGE * (page - 1),
     }),

@@ -7,6 +7,8 @@ import { Announcement, Class } from "@prisma/client";
 import Image from "next/image";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
+import prisma from "@/lib/prisma";
+import FilterAndSort from "@/components/list/FilterSort";
 
 type AnnouncementList = Announcement & { class: Class };
 
@@ -18,6 +20,19 @@ const AnnouncementListPage = async (props: {
   const userId = session?.user?.id;
   const role = session?.user?.role as string;
   const currentUserId = userId;
+
+  const { page, ...queryParams } = searchParams;
+  const p = page ? parseInt(page) : 1;
+
+  const { data, count } = await getAnnouncementsList(queryParams, p, role, currentUserId);
+
+  // Fetch classes for filter
+  const announcementClasses = await prisma.class.findMany({ select: { id: true, name: true } });
+  const filterOptions = announcementClasses.map(c => ({
+    label: c.name,
+    field: "classId",
+    value: c.id.toString(),
+  }));
 
   const columns = [
     {
@@ -66,11 +81,6 @@ const AnnouncementListPage = async (props: {
     </tr>
   );
 
-  const { page, ...queryParams } = searchParams;
-  const p = page ? parseInt(page) : 1;
-
-  const { data, count } = await getAnnouncementsList(queryParams, p, role, currentUserId);
-
   return (
     <div className="bg-white p-4 rounded-md flex-1 m-4 mt-0">
       {/* TOP */}
@@ -81,12 +91,7 @@ const AnnouncementListPage = async (props: {
         <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
           <TableSearch />
           <div className="flex items-center gap-4 self-end">
-            <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
-              <Image src="/filter.png" alt="" width={14} height={14} />
-            </button>
-            <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
-              <Image src="/sort.png" alt="" width={14} height={14} />
-            </button>
+            <FilterAndSort sortField="title" filterOptions={filterOptions} />
             {role === "admin" && (
               <FormContainer table="announcement" type="create" />
             )}

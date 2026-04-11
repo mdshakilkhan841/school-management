@@ -3,14 +3,13 @@ import BigCalendarContainer from "@/components/calendar/BigCalendarContainer";
 import FormContainer from "@/components/forms/FormContainer";
 import Performance from "@/components/dashboard/Performance";
 import StudentAttendanceCard from "@/components/shared/StudentAttendanceCard";
-import prisma from "@/lib/prisma";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
-import { Class, Student } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
+import { getStudentById } from "@/services/studentService";
 
 const SingleStudentPage = async (props: {
   params: Promise<{ id: string }>;
@@ -19,16 +18,7 @@ const SingleStudentPage = async (props: {
   const session = await auth.api.getSession({ headers: await headers() });
   const role = session?.user?.role as string;
 
-  const student:
-    | (Student & {
-        class: Class & { _count: { lessons: number } };
-      })
-    | null = await prisma.student.findUnique({
-    where: { id },
-    include: {
-      class: { include: { _count: { select: { lessons: true } } } },
-    },
-  });
+  const student = await getStudentById(id);
 
   if (!student) {
     return notFound();

@@ -2,13 +2,10 @@ import FormContainer from "@/components/forms/FormContainer";
 import Pagination from "@/components/list/Pagination";
 import Table from "@/components/list/Table";
 import TableSearch from "@/components/list/TableSearch";
-
-import prisma from "@/lib/prisma";
-import { ITEM_PER_PAGE } from "@/lib/settings";
-import { Class, Prisma, Student } from "@prisma/client";
+import { getStudentsList } from "@/services/studentService";
+import { Student, Class } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
-
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 
@@ -100,44 +97,7 @@ const StudentListPage = async (props: {
 
   const p = page ? parseInt(page) : 1;
 
-  // URL PARAMS CONDITION
-
-  const query: Prisma.StudentWhereInput = {};
-
-  if (queryParams) {
-    for (const [key, value] of Object.entries(queryParams)) {
-      if (value !== undefined) {
-        switch (key) {
-          case "teacherId":
-            query.class = {
-              lessons: {
-                some: {
-                  teacherId: value,
-                },
-              },
-            };
-            break;
-          case "search":
-            query.name = { contains: value, mode: "insensitive" };
-            break;
-          default:
-            break;
-        }
-      }
-    }
-  }
-
-  const [data, count] = await prisma.$transaction([
-    prisma.student.findMany({
-      where: query,
-      include: {
-        class: true,
-      },
-      take: ITEM_PER_PAGE,
-      skip: ITEM_PER_PAGE * (p - 1),
-    }),
-    prisma.student.count({ where: query }),
-  ]);
+  const { data, count } = await getStudentsList(queryParams, p);
 
   return (
     <div className="bg-white p-4 rounded-md flex-1 m-4 mt-0">

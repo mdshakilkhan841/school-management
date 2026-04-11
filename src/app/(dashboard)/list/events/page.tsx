@@ -2,21 +2,18 @@ import FormContainer from "@/components/forms/FormContainer";
 import Pagination from "@/components/list/Pagination";
 import Table from "@/components/list/Table";
 import TableSearch from "@/components/list/TableSearch";
-import prisma from "@/lib/prisma";
-import { ITEM_PER_PAGE } from "@/lib/settings";
-import { Class, Event, Prisma } from "@prisma/client";
+import { getEventsList } from "@/services/eventService";
+import { Class, Event } from "@prisma/client";
 import Image from "next/image";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 
 type EventList = Event & { class: Class };
 
-const EventListPage = async ({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | undefined };
+const EventListPage = async (props: {
+  searchParams: Promise<{ [key: string]: string | undefined }>;
 }) => {
-
+  const searchParams = await props.searchParams;
   const session = await auth.api.getSession({ headers: await headers() });
   const role = session?.user?.role as string;
   const userId = session?.user?.id;
@@ -94,53 +91,9 @@ const EventListPage = async ({
   );
 
   const { page, ...queryParams } = searchParams;
-
   const p = page ? parseInt(page) : 1;
 
-  // URL PARAMS CONDITION
-
-  const query: Prisma.EventWhereInput = {};
-
-  if (queryParams) {
-    for (const [key, value] of Object.entries(queryParams)) {
-      if (value !== undefined) {
-        switch (key) {
-          case "search":
-            query.title = { contains: value, mode: "insensitive" };
-            break;
-          default:
-            break;
-        }
-      }
-    }
-  }
-
-  // ROLE CONDITIONS
-
-  const roleConditions = {
-    teacher: { lessons: { some: { teacherId: currentUserId! } } },
-    student: { students: { some: { id: currentUserId! } } },
-    parent: { students: { some: { parentId: currentUserId! } } },
-  };
-
-  query.OR = [
-    { classId: null },
-    {
-      class: roleConditions[role as keyof typeof roleConditions] || {},
-    },
-  ];
-
-  const [data, count] = await prisma.$transaction([
-    prisma.event.findMany({
-      where: query,
-      include: {
-        class: true,
-      },
-      take: ITEM_PER_PAGE,
-      skip: ITEM_PER_PAGE * (p - 1),
-    }),
-    prisma.event.count({ where: query }),
-  ]);
+  const { data, count } = await getEventsList(queryParams, p, role, currentUserId);
 
   return (
     <div className="bg-white p-4 rounded-md flex-1 m-4 mt-0">

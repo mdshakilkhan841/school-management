@@ -1,20 +1,14 @@
 import Announcements from "@/components/dashboard/Announcements";
 import BigCalendarContainer from "@/components/calendar/BigCalendarContainer";
-import prisma from "@/lib/prisma";
+import { getParentStudents } from "@/services/parentService";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 
-
 const ParentPage = async () => {
   const session = await auth.api.getSession({ headers: await headers() });
-  const userId = session?.user?.id;
-  const currentUserId = userId;
-  
-  const students = await prisma.student.findMany({
-    where: {
-      parentId: currentUserId!,
-    },
-  });
+  const userId = session?.user?.id as string;
+
+  const students = await getParentStudents(userId);
 
   return (
     <div className="flex-1 p-4 flex gap-4 flex-col xl:flex-row">
@@ -26,7 +20,7 @@ const ParentPage = async () => {
               <h1 className="text-xl font-semibold">
                 Schedule ({student.name + " " + student.surname})
               </h1>
-              <BigCalendarContainer type="classId" id={student.classId} />
+              <BigCalendarContainer type="classId" id={student.classId!} />
             </div>
           </div>
         ))}

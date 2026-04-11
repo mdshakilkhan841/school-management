@@ -14,11 +14,10 @@ import { auth } from "@/lib/auth";
 
 type StudentList = Student & { class: Class };
 
-const StudentListPage = async ({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | undefined };
+const StudentListPage = async (props: {
+  searchParams: Promise<{ [key: string]: string | undefined }>;
 }) => {
+  const searchParams = await props.searchParams;
   const session = await auth.api.getSession({ headers: await headers() });
   const role = session?.user?.role as string;
 

@@ -12,11 +12,10 @@ import { auth } from "@/lib/auth";
 
 type TeacherList = Teacher & { subjects: Subject[] } & { classes: Class[] };
 
-const TeacherListPage = async ({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | undefined };
+const TeacherListPage = async (props: {
+  searchParams: Promise<{ [key: string]: string | undefined }>;
 }) => {
+  const searchParams = await props.searchParams;
   const session = await auth.api.getSession({ headers: await headers() });
   const role = session?.user?.role as string;
   const columns = [

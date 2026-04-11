@@ -11,12 +11,17 @@ const matchers = Object.keys(routeAccessMap).map((route) => ({
 export default async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   
-  // Try to skip API and static files early
+  // Skip Static & API
   if (
       pathname.startsWith("/api") || 
       pathname.startsWith("/_next") ||
       pathname.includes(".")
   ) {
+      return NextResponse.next();
+  }
+
+  // Public routes
+  if (pathname === "/sign-in" || pathname === "/logout") {
       return NextResponse.next();
   }
 
@@ -31,7 +36,7 @@ export default async function proxy(request: NextRequest) {
   // Handle Root redirect
   if (pathname === "/") {
     if (user) {
-        return NextResponse.redirect(new URL(`/${role}`, request.url));
+        return NextResponse.redirect(new URL(`/${role || "user"}`, request.url));
     }
     return NextResponse.redirect(new URL("/sign-in", request.url));
   }
@@ -41,8 +46,13 @@ export default async function proxy(request: NextRequest) {
       if (!user) {
          return NextResponse.redirect(new URL("/sign-in", request.url));
       }
-      if (!role || !allowedRoles.includes(role as string)) {
-        return NextResponse.redirect(new URL(`/${role || "sign-in"}`, request.url));
+      
+      if (!role || !allowedRoles.includes(role)) {
+        // Redirect to their own dashboard or root if unauthorized
+        const target = role ? `/${role}` : "/sign-in";
+        if (pathname !== target) {
+            return NextResponse.redirect(new URL(target, request.url));
+        }
       }
     }
   }

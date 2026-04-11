@@ -9,6 +9,7 @@ import {
   deleteLesson,
   deleteAssignment,
   deleteResult,
+  deleteAttendance,
 } from "@/lib/actions";
 import dynamic from "next/dynamic";
 import Image from "next/image";
@@ -28,7 +29,7 @@ const deleteActionMap = {
   lesson: deleteLesson,
   assignment: deleteAssignment,
   result: deleteResult,
-  attendance: deleteSubject,
+  attendance: deleteAttendance,
   event: deleteSubject,
   announcement: deleteSubject,
 };
@@ -60,6 +61,9 @@ const AssignmentForm = dynamic(() => import("@/components/forms/AssignmentForm")
   loading: () => <h1>Loading...</h1>,
 });
 const ResultForm = dynamic(() => import("@/components/forms/ResultForm"), {
+  loading: () => <h1>Loading...</h1>,
+});
+const AttendanceForm = dynamic(() => import("@/components/forms/AttendanceForm"), {
   loading: () => <h1>Loading...</h1>,
 });
 // TODO: OTHER FORMS
@@ -131,6 +135,14 @@ const forms: {
   ),
   result: (setOpen, type, data, relatedData) => (
     <ResultForm
+      type={type}
+      data={data}
+      setOpen={setOpen}
+      relatedData={relatedData}
+    />
+  ),
+  attendance: (setOpen, type, data, relatedData) => (
+    <AttendanceForm
       type={type}
       data={data}
       setOpen={setOpen}

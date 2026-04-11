@@ -59,7 +59,7 @@ const forms: {
     type: "create" | "update",
     data?: any,
     relatedData?: any
-  ) => JSX.Element;
+  ) => React.ReactNode;
 } = {
   subject: (setOpen, type, data, relatedData) => (
     <SubjectForm

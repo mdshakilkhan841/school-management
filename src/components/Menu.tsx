@@ -1,4 +1,5 @@
-import { currentUser } from "@clerk/nextjs/server";
+import { headers } from "next/headers";
+import { auth } from "@/lib/auth";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -118,8 +119,8 @@ const menuItems = [
 ];
 
 const Menu = async () => {
-  const user = await currentUser();
-  const role = user?.publicMetadata.role as string;
+  const session = await auth.api.getSession({ headers: await headers() });
+  const role = session?.user?.role as string;
   return (
     <div className="mt-4 text-sm">
       {menuItems.map((i) => (

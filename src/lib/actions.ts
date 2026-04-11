@@ -9,7 +9,7 @@ import {
   TeacherSchema,
 } from "./formValidationSchemas";
 import prisma from "./prisma";
-import { clerkClient } from "@clerk/nextjs/server";
+import { hash } from "bcryptjs";
 
 type CurrentState = { success: boolean; error: boolean };
 
@@ -142,12 +142,27 @@ export const createTeacher = async (
   data: TeacherSchema
 ) => {
   try {
-    const user = await clerkClient.users.createUser({
-      username: data.username,
-      password: data.password,
-      firstName: data.name,
-      lastName: data.surname,
-      publicMetadata:{role:"teacher"}
+    const hashedPassword = await hash(data.password || "password123", 10);
+    const user = await prisma.user.create({
+      data: {
+        id: data.username,
+        name: `${data.name} ${data.surname}`,
+        email: data.email || `${data.username}@system.local`,
+        emailVerified: true,
+        role: "teacher",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        accounts: {
+          create: {
+            id: crypto.randomUUID(),
+            accountId: data.username,
+            providerId: "credential",
+            password: hashedPassword,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+          }
+        }
+      }
     });
 
     await prisma.teacher.create({
@@ -187,11 +202,20 @@ export const updateTeacher = async (
     return { success: false, error: true };
   }
   try {
-    const user = await clerkClient.users.updateUser(data.id, {
-      username: data.username,
-      ...(data.password !== "" && { password: data.password }),
-      firstName: data.name,
-      lastName: data.surname,
+    if (data.password && data.password !== "") {
+      const hashedPassword = await hash(data.password || "password123", 10);
+      await prisma.account.updateMany({
+        where: { userId: data.id, providerId: "credential" },
+        data: { password: hashedPassword },
+      });
+    }
+
+    await prisma.user.update({
+      where: { id: data.id },
+      data: {
+        name: `${data.name} ${data.surname}`,
+        email: data.email || `${data.username}@system.local`,
+      }
     });
 
     await prisma.teacher.update({
@@ -231,7 +255,7 @@ export const deleteTeacher = async (
 ) => {
   const id = data.get("id") as string;
   try {
-    await clerkClient.users.deleteUser(id);
+    await prisma.user.delete({ where: { id: id } });
 
     await prisma.teacher.delete({
       where: {
@@ -262,12 +286,27 @@ export const createStudent = async (
       return { success: false, error: true };
     }
 
-    const user = await clerkClient.users.createUser({
-      username: data.username,
-      password: data.password,
-      firstName: data.name,
-      lastName: data.surname,
-      publicMetadata:{role:"student"}
+    const hashedPassword = await hash(data.password || "password123", 10);
+    const user = await prisma.user.create({
+      data: {
+        id: data.username,
+        name: `${data.name} ${data.surname}`,
+        email: data.email || `${data.username}@system.local`,
+        emailVerified: true,
+        role: "student",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        accounts: {
+          create: {
+            id: crypto.randomUUID(),
+            accountId: data.username,
+            providerId: "credential",
+            password: hashedPassword,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+          }
+        }
+      }
     });
 
     await prisma.student.create({
@@ -305,11 +344,20 @@ export const updateStudent = async (
     return { success: false, error: true };
   }
   try {
-    const user = await clerkClient.users.updateUser(data.id, {
-      username: data.username,
-      ...(data.password !== "" && { password: data.password }),
-      firstName: data.name,
-      lastName: data.surname,
+    if (data.password && data.password !== "") {
+      const hashedPassword = await hash(data.password || "password123", 10);
+      await prisma.account.updateMany({
+        where: { userId: data.id, providerId: "credential" },
+        data: { password: hashedPassword },
+      });
+    }
+
+    await prisma.user.update({
+      where: { id: data.id },
+      data: {
+        name: `${data.name} ${data.surname}`,
+        email: data.email || `${data.username}@system.local`,
+      }
     });
 
     await prisma.student.update({
@@ -347,7 +395,7 @@ export const deleteStudent = async (
 ) => {
   const id = data.get("id") as string;
   try {
-    await clerkClient.users.deleteUser(id);
+    await prisma.user.delete({ where: { id: id } });
 
     await prisma.student.delete({
       where: {

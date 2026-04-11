@@ -59,7 +59,7 @@ const LessonForm = ({
     }
   }, [state, router, type, setOpen]);
 
-  const { subjects, classes, teachers } = relatedData;
+  const { subjects = [], classes = [], teachers = [] } = relatedData || {};
 
   return (
     <form className="flex flex-col gap-8" onSubmit={onSubmit}>

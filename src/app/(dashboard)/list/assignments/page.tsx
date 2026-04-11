@@ -1,4 +1,4 @@
-import FormModal from "@/components/forms/FormModal";
+import FormContainer from "@/components/forms/FormContainer";
 import Pagination from "@/components/list/Pagination";
 import Table from "@/components/list/Table";
 import TableSearch from "@/components/list/TableSearch";
@@ -72,8 +72,8 @@ const AssignmentListPage = async (props: {
         <div className="flex items-center gap-2">
           {(role === "admin" || role === "teacher") && (
             <>
-              <FormModal table="assignment" type="update" data={item} />
-              <FormModal table="assignment" type="delete" id={item.id} />
+              <FormContainer table="assignment" type="update" data={item} />
+              <FormContainer table="assignment" type="delete" id={item.id} />
             </>
           )}
         </div>
@@ -98,7 +98,7 @@ const AssignmentListPage = async (props: {
           <div className="flex items-center gap-4 self-end">
             <FilterAndSort sortField="title" />
             {(role === "admin" || role === "teacher") && (
-              <FormModal table="assignment" type="create" />
+              <FormContainer table="assignment" type="create" />
             )}
           </div>
         </div>

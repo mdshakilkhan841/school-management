@@ -63,12 +63,17 @@ const ClassListPage = async (props: {
 
   const columns = [
     {
-      header: "Class Info",
-      accessor: "info",
+      header: "Class Name",
+      accessor: "name",
     },
     {
       header: "Sections",
       accessor: "sections",
+      className: "hidden md:table-cell",
+    },
+    {
+      header: "Schedule",
+      accessor: "schedule",
       className: "hidden md:table-cell",
     },
     {
@@ -102,39 +107,33 @@ const ClassListPage = async (props: {
         key={item.id}
         className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-lamaPurpleLight"
       >
-        <td className="p-4">
-          <div className="flex flex-col">
-            <h3 className="font-bold text-gray-800">{item.name || `Level ${item.level}`}</h3>
-            <span className="text-[10px] text-gray-400 font-medium uppercase tracking-wider">{item.bellSchedule || "Standard Schedule"}</span>
-          </div>
+        <td className="p-4 font-bold text-gray-800">
+           {item.name || `Level ${item.level}`}
         </td>
         <td className="hidden md:table-cell">
           <div className="flex flex-wrap gap-1">
             {item.sections.map((section, idx) => {
-              const bgColors = ["bg-slate-600", "bg-blue-600", "bg-purple-600", "bg-teal-600"];
+              const bgColors = ["bg-indigo-600", "bg-pink-600", "bg-amber-500", "bg-cyan-600"];
               const bgColor = bgColors[idx % bgColors.length];
               return (
-                <span key={section.id} className={`px-2 py-0.5 ${bgColor} text-white rounded-sm text-[10px] font-bold`}>
+                <span key={section.id} className={`px-2 py-0.5 ${bgColor} ${bgColor === 'bg-amber-500' ? 'text-gray-800' : 'text-white'} rounded-sm text-[10px] font-bold`}>
                   {section.name} {section.supervisor && `(${section.supervisor.name[0]})`}
                 </span>
               );
             })}
-            {item.sections.length === 0 && <span className="text-gray-300 italic">No sections</span>}
+            {item.sections.length === 0 && <span className="text-gray-300 italic text-xs font-normal">No sections</span>}
           </div>
         </td>
-        <td className="hidden md:table-cell">
-           <div className="flex flex-col">
-              <span className="font-bold text-gray-700">{item._count.students}</span>
-              <span className="text-[10px] text-gray-400">Enrolled</span>
-           </div>
+        <td className="hidden md:table-cell font-medium text-gray-600 uppercase text-[10px]">
+           {item.bellSchedule || "Not Assigned"}
         </td>
-        <td className="hidden md:table-cell">
-           <div className="flex flex-col">
-              <span className="font-bold text-gray-700">{item.capacity || "-"}</span>
-              <span className="text-[10px] text-gray-400 uppercase">Max Seats</span>
-           </div>
+        <td className="hidden md:table-cell font-bold text-gray-700">
+           {item._count.students}
         </td>
-        <td className="hidden lg:table-cell">
+        <td className="hidden md:table-cell font-bold text-gray-700">
+           {item.capacity || "-"}
+        </td>
+        <td className="hidden lg:table-cell text-gray-500 uppercase text-[10px] font-bold">
             {item.stage || "-"}
         </td>
         <td>

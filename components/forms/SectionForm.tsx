@@ -11,7 +11,7 @@ import {
   createSection,
   updateSection,
 } from "@/lib/actions";
-import { Dispatch, SetStateAction, useActionState, useEffect } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
@@ -35,27 +35,31 @@ const SectionForm = ({
     defaultValues: data
   });
 
-  const [state, formAction, isPending] = useActionState(
-    type === "create" ? createSection : updateSection,
-    {
-      success: false,
-      error: false,
-    }
-  );
-
-  const onSubmit = handleSubmit((data) => {
-    formAction(data);
-  });
-
+  const [isPending, setIsPending] = useState(false);
+  const [state, setState] = useState({ success: false, error: false });
   const router = useRouter();
 
-  useEffect(() => {
-    if (state.success) {
-      toast(`Section has been ${type === "create" ? "created" : "updated"}!`);
-      setOpen(false);
-      router.refresh();
+  const onSubmit = handleSubmit(async (data) => {
+    setIsPending(true);
+    setState({ success: false, error: false });
+
+    try {
+        const action = type === "create" ? createSection : updateSection;
+        const result = await action({ success: false, error: false }, data);
+
+        if (result.success) {
+            toast(`Section has been ${type === "create" ? "created" : "updated"}!`);
+            setOpen(false);
+            router.refresh();
+        } else {
+            setState({ success: false, error: true });
+        }
+    } catch (err) {
+        setState({ success: false, error: true });
+    } finally {
+        setIsPending(false);
     }
-  }, [state, router, type, setOpen]);
+  });
 
   const { teachers, classes } = relatedData;
 

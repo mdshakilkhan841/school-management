@@ -8,7 +8,6 @@ import { createClass, updateClass } from "@/lib/actions";
 import {
     Dispatch,
     SetStateAction,
-    useActionState,
     useEffect,
     useState,
 } from "react";
@@ -52,28 +51,34 @@ const ClassForm = ({
     const [sectionName, setSectionName] = useState("");
     const [sectionCapacity, setSectionCapacity] = useState(40);
 
-    const [state, formAction, isPending] = useActionState(
-        type === "create" ? createClass : updateClass,
-        {
-            success: false,
-            error: false,
-        },
-    );
-
-    const onSubmit = handleSubmit((data) => {
-        formAction(data);
-    });
-
+    const [isPending, setIsPending] = useState(false);
+    const [state, setState] = useState({ success: false, error: false });
     const router = useRouter();
 
-    useEffect(() => {
-        if (state.success) {
-            toast(
-                `Academic Class has been ${type === "create" ? "created" : "updated"}!`,
-            );
-            setOpen(false);
-            router.refresh();
+    const onSubmit = handleSubmit(async (data) => {
+        setIsPending(true);
+        setState({ success: false, error: false });
+        
+        try {
+            const action = type === "create" ? createClass : updateClass;
+            const result = await action({ success: false, error: false }, data);
+            
+            if (result.success) {
+                toast(`Academic Class has been ${type === "create" ? "created" : "updated"}!`);
+                setOpen(false);
+                router.refresh();
+            } else {
+                setState({ success: false, error: true });
+            }
+        } catch (err) {
+            setState({ success: false, error: true });
+        } finally {
+            setIsPending(false);
         }
+    });
+
+    useEffect(() => {
+        // Keeping this for any legacy state needs, but logic moved to onSubmit
     }, [state, router, type, setOpen]);
 
     const handleAddSection = () => {

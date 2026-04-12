@@ -80,7 +80,7 @@ model Class {
 
 model Section {
   id       Int    @id @default(autoincrement())
-  name     String @unique
+  name     String
   capacity Int
 
   supervisorId  String?
@@ -91,6 +91,8 @@ model Section {
   class         Class          @relation(fields: [classId], references: [id])
   events        Event[]
   announcements Announcement[]
+
+  @@unique([name, classId])
 }
 
 model Subject {

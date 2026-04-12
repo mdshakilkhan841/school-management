@@ -8,14 +8,10 @@ import { Dispatch, SetStateAction, useActionState, useEffect, useState, startTra
 import {
   studentSchema,
   StudentSchema,
-  teacherSchema,
-  TeacherSchema,
 } from "@/lib/formValidationSchemas";
 import {
   createStudent,
-  createTeacher,
   updateStudent,
-  updateTeacher,
 } from "@/lib/actions";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
@@ -38,11 +34,12 @@ const StudentForm = ({
     formState: { errors },
   } = useForm<StudentSchema>({
     resolver: zodResolver(studentSchema),
+    defaultValues: data
   });
 
   const [img, setImg] = useState<any>();
 
-  const [state, formAction] = useActionState(
+  const [state, formAction, isPending] = useActionState(
     type === "create" ? createStudent : updateStudent,
     {
       success: false,
@@ -51,8 +48,6 @@ const StudentForm = ({
   );
 
   const onSubmit = handleSubmit((data) => {
-    console.log("hello");
-    console.log(data);
     startTransition(() => {
       formAction({ ...data, img: img?.secure_url });
     });
@@ -68,7 +63,8 @@ const StudentForm = ({
     }
   }, [state, router, type, setOpen]);
 
-  const { grades = [], classes = [], parents = [] } = relatedData || {};
+  // Renamed keys from FormContainer: classes (formerly grades), sections (formerly classes)
+  const { classes = [], sections = [], parents = [] } = relatedData || {};
 
   return (
     <form className="flex flex-col gap-8" onSubmit={onSubmit}>
@@ -169,7 +165,7 @@ const StudentForm = ({
         <InputField
           label="Birthday"
           name="birthday"
-          defaultValue={data?.birthday.toISOString().split("T")[0]}
+          defaultValue={data?.birthday ? new Date(data.birthday).toISOString().split("T")[0] : ""}
           register={register}
           error={errors.birthday}
           type="date"
@@ -177,10 +173,11 @@ const StudentForm = ({
         <div className="flex flex-col gap-2 w-full md:w-1/4">
           <label className="text-xs text-gray-500">Parent</label>
           <select
-            className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full"
+            className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full outline-none"
             {...register("parentId")}
             defaultValue={data?.parentId}
           >
+            <option value="">Select Parent</option>
             {parents.map((parent: { id: string; name: string; surname: string }) => (
               <option value={parent.id} key={parent.id}>
                 {parent.name + " " + parent.surname}
@@ -206,7 +203,7 @@ const StudentForm = ({
         <div className="flex flex-col gap-2 w-full md:w-1/4">
           <label className="text-xs text-gray-500">Sex</label>
           <select
-            className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full"
+            className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full outline-none"
             {...register("sex")}
             defaultValue={data?.sex}
           >
@@ -220,45 +217,18 @@ const StudentForm = ({
           )}
         </div>
         <div className="flex flex-col gap-2 w-full md:w-1/4">
-          <label className="text-xs text-gray-500">Grade</label>
+          <label className="text-xs text-gray-500">Class (Level)</label>
           <select
-            className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full"
-            {...register("gradeId")}
-            defaultValue={data?.gradeId}
-          >
-            {grades.map((grade: { id: number; level: number }) => (
-              <option value={grade.id} key={grade.id}>
-                {grade.level}
-              </option>
-            ))}
-          </select>
-          {errors.gradeId?.message && (
-            <p className="text-xs text-red-400">
-              {errors.gradeId.message.toString()}
-            </p>
-          )}
-        </div>
-        <div className="flex flex-col gap-2 w-full md:w-1/4">
-          <label className="text-xs text-gray-500">Class</label>
-          <select
-            className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full"
+            className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full outline-none"
             {...register("classId")}
             defaultValue={data?.classId}
           >
-            {classes.map(
-              (classItem: {
-                id: number;
-                name: string;
-                capacity: number;
-                _count: { students: number };
-              }) => (
-                <option value={classItem.id} key={classItem.id}>
-                  ({classItem.name} -{" "}
-                  {classItem._count.students + "/" + classItem.capacity}{" "}
-                  Capacity)
-                </option>
-              )
-            )}
+             <option value="">Select Class</option>
+            {classes.map((c: { id: number; level: number }) => (
+              <option value={c.id} key={c.id}>
+                Level {c.level}
+              </option>
+            ))}
           </select>
           {errors.classId?.message && (
             <p className="text-xs text-red-400">
@@ -266,12 +236,39 @@ const StudentForm = ({
             </p>
           )}
         </div>
+        <div className="flex flex-col gap-2 w-full md:w-1/4">
+          <label className="text-xs text-gray-500">Section</label>
+          <select
+            className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full outline-none"
+            {...register("sectionId")}
+            defaultValue={data?.sectionId}
+          >
+            <option value="">Select Section</option>
+            {sections.map(
+              (section: {
+                id: number;
+                name: string;
+                capacity: number;
+                _count: { students: number };
+              }) => (
+                <option value={section.id} key={section.id}>
+                  {section.name} ({section._count.students}/{section.capacity})
+                </option>
+              )
+            )}
+          </select>
+          {errors.sectionId?.message && (
+            <p className="text-xs text-red-400">
+              {errors.sectionId.message.toString()}
+            </p>
+          )}
+        </div>
       </div>
       {state.error && (
-        <span className="text-red-500">Something went wrong!</span>
+        <span className="text-red-500 text-xs">Something went wrong!</span>
       )}
-      <button type="submit" className="bg-blue-400 text-white p-2 rounded-md">
-        {type === "create" ? "Create" : "Update"}
+      <button disabled={isPending} type="submit" className="bg-blue-400 text-white p-3 rounded-md font-medium disabled:opacity-50">
+        {isPending ? "Processing..." : (type === "create" ? "Create Student" : "Update Student")}
       </button>
     </form>
   );

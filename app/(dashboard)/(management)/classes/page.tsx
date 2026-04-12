@@ -3,7 +3,7 @@ import Pagination from "@/components/list/Pagination";
 import Table from "@/components/list/Table";
 import TableSearch from "@/components/list/TableSearch";
 import FilterAndSort from "@/components/list/FilterSort";
-import { Grade, Class } from "@prisma/client";
+import { Class, Section, Teacher } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import { headers } from "next/headers";
@@ -11,169 +11,234 @@ import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { ITEM_PER_PAGE } from "@/lib/settings";
 
-type AcademicClassList = Grade & { classess: Class[] };
+type AcademicClassList = Class & { sections: Section[] };
 
 const ClassListPage = async (props: {
-  searchParams: Promise<{ [key: string]: string | undefined }>;
+    searchParams: Promise<{ [key: string]: string | undefined }>;
 }) => {
-  const searchParams = await props.searchParams;
-  const session = await auth.api.getSession({ headers: await headers() });
-  const role = session?.user?.role as string;
-  
-  const { page, ...queryParams } = searchParams;
-  const p = page ? parseInt(page) : 1;
+    const searchParams = await props.searchParams;
+    const session = await auth.api.getSession({ headers: await headers() });
+    const role = session?.user?.role as string;
 
-  const query: any = {};
-  if (queryParams.search) {
-     query.name = { contains: queryParams.search, mode: "insensitive" };
-  }
+    const { page, ...queryParams } = searchParams;
+    const p = page ? parseInt(page) : 1;
 
-  const [data, count] = await prisma.$transaction([
-    prisma.grade.findMany({
-      where: query,
-      include: {
-        classess: true,
-      },
-      orderBy: { level: "asc" },
-      take: ITEM_PER_PAGE,
-      skip: ITEM_PER_PAGE * (p - 1),
-    }),
-    prisma.grade.count({ where: query }),
-  ]);
+    const query: any = {};
+    if (queryParams.search) {
+        query.name = { contains: queryParams.search, mode: "insensitive" };
+    }
 
-  // Aggregate Stats
-  const totalClasses = await prisma.grade.count();
-  const totalSections = await prisma.class.count();
-  
-  const classRecords = await prisma.class.findMany({ select: { capacity: true } });
-  const totalCapacity = classRecords.reduce((acc, curr) => acc + curr.capacity, 0);
-  
-  const totalStudents = await prisma.student.count();
-  const occupancyRate = totalCapacity > 0 ? ((totalStudents / totalCapacity) * 100).toFixed(1) : 0;
+    const [data, count] = await prisma.$transaction([
+        prisma.class.findMany({
+            where: query,
+            include: {
+                sections: true,
+            },
+            orderBy: { level: "asc" },
+            take: ITEM_PER_PAGE,
+            skip: ITEM_PER_PAGE * (p - 1),
+        }),
+        prisma.class.count({ where: query }),
+    ]);
 
-  const columns = [
-    {
-      header: "Class Name",
-      accessor: "name",
-    },
-    {
-      header: "Stage",
-      accessor: "stage",
-      className: "hidden md:table-cell",
-    },
-    {
-      header: "Total Sections",
-      accessor: "sections",
-      className: "hidden md:table-cell",
-    },
-    {
-      header: "Total Capacity",
-      accessor: "capacity",
-      className: "hidden md:table-cell",
-    },
-    ...(role === "admin"
-      ? [
-          {
-            header: "Actions",
-            accessor: "action",
-          },
-        ]
-      : []),
-  ];
+    // Aggregate Stats
+    const totalClasses = await prisma.class.count();
+    const totalSections = await prisma.section.count();
 
-  const renderRow = (item: AcademicClassList) => {
-    const totalCapacity = item.capacity || 0;
-    
-    return (
-      <tr
-        key={item.id}
-        className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-lamaPurpleLight"
-      >
-        <td className="flex items-center gap-4 p-4 font-semibold">
-          {item.name || `Class ${item.level}`}
-        </td>
-        <td className="hidden md:table-cell">{item.stage || "-"}</td>
-        <td className="hidden md:table-cell">{item.classess.length}</td>
-        <td className="hidden md:table-cell">{totalCapacity > 0 ? totalCapacity : "-"}</td>
-        <td>
-          <div className="flex items-center gap-2">
-            <Link href={`/classes/${item.id}`}>
-               <button className="w-7 h-7 flex items-center justify-center rounded-full bg-lamaSky">
-                 <Image src="/view.png" alt="" width={16} height={16} />
-               </button>
-            </Link>
-            {role === "admin" && (
-              <>
-                <FormContainer table="grade" type="update" data={item} />
-                <FormContainer table="grade" type="delete" id={item.id.toString()} />
-              </>
-            )}
-          </div>
-        </td>
-      </tr>
+    const sectionRecords = await prisma.section.findMany({
+        select: { capacity: true },
+    });
+    const totalSectionsCapacity = sectionRecords.reduce(
+        (acc, curr) => acc + curr.capacity,
+        0,
     );
-  };
+    const totalStudents = await prisma.student.count();
+    const occupancyRate =
+        totalSectionsCapacity > 0
+            ? ((totalStudents / totalSectionsCapacity) * 100).toFixed(1)
+            : 0;
 
-  return (
-    <div className="flex-1 m-4 mt-0 flex flex-col gap-4">
-      {/* STATS CARDS */}
-      <div className="flex gap-4 justify-between flex-wrap">
-        <div className="rounded-2xl bg-lamaPurple p-4 flex-1 min-w-[130px]">
-          <div className="flex justify-between items-center">
-             <span className="text-[10px] bg-white px-2 py-1 rounded-full text-gray-600">Total</span>
-             <Image src="/class.png" alt="" width={20} height={20} />
-          </div>
-          <h1 className="text-2xl font-semibold my-4">{totalClasses}</h1>
-          <h2 className="capitalize text-sm font-medium text-gray-500">Classes</h2>
-        </div>
+    const columns = [
+        {
+            header: "Class Name",
+            accessor: "name",
+        },
+        {
+            header: "Stage",
+            accessor: "stage",
+            className: "hidden md:table-cell",
+        },
+        {
+            header: "Total Sections",
+            accessor: "sections",
+            className: "hidden md:table-cell",
+        },
+        {
+            header: "Total Capacity",
+            accessor: "capacity",
+            className: "hidden md:table-cell",
+        },
+        ...(role === "admin"
+            ? [
+                  {
+                      header: "Actions",
+                      accessor: "action",
+                  },
+              ]
+            : []),
+    ];
 
-        <div className="rounded-2xl bg-lamaYellow p-4 flex-1 min-w-[130px]">
-          <div className="flex justify-between items-center">
-             <span className="text-[10px] bg-white px-2 py-1 rounded-full text-gray-600">Total</span>
-             <Image src="/singleBranch.png" alt="" width={20} height={20} />
-          </div>
-          <h1 className="text-2xl font-semibold my-4">{totalSections}</h1>
-          <h2 className="capitalize text-sm font-medium text-gray-500">Sections</h2>
-        </div>
+    const renderRow = (item: AcademicClassList) => {
+        const totalCapacity = item.capacity || 0;
 
-        <div className="rounded-2xl bg-lamaSky p-4 flex-1 min-w-[130px]">
-          <div className="flex justify-between items-center">
-             <span className="text-[10px] bg-white px-2 py-1 rounded-full text-gray-600">Seats</span>
-             <Image src="/student.png" alt="" width={20} height={20} />
-          </div>
-          <h1 className="text-2xl font-semibold my-4">{totalCapacity}</h1>
-          <h2 className="capitalize text-sm font-medium text-gray-500">Capacity</h2>
-        </div>
+        return (
+            <tr
+                key={item.id}
+                className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-lamaPurpleLight"
+            >
+                <td className="flex items-center gap-4 p-4 font-semibold">
+                    {item.name || `Class ${item.level}`}
+                </td>
+                <td className="hidden md:table-cell">{item.stage || "-"}</td>
+                <td className="hidden md:table-cell">{item.sections.length}</td>
+                <td className="hidden md:table-cell">
+                    {totalCapacity > 0 ? totalCapacity : "-"}
+                </td>
+                <td>
+                    <div className="flex items-center gap-2">
+                        <Link href={`/classes/${item.id}`}>
+                            <button className="w-7 h-7 flex items-center justify-center rounded-full bg-lamaSky">
+                                <Image
+                                    src="/view.png"
+                                    alt=""
+                                    width={16}
+                                    height={16}
+                                />
+                            </button>
+                        </Link>
+                        {role === "admin" && (
+                            <>
+                                <FormContainer
+                                    table="class"
+                                    type="update"
+                                    data={item}
+                                />
+                                <FormContainer
+                                    table="class"
+                                    type="delete"
+                                    id={item.id.toString()}
+                                />
+                            </>
+                        )}
+                    </div>
+                </td>
+            </tr>
+        );
+    };
 
-        <div className="rounded-2xl bg-lamaSkyLight p-4 flex-1 min-w-[130px]">
-          <div className="flex justify-between items-center">
-             <span className="text-[10px] bg-white px-2 py-1 rounded-full text-gray-600">Rate</span>
-             <Image src="/result.png" alt="" width={20} height={20} />
-          </div>
-          <h1 className="text-2xl font-semibold my-4">{occupancyRate}%</h1>
-          <h2 className="capitalize text-sm font-medium text-gray-500">Occupancy</h2>
-        </div>
-      </div>
+    return (
+        <div className="flex-1 m-4 mt-0 flex flex-col gap-4">
+            {/* STATS CARDS */}
+            <div className="flex gap-4 justify-between flex-wrap">
+                <div className="rounded-2xl bg-lamaPurple p-4 flex-1 min-w-[130px]">
+                    <div className="flex justify-between items-center">
+                        <span className="text-[10px] bg-white px-2 py-1 rounded-full text-gray-600 font-bold uppercase">
+                            Total
+                        </span>
+                        <Image src="/class.png" alt="" width={20} height={20} />
+                    </div>
+                    <h1 className="text-2xl font-semibold my-4">
+                        {totalClasses}
+                    </h1>
+                    <h2 className="capitalize text-sm font-medium text-gray-500">
+                        Classes
+                    </h2>
+                </div>
 
-      <div className="bg-white p-4 rounded-md flex-1">
-        {/* TOP */}
-        <div className="flex items-center justify-between">
-          <h1 className="hidden md:block text-lg font-semibold">All Academic Classes</h1>
-          <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
-            <TableSearch />
-            <div className="flex items-center gap-4 self-end">
-              <FilterAndSort sortField="name" />
-              {role === "admin" && <FormContainer table="grade" type="create" />}
+                <div className="rounded-2xl bg-lamaYellow p-4 flex-1 min-w-[130px]">
+                    <div className="flex justify-between items-center">
+                        <span className="text-[10px] bg-white px-2 py-1 rounded-full text-gray-600 font-bold uppercase">
+                            Total
+                        </span>
+                        <Image
+                            src="/singleBranch.png"
+                            alt=""
+                            width={20}
+                            height={20}
+                        />
+                    </div>
+                    <h1 className="text-2xl font-semibold my-4">
+                        {totalSections}
+                    </h1>
+                    <h2 className="capitalize text-sm font-medium text-gray-500">
+                        Sections
+                    </h2>
+                </div>
+
+                <div className="rounded-2xl bg-lamaSky p-4 flex-1 min-w-[130px]">
+                    <div className="flex justify-between items-center">
+                        <span className="text-[10px] bg-white px-2 py-1 rounded-full text-gray-600 font-bold uppercase">
+                            Seats
+                        </span>
+                        <Image
+                            src="/student.png"
+                            alt=""
+                            width={20}
+                            height={20}
+                        />
+                    </div>
+                    <h1 className="text-2xl font-semibold my-4">
+                        {totalSectionsCapacity}
+                    </h1>
+                    <h2 className="capitalize text-sm font-medium text-gray-500">
+                        Total Capacity
+                    </h2>
+                </div>
+
+                <div className="rounded-2xl bg-lamaSkyLight p-4 flex-1 min-w-[130px]">
+                    <div className="flex justify-between items-center">
+                        <span className="text-[10px] bg-white px-2 py-1 rounded-full text-gray-600 font-bold uppercase">
+                            Rate
+                        </span>
+                        <Image
+                            src="/result.png"
+                            alt=""
+                            width={20}
+                            height={20}
+                        />
+                    </div>
+                    <h1 className="text-2xl font-semibold my-4">
+                        {occupancyRate}%
+                    </h1>
+                    <h2 className="capitalize text-sm font-medium text-gray-500">
+                        Occupancy
+                    </h2>
+                </div>
             </div>
-          </div>
+
+            <div className="bg-white p-4 rounded-md flex-1">
+                {/* TOP */}
+                <div className="flex items-center justify-between">
+                    <h1 className="hidden md:block text-lg font-semibold">
+                        All Academic Classes
+                    </h1>
+                    <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
+                        <TableSearch />
+                        <div className="flex items-center gap-4 self-end">
+                            <FilterAndSort sortField="name" />
+                            {role === "admin" && (
+                                <FormContainer table="class" type="create" />
+                            )}
+                        </div>
+                    </div>
+                </div>
+                {/* LIST */}
+                <Table columns={columns} renderRow={renderRow} data={data} />
+                {/* PAGINATION */}
+                <Pagination page={p} count={count} />
+            </div>
         </div>
-        {/* LIST */}
-        <Table columns={columns} renderRow={renderRow} data={data} />
-        {/* PAGINATION */}
-        <Pagination page={p} count={count} />
-      </div>
-    </div>
-  );
+    );
 };
 
 export default ClassListPage;

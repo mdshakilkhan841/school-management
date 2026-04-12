@@ -1,8 +1,8 @@
 "use client";
 
 import {
+  deleteSection,
   deleteClass,
-  deleteGrade,
   deleteExam,
   deleteStudent,
   deleteSubject,
@@ -23,12 +23,11 @@ import { FormContainerProps } from "./FormContainer";
 
 const deleteActionMap = {
   subject: deleteSubject,
+  section: deleteSection,
   class: deleteClass,
-  grade: deleteGrade,
   teacher: deleteTeacher,
   student: deleteStudent,
   exam: deleteExam,
-// TODO: OTHER DELETE ACTIONS
   parent: deleteSubject,
   lesson: deleteLesson,
   assignment: deleteAssignment,
@@ -37,11 +36,6 @@ const deleteActionMap = {
   event: deleteEvent,
   announcement: deleteAnnouncement,
 };
-
-// USE LAZY LOADING
-
-// import TeacherForm from "./forms/TeacherForm";
-// import StudentForm from "./forms/StudentForm";
 
 const TeacherForm = dynamic(() => import("@/components/forms/TeacherForm"), {
   loading: () => <h1>Loading...</h1>,
@@ -52,10 +46,10 @@ const StudentForm = dynamic(() => import("@/components/forms/StudentForm"), {
 const SubjectForm = dynamic(() => import("@/components/forms/SubjectForm"), {
   loading: () => <h1>Loading...</h1>,
 });
-const ClassForm = dynamic(() => import("@/components/forms/ClassForm"), {
+const SectionForm = dynamic(() => import("@/components/forms/SectionForm"), {
   loading: () => <h1>Loading...</h1>,
 });
-const GradeForm = dynamic(() => import("@/components/forms/GradeForm"), {
+const ClassForm = dynamic(() => import("@/components/forms/ClassForm"), {
   loading: () => <h1>Loading...</h1>,
 });
 const ExamForm = dynamic(() => import("@/components/forms/ExamForm"), {
@@ -79,7 +73,6 @@ const EventForm = dynamic(() => import("@/components/forms/EventForm"), {
 const AnnouncementForm = dynamic(() => import("@/components/forms/AnnouncementForm"), {
   loading: () => <h1>Loading...</h1>,
 });
-// TODO: OTHER FORMS
 
 const forms: {
   [key: string]: (
@@ -97,16 +90,16 @@ const forms: {
       relatedData={relatedData}
     />
   ),
-  class: (setOpen, type, data, relatedData) => (
-    <ClassForm
+  section: (setOpen, type, data, relatedData) => (
+    <SectionForm
       type={type}
       data={data}
       setOpen={setOpen}
       relatedData={relatedData}
     />
   ),
-  grade: (setOpen, type, data, relatedData) => (
-    <GradeForm
+  class: (setOpen, type, data, relatedData) => (
+    <ClassForm
       type={type}
       data={data}
       setOpen={setOpen}
@@ -136,7 +129,6 @@ const forms: {
       setOpen={setOpen}
       relatedData={relatedData}
     />
-    // TODO OTHER LIST ITEMS
   ),
   lesson: (setOpen, type, data, relatedData) => (
     <LessonForm

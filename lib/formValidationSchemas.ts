@@ -8,7 +8,7 @@ export const subjectSchema = z.object({
 
 export type SubjectSchema = z.infer<typeof subjectSchema>;
 
-export const gradeSchema = z.object({
+export const classSchema = z.object({
   id: z.coerce.number().optional(),
   level: z.coerce.number().min(1, { message: "Grade level is required!" }),
   name: z.string().min(1, { message: "Class name is required!" }),
@@ -22,17 +22,17 @@ export const gradeSchema = z.object({
   })).optional(),
 });
 
-export type GradeSchema = z.infer<typeof gradeSchema>;
+export type ClassSchema = z.infer<typeof classSchema>;
 
-export const classSchema = z.object({
+export const sectionSchema = z.object({
   id: z.coerce.number().optional(),
-  name: z.string().min(1, { message: "Subject name is required!" }),
-  capacity: z.coerce.number().min(1, { message: "Capacity name is required!" }),
-  gradeId: z.coerce.number().min(1, { message: "Grade name is required!" }),
+  name: z.string().min(1, { message: "Section name is required!" }),
+  capacity: z.coerce.number().min(1, { message: "Capacity is required!" }),
+  classId: z.coerce.number().min(1, { message: "Class is required!" }),
   supervisorId: z.coerce.string().optional(),
 });
 
-export type ClassSchema = z.infer<typeof classSchema>;
+export type SectionSchema = z.infer<typeof sectionSchema>;
 
 export const teacherSchema = z.object({
   id: z.string().optional(),
@@ -87,8 +87,8 @@ export const studentSchema = z.object({
   bloodType: z.string().min(1, { message: "Blood Type is required!" }),
   birthday: z.coerce.date({ message: "Birthday is required!" }),
   sex: z.enum(["MALE", "FEMALE"], { message: "Sex is required!" }),
-  gradeId: z.coerce.number().min(1, { message: "Grade is required!" }),
   classId: z.coerce.number().min(1, { message: "Class is required!" }),
+  sectionId: z.coerce.number().min(1, { message: "Section is required!" }),
   parentId: z.string().min(1, { message: "Parent Id is required!" }),
 });
 
@@ -113,7 +113,7 @@ export const lessonSchema = z.object({
   startTime: z.coerce.date({ message: "Start time is required!" }),
   endTime: z.coerce.date({ message: "End time is required!" }),
   subjectId: z.coerce.number({ message: "Subject is required!" }),
-  classId: z.coerce.number({ message: "Class is required!" }),
+  sectionId: z.coerce.number({ message: "Section is required!" }),
   teacherId: z.string().min(1, { message: "Teacher is required!" }),
 });
 
@@ -158,7 +158,7 @@ export const eventSchema = z.object({
   description: z.string().min(1, { message: "Description is required!" }),
   startTime: z.coerce.date({ message: "Start time is required!" }),
   endTime: z.coerce.date({ message: "End time is required!" }),
-  classId: z.coerce.number().optional(),
+  sectionId: z.coerce.number().optional(),
 });
 
 export type EventSchema = z.infer<typeof eventSchema>;
@@ -168,7 +168,7 @@ export const announcementSchema = z.object({
   title: z.string().min(1, { message: "Title is required!" }),
   description: z.string().min(1, { message: "Description is required!" }),
   date: z.coerce.date({ message: "Date is required!" }),
-  classId: z.coerce.number().optional(),
+  sectionId: z.coerce.number().optional(),
 });
 
 export type AnnouncementSchema = z.infer<typeof announcementSchema>;

@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { UserSex, Day } from "../app/generated/prisma/client";
 import prisma from "../lib/prisma";
 import { auth } from "../lib/auth";
@@ -22,8 +23,6 @@ async function main() {
       },
     });
     
-    // Better Auth might return a user or a session. 
-    // Let's find the user record to get the ID.
     adminUser = await prisma.user.findFirst({ where: { email: adminEmail } });
   }
 
@@ -44,13 +43,13 @@ async function main() {
     console.log("Admin seeded.");
   }
 
-  // 2. SEED GRADES
-  console.log("Seeding grades...");
+  // 2. SEED CLASSES (formerly Grades)
+  console.log("Seeding classes...");
   for (let i = 1; i <= 6; i++) {
-    await prisma.grade.upsert({
+    await prisma.class.upsert({
       where: { level: i },
       update: {},
-      create: { level: i },
+      create: { level: i, name: `Grade ${i}` },
     });
   }
 
@@ -68,16 +67,16 @@ async function main() {
     });
   }
 
-  // 4. SEED CLASSES
-  console.log("Seeding classes...");
+  // 4. SEED SECTIONS (formerly Classes)
+  console.log("Seeding sections...");
   for (let i = 1; i <= 6; i++) {
-    await prisma.class.upsert({
+    await prisma.section.upsert({
       where: { name: `${i}A` },
       update: {},
       create: {
         name: `${i}A`,
         capacity: 20,
-        gradeId: i,
+        classId: i,
       },
     });
   }
@@ -144,7 +143,6 @@ async function main() {
             }
         });
 
-        // Add 1 student for this parent
         const studentEmail = `student${i}@school.com`;
         let su = await prisma.user.findFirst({ where: { email: studentEmail } });
         if (!su) {
@@ -168,8 +166,8 @@ async function main() {
                     bloodType: "O-",
                     sex: i % 2 === 0 ? UserSex.FEMALE : UserSex.MALE,
                     parentId: pu.id,
-                    gradeId: (i % 6) + 1,
                     classId: (i % 6) + 1,
+                    sectionId: (i % 6) + 1,
                     birthday: new Date(2015, 0, 1),
                 }
             });

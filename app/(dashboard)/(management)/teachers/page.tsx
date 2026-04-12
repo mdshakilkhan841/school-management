@@ -1,8 +1,8 @@
 import FormContainer from "@/components/forms/FormContainer";
-import Pagination from "@/components/Pagination";
-import Table from "@/components/Table";
-import TableSearch from "@/components/TableSearch";
-import FilterAndSort from "@/components/FilterSort";
+import Pagination from "@/components/list/Pagination";
+import Table from "@/components/list/Table";
+import TableSearch from "@/components/list/TableSearch";
+import FilterAndSort from "@/components/list/FilterSort";
 import { getTeachersList } from "@/services/teacherService";
 import { Teacher, Subject, Class } from "@prisma/client";
 import Image from "next/image";

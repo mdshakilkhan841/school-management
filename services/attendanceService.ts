@@ -66,3 +66,15 @@ export const getAttendancesList = async (
 
   return { data, count };
 };
+
+export const getStudentAttendancePercentage = async (studentId: string) => {
+  const attendances = await prisma.attendance.findMany({
+    where: { studentId },
+    select: { present: true },
+  });
+
+  if (attendances.length === 0) return 0;
+
+  const presentDays = attendances.filter((a) => a.present).length;
+  return Number(((presentDays / attendances.length) * 100).toFixed(2));
+};

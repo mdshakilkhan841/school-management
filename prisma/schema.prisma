@@ -66,8 +66,13 @@ model Parent {
 }
 
 model Grade {
-  id    Int @id @default(autoincrement())
-  level Int @unique
+  id          Int      @id @default(autoincrement())
+  level       Int      @unique
+  name        String?  @unique // e.g. "Grade 10"
+  stage       String?  // e.g. "PRIMARY"
+  description String?
+  capacity    Int?
+  bellSchedule String?
 
   students Student[]
   classess Class[]

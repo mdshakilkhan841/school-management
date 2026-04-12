@@ -2,6 +2,7 @@
 
 import {
   deleteClass,
+  deleteGrade,
   deleteExam,
   deleteStudent,
   deleteSubject,
@@ -23,6 +24,7 @@ import { FormContainerProps } from "./FormContainer";
 const deleteActionMap = {
   subject: deleteSubject,
   class: deleteClass,
+  grade: deleteGrade,
   teacher: deleteTeacher,
   student: deleteStudent,
   exam: deleteExam,
@@ -51,6 +53,9 @@ const SubjectForm = dynamic(() => import("@/components/forms/SubjectForm"), {
   loading: () => <h1>Loading...</h1>,
 });
 const ClassForm = dynamic(() => import("@/components/forms/ClassForm"), {
+  loading: () => <h1>Loading...</h1>,
+});
+const GradeForm = dynamic(() => import("@/components/forms/GradeForm"), {
   loading: () => <h1>Loading...</h1>,
 });
 const ExamForm = dynamic(() => import("@/components/forms/ExamForm"), {
@@ -94,6 +99,14 @@ const forms: {
   ),
   class: (setOpen, type, data, relatedData) => (
     <ClassForm
+      type={type}
+      data={data}
+      setOpen={setOpen}
+      relatedData={relatedData}
+    />
+  ),
+  grade: (setOpen, type, data, relatedData) => (
+    <GradeForm
       type={type}
       data={data}
       setOpen={setOpen}
@@ -234,8 +247,8 @@ const FormModal = ({
         <Image src={`/${type}.png`} alt="" width={16} height={16} />
       </button>
       {open && (
-        <div className="w-screen h-screen absolute left-0 top-0 bg-black bg-opacity-60 z-50 flex items-center justify-center">
-          <div className="bg-white p-4 rounded-md relative w-[90%] md:w-[70%] lg:w-[60%] xl:w-[50%] 2xl:w-[40%]">
+        <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center">
+          <div className="bg-white p-8 rounded-md relative w-[90%] md:w-[70%] lg:w-[60%] xl:w-[50%] 2xl:w-[40%]">
             <Form />
             <div
               className="absolute top-4 right-4 cursor-pointer"

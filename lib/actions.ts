@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import {
   ClassSchema,
+  GradeSchema,
   ExamSchema,
   StudentSchema,
   SubjectSchema,
@@ -79,6 +80,83 @@ export const deleteSubject = async (
     });
 
     // revalidatePath("/subjects");
+    return { success: true, error: false };
+  } catch (err) {
+    console.log(err);
+    return { success: false, error: true };
+  }
+};
+
+export const createGrade = async (
+  currentState: CurrentState,
+  data: GradeSchema
+) => {
+  try {
+    await prisma.grade.create({
+      data: {
+        level: data.level,
+        name: data.name,
+        stage: data.stage,
+        description: data.description,
+        capacity: data.capacity,
+        bellSchedule: data.bellSchedule,
+        classess: {
+          create: data.sections?.map((section) => ({
+            name: section.name,
+            capacity: section.capacity,
+          })),
+        },
+      },
+    });
+
+    // revalidatePath("/classes");
+    return { success: true, error: false };
+  } catch (err) {
+    console.log(err);
+    return { success: false, error: true };
+  }
+};
+
+export const updateGrade = async (
+  currentState: CurrentState,
+  data: GradeSchema
+) => {
+  try {
+    await prisma.grade.update({
+      where: {
+        id: data.id,
+      },
+      data: {
+        level: data.level,
+        name: data.name,
+        stage: data.stage,
+        description: data.description,
+        capacity: data.capacity,
+        bellSchedule: data.bellSchedule,
+      },
+    });
+
+    // revalidatePath("/classes");
+    return { success: true, error: false };
+  } catch (err) {
+    console.log(err);
+    return { success: false, error: true };
+  }
+};
+
+export const deleteGrade = async (
+  currentState: CurrentState,
+  data: FormData
+) => {
+  const id = data.get("id") as string;
+  try {
+    await prisma.grade.delete({
+      where: {
+        id: parseInt(id),
+      },
+    });
+
+    // revalidatePath("/classes");
     return { success: true, error: false };
   } catch (err) {
     console.log(err);

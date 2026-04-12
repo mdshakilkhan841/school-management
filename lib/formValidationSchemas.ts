@@ -8,6 +8,22 @@ export const subjectSchema = z.object({
 
 export type SubjectSchema = z.infer<typeof subjectSchema>;
 
+export const gradeSchema = z.object({
+  id: z.coerce.number().optional(),
+  level: z.coerce.number().min(1, { message: "Grade level is required!" }),
+  name: z.string().min(1, { message: "Class name is required!" }),
+  stage: z.string().optional(),
+  description: z.string().optional(),
+  capacity: z.coerce.number().optional(),
+  bellSchedule: z.string().optional(),
+  sections: z.array(z.object({
+    name: z.string().min(1),
+    capacity: z.coerce.number().min(1)
+  })).optional(),
+});
+
+export type GradeSchema = z.infer<typeof gradeSchema>;
+
 export const classSchema = z.object({
   id: z.coerce.number().optional(),
   name: z.string().min(1, { message: "Subject name is required!" }),

@@ -112,9 +112,15 @@ const ClassListPage = async (props: {
         </td>
         <td className="hidden md:table-cell">
           <div className="flex flex-wrap gap-1">
-            {item.sections.map((section, idx) => {
-              const bgColors = ["bg-indigo-600", "bg-pink-600", "bg-amber-500", "bg-cyan-600"];
-              const bgColor = bgColors[idx % bgColors.length];
+            {item.sections.map((section) => {
+              const bgColors = [
+                "bg-indigo-600", "bg-pink-600", "bg-amber-500", "bg-cyan-600", 
+                "bg-emerald-600", "bg-rose-600", "bg-fuchsia-600", "bg-violet-600", 
+                "bg-orange-600", "bg-sky-600"
+              ];
+              // Use section name CHAR CODE to consistently pick a color for 'A', 'B', etc.
+              const nameValue = section.name.charCodeAt(0) + (section.name.charCodeAt(1) || 0);
+              const bgColor = bgColors[nameValue % bgColors.length];
               return (
                 <span key={section.id} className={`px-2 py-0.5 ${bgColor} ${bgColor === 'bg-amber-500' ? 'text-gray-800' : 'text-white'} rounded-sm text-[10px] font-bold`}>
                   {section.name} {section.supervisor && `(${section.supervisor.name[0]})`}

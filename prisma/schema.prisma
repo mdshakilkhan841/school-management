@@ -88,7 +88,7 @@ model Section {
   lessons       Lesson[]
   students      Student[]
   classId       Int
-  class         Class          @relation(fields: [classId], references: [id])
+  class         Class          @relation(fields: [classId], references: [id], onDelete: Cascade)
   events        Event[]
   announcements Announcement[]
 

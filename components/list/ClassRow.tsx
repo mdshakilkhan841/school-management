@@ -201,7 +201,7 @@ const ClassRow = ({
                                                     }
                                                 >
                                                     <Link
-                                                        href={`/list/sections/${section.id}`}
+                                                        href={`/sections/${section.id}`}
                                                     >
                                                         <button className="w-7 h-7 flex items-center justify-center rounded-full bg-lamaSky">
                                                             <Image

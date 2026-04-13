@@ -8,7 +8,7 @@ export default function ThemeToggleButton() {
 
   return (
     <div
-      onClick={toggleMode}
+      onClick={(e) => toggleMode(e)}
       className="rounded-full w-7 h-7 flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity"
       style={{ backgroundColor: "var(--theme-surface)" }}
       title="Toggle Theme Mode"

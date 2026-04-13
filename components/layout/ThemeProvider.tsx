@@ -5,6 +5,8 @@ import {
   useContext,
   useEffect,
   useState,
+  useCallback,
+  useRef,
   ReactNode,
 } from "react";
 import {
@@ -23,7 +25,7 @@ interface ThemeContextType {
   palette: ThemePalette;
   setThemeId: (id: ThemeId) => void;
   setMode: (mode: ThemeMode) => void;
-  toggleMode: () => void;
+  toggleMode: (event?: React.MouseEvent) => void;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -62,32 +64,33 @@ function applyThemeVariables(palette: ThemePalette, mode: ThemeMode) {
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [themeId, setThemeIdState] = useState<ThemeId>(DEFAULT_THEME);
-  const [mode, setModeState] = useState<ThemeMode>(DEFAULT_MODE);
-  const [mounted, setMounted] = useState(false);
-
-  // Load from localStorage on mount
-  useEffect(() => {
-    const savedTheme = localStorage.getItem(STORAGE_KEY_THEME) as ThemeId | null;
-    const savedMode = localStorage.getItem(STORAGE_KEY_MODE) as ThemeMode | null;
-
-    if (savedTheme && themes[savedTheme]) {
-      setThemeIdState(savedTheme);
+  const [themeId, setThemeIdState] = useState<ThemeId>(() => {
+    // SSR-safe: will be overridden by the inline script, but we read
+    // localStorage on the client to keep React state in sync.
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem(STORAGE_KEY_THEME) as ThemeId | null;
+      if (saved && themes[saved]) return saved;
     }
-    if (savedMode && (savedMode === "light" || savedMode === "dark")) {
-      setModeState(savedMode);
+    return DEFAULT_THEME;
+  });
+
+  const [mode, setModeState] = useState<ThemeMode>(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem(STORAGE_KEY_MODE) as ThemeMode | null;
+      if (saved === "light" || saved === "dark") return saved;
     }
-    setMounted(true);
-  }, []);
+    return DEFAULT_MODE;
+  });
+
+  const isAnimating = useRef(false);
 
   // Apply CSS variables whenever theme or mode changes
   useEffect(() => {
-    if (!mounted) return;
     const palette = themes[themeId];
     applyThemeVariables(palette, mode);
     localStorage.setItem(STORAGE_KEY_THEME, themeId);
     localStorage.setItem(STORAGE_KEY_MODE, mode);
-  }, [themeId, mode, mounted]);
+  }, [themeId, mode]);
 
   const setThemeId = (id: ThemeId) => {
     if (themes[id]) {
@@ -99,13 +102,63 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     setModeState(m);
   };
 
-  const toggleMode = () => {
-    setModeState((prev) => (prev === "light" ? "dark" : "light"));
-  };
+  const toggleMode = useCallback(
+    (event?: React.MouseEvent) => {
+      const newMode = mode === "light" ? "dark" : "light";
+
+      // Try View Transition API for the circular reveal animation
+      if (
+        event &&
+        typeof document !== "undefined" &&
+        "startViewTransition" in document
+      ) {
+        // Prevent re-entry
+        if (isAnimating.current) return;
+        isAnimating.current = true;
+
+        // Get click coordinates (from the toggle button)
+        const x = event.clientX;
+        const y = event.clientY;
+
+        // Calculate the maximum radius needed to cover the entire viewport
+        const maxRadius = Math.hypot(
+          Math.max(x, window.innerWidth - x),
+          Math.max(y, window.innerHeight - y),
+        );
+
+        // @ts-ignore — View Transition API types may not be available
+        const transition = document.startViewTransition(() => {
+          setModeState(newMode);
+        });
+
+        transition.ready.then(() => {
+          document.documentElement.animate(
+            {
+              clipPath: [
+                `circle(0px at ${x}px ${y}px)`,
+                `circle(${maxRadius}px at ${x}px ${y}px)`,
+              ],
+            },
+            {
+              duration: 500,
+              easing: "ease-in-out",
+              pseudoElement: "::view-transition-new(root)",
+            },
+          );
+        });
+
+        transition.finished.then(() => {
+          isAnimating.current = false;
+        });
+      } else {
+        // Fallback: instant switch
+        setModeState(newMode);
+      }
+    },
+    [mode],
+  );
 
   const palette = themes[themeId];
-
-  // Instead of unmounting provider, pass default values or rely on CSS variables for hydration.
 
   return (
     <ThemeContext.Provider

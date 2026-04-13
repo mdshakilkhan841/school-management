@@ -53,7 +53,7 @@ const ClassRow = ({
                 onClick={() => setIsOpen(!isOpen)}
                 onMouseEnter={(e) =>
                     (e.currentTarget.style.backgroundColor =
-                        "var(--theme-secondary-light)")
+                        "var(--theme-primary-lighter)")
                 }
                 onMouseLeave={(e) =>
                     (e.currentTarget.style.backgroundColor = "transparent")
@@ -142,10 +142,11 @@ const ClassRow = ({
                 <tr>
                     <td colSpan={7} className="p-0 pb-4">
                         <div
-                            className="mx-6 overflow-hidden rounded-lg shadow-sm"
+                            className="overflow-hidden rounded-none shadow-sm"
                             style={{
-                                backgroundColor: "var(--theme-surface-alt)",
-                                border: "1px solid var(--theme-border)",
+                                backgroundColor: "var(--theme-surface)",
+                                borderTop: "1px solid var(--theme-border)",
+                                borderBottom: "1px solid var(--theme-border)",
                                 borderLeft: "4px solid var(--theme-primary)",
                             }}
                         >

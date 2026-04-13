@@ -291,14 +291,15 @@ const FormModal = ({
         <>
             {variant === "assign" ? (
                 <button
-                    className="px-2 py-1 border border-dashed rounded-none font-medium transition-all flex items-center gap-1 text-[10px] w-fit"
+                    className="px-3 py-1.5 rounded-md font-semibold transition-all flex items-center gap-1.5 text-xs w-fit hover:opacity-80"
                     style={{
-                        borderColor: "var(--theme-border)",
-                        color: "var(--theme-text-secondary)",
+                        backgroundColor: "var(--theme-primary-lighter)",
+                        color: "var(--theme-primary)",
+                        border: "1px solid var(--theme-primary-light)",
                     }}
                     onClick={() => setOpen(true)}
                 >
-                    <span className="text-xs font-bold">+</span> Assign Teacher
+                    <Plus size={14} strokeWidth={2.5} /> Assign Teacher
                 </button>
             ) : (
                 <button

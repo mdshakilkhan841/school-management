@@ -139,15 +139,14 @@ const ClassRow = ({
                 </td>
             </tr>
             {isOpen && (
-                <tr style={{ backgroundColor: "var(--theme-surface-alt)" }}>
-                    <td colSpan={7} className="p-0">
+                <tr>
+                    <td colSpan={7} className="p-0 pb-4">
                         <div
-                            className="mx-24 shadow-sm overflow-hidden"
+                            className="mx-6 overflow-hidden rounded-lg shadow-sm"
                             style={{
-                                backgroundColor: "var(--theme-surface)",
-                                borderLeft: "1px solid var(--theme-border)",
-                                borderRight: "1px solid var(--theme-border)",
-                                borderBottom: "1px solid var(--theme-border)",
+                                backgroundColor: "var(--theme-surface-alt)",
+                                border: "1px solid var(--theme-border)",
+                                borderLeft: "4px solid var(--theme-primary)",
                             }}
                         >
                             <table className="w-full text-xs">
@@ -179,6 +178,9 @@ const ClassRow = ({
                                         <tr
                                             key={section.id}
                                             className="transition-colors"
+                                            style={{
+                                                borderBottom: "1px solid var(--theme-border)",
+                                            }}
                                             onMouseEnter={(e) =>
                                                 (e.currentTarget.style.backgroundColor =
                                                     "var(--theme-primary-lighter)")
@@ -287,17 +289,6 @@ const ClassRow = ({
                                 </tbody>
                             </table>
 
-                            {/* Custom dashed line at the bottom of the container if it doesn't span full height */}
-                            <div className="px-10">
-                                <div
-                                    className="w-full h-px"
-                                    style={{
-                                        backgroundImage: `linear-gradient(to right, var(--theme-border) 50%, transparent 50%)`,
-                                        backgroundSize: "12px 1px",
-                                        backgroundRepeat: "repeat-x",
-                                    }}
-                                />
-                            </div>
                         </div>
                     </td>
                 </tr>

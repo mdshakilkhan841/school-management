@@ -10,8 +10,19 @@ export const createSection = async (
     data: SectionSchema,
 ) => {
     try {
+        // Sanitize supervisorId: form sends "" or literal "null" when no supervisor selected
+        const supervisorValue =
+            data.supervisorId && data.supervisorId.trim() !== "" && data.supervisorId !== "null"
+                ? data.supervisorId
+                : null;
+
         await prisma.section.create({
-            data,
+            data: {
+                name: data.name,
+                capacity: data.capacity,
+                classId: data.classId,
+                supervisorId: supervisorValue,
+            },
         });
 
         revalidatePath("/classes");
@@ -26,11 +37,22 @@ export const updateSection = async (
     data: SectionSchema,
 ) => {
     try {
+        // Sanitize supervisorId: form sends "" or literal "null" when no supervisor selected
+        const supervisorValue =
+            data.supervisorId && data.supervisorId.trim() !== "" && data.supervisorId !== "null"
+                ? data.supervisorId
+                : null;
+
         await prisma.section.update({
             where: {
                 id: data.id,
             },
-            data,
+            data: {
+                name: data.name,
+                capacity: data.capacity,
+                classId: data.classId,
+                supervisorId: supervisorValue,
+            },
         });
 
         revalidatePath("/classes");

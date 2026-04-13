@@ -2,6 +2,7 @@
 
 /* ────────────────────────────────────────────────────────────
    VIEW TRANSITION – Circular Reveal for Theme Toggle
+   Coordinates (--x, --y) are set by ThemeProvider on click.
    ──────────────────────────────────────────────────────────── */
 ::view-transition-old(root),
 ::view-transition-new(root) {
@@ -15,6 +16,16 @@
 
 ::view-transition-new(root) {
     z-index: 9999;
+    animation: theme-reveal 500ms ease-in-out;
+}
+
+@keyframes theme-reveal {
+    from {
+        clip-path: circle(0% at var(--x, 100%) var(--y, 0%));
+    }
+    to {
+        clip-path: circle(150% at var(--x, 100%) var(--y, 0%));
+    }
 }
 
 /* ────────────────────────────────────────────────────────────

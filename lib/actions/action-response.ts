@@ -1,5 +1,3 @@
-import { Prisma } from "@prisma/client";
-
 // ─── Types ───────────────────────────────────────────────────
 export type ActionResponse = {
     success: boolean;
@@ -22,15 +20,28 @@ export function actionError(
     return { success: false, error: true, message };
 }
 
+// ─── Prisma Error Code Check (duck-typing, no runtime import) ─
+function getPrismaErrorCode(err: unknown): string | null {
+    if (
+        err !== null &&
+        typeof err === "object" &&
+        "code" in err &&
+        typeof (err as Record<string, unknown>).code === "string"
+    ) {
+        return (err as Record<string, unknown>).code as string;
+    }
+    return null;
+}
+
 // ─── Centralized Error Handler ───────────────────────────────
 // Replaces the 12-line try/catch block that was duplicated 36 times!
 export function handleActionError(err: unknown): ActionResponse {
     console.error(err);
 
-    // Handle Prisma-specific errors
-    if (err instanceof Prisma.PrismaClientKnownRequestError) {
-        const prismaError = err as Prisma.PrismaClientKnownRequestError;
-        switch (prismaError.code) {
+    const prismaCode = getPrismaErrorCode(err);
+
+    if (prismaCode) {
+        switch (prismaCode) {
             case "P2003":
                 return actionError(
                     "Cannot delete this item as it is still in use by other records.",

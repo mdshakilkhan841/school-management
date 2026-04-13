@@ -4,7 +4,7 @@ import { useTheme } from "./ThemeProvider";
 import { Moon, Sun } from "lucide-react";
 
 export default function ThemeToggleButton() {
-  const { mode, toggleMode } = useTheme();
+  const { mode, mounted, toggleMode } = useTheme();
 
   return (
     <div
@@ -13,7 +13,10 @@ export default function ThemeToggleButton() {
       style={{ backgroundColor: "var(--theme-surface)" }}
       title="Toggle Theme Mode"
     >
-      {mode === "dark" ? (
+      {/* Render a neutral placeholder until mounted to avoid hydration mismatch */}
+      {!mounted ? (
+        <div className="w-4 h-4" />
+      ) : mode === "dark" ? (
         <Sun size={16} style={{ color: "var(--theme-text-secondary)" }} />
       ) : (
         <Moon size={16} style={{ color: "var(--theme-text-secondary)" }} />

@@ -237,8 +237,10 @@ const FormModal = ({
                 toast(`${table} has been deleted!`);
                 setOpen(false);
                 router.refresh();
+            } else if (state.error) {
+                toast.error(state.message || "An error occurred during deletion!");
             }
-        }, [state, router]);
+        }, [state, router, table]);
 
         return type === "delete" && id ? (
             <div className="flex flex-col items-center text-center p-2">

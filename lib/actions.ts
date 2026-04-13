@@ -15,10 +15,11 @@ import {
     EventSchema,
     AnnouncementSchema,
 } from "./formValidationSchemas";
+import { Prisma } from "@prisma/client";
 import prisma from "./prisma";
 import { auth } from "./auth";
 
-type CurrentState = { success: boolean; error: boolean };
+type CurrentState = { success: boolean; error: boolean; message?: string };
 
 export const createSubject = async (
     currentState: CurrentState,
@@ -37,9 +38,20 @@ export const createSubject = async (
         });
 
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -61,9 +73,20 @@ export const updateSubject = async (
         });
 
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -80,9 +103,20 @@ export const deleteSubject = async (
         });
 
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -110,9 +144,20 @@ export const createClass = async (
 
         revalidatePath("/classes");
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -121,7 +166,7 @@ export const updateClass = async (
     data: ClassSchema,
 ) => {
     try {
-        if (!data.id) return { success: false, error: true };
+        if (!data.id) return { success: false, error: true, message: "Class ID is required for updating." };
         const result = await prisma.$transaction(async (tx) => {
             // 1. Update the Class main fields
             const updatedClass = await tx.class.update({
@@ -202,9 +247,20 @@ export const updateClass = async (
         revalidatePath("/classes");
         revalidatePath("/");
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -222,9 +278,20 @@ export const deleteClass = async (
 
         revalidatePath("/classes");
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -239,9 +306,20 @@ export const createSection = async (
 
         revalidatePath("/classes");
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -260,9 +338,20 @@ export const updateSection = async (
         revalidatePath("/classes");
         revalidatePath("/");
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -280,9 +369,20 @@ export const deleteSection = async (
 
         revalidatePath("/classes");
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -301,7 +401,7 @@ export const createTeacher = async (
         });
 
         if (!user) {
-            return { success: false, error: true };
+            return { success: false, error: true, message: "Failed to create authentication user." };
         }
 
         await prisma.teacher.create({
@@ -326,9 +426,20 @@ export const createTeacher = async (
         });
 
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -337,7 +448,7 @@ export const updateTeacher = async (
     data: TeacherSchema,
 ) => {
     if (!data.id) {
-        return { success: false, error: true };
+        return { success: false, error: true, message: "Identification is required for updating." };
     }
     try {
         await prisma.user.update({
@@ -371,9 +482,20 @@ export const updateTeacher = async (
             },
         });
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -391,9 +513,20 @@ export const deleteTeacher = async (
         });
 
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -411,7 +544,7 @@ export const createStudent = async (
             sectionItem &&
             sectionItem.capacity === sectionItem._count.students
         ) {
-            return { success: false, error: true };
+            return { success: false, error: true, message: "This section is already full." };
         }
 
         const { user } = await auth.api.createUser({
@@ -447,9 +580,20 @@ export const createStudent = async (
         });
 
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -458,7 +602,7 @@ export const updateStudent = async (
     data: StudentSchema,
 ) => {
     if (!data.id) {
-        return { success: false, error: true };
+        return { success: false, error: true, message: "Identification is required for updating." };
     }
     try {
         await prisma.user.update({
@@ -490,9 +634,20 @@ export const updateStudent = async (
             },
         });
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -510,9 +665,20 @@ export const deleteStudent = async (
         });
 
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -531,9 +697,20 @@ export const createExam = async (
         });
 
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -555,9 +732,20 @@ export const updateExam = async (
         });
 
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -574,9 +762,20 @@ export const deleteExam = async (
         });
 
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -598,9 +797,20 @@ export const createLesson = async (
         });
 
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -625,9 +835,20 @@ export const updateLesson = async (
         });
 
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -644,9 +865,20 @@ export const deleteLesson = async (
         });
 
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -665,9 +897,20 @@ export const createAssignment = async (
         });
 
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -689,9 +932,20 @@ export const updateAssignment = async (
         });
 
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -708,9 +962,20 @@ export const deleteAssignment = async (
         });
 
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -729,9 +994,20 @@ export const createResult = async (
         });
 
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -753,9 +1029,20 @@ export const updateResult = async (
         });
 
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -772,9 +1059,20 @@ export const deleteResult = async (
         });
 
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -793,9 +1091,20 @@ export const createAttendance = async (
         });
 
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -817,9 +1126,20 @@ export const updateAttendance = async (
         });
 
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -836,9 +1156,20 @@ export const deleteAttendance = async (
         });
 
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -858,9 +1189,20 @@ export const createEvent = async (
         });
 
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -883,9 +1225,20 @@ export const updateEvent = async (
         });
 
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -902,9 +1255,20 @@ export const deleteEvent = async (
         });
 
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -923,9 +1287,20 @@ export const createAnnouncement = async (
         });
 
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -947,9 +1322,20 @@ export const updateAnnouncement = async (
         });
 
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };
 
@@ -966,8 +1352,19 @@ export const deleteAnnouncement = async (
         });
 
         return { success: true, error: false };
-    } catch (err) {
+    } catch (err: unknown) {
         console.log(err);
-        return { success: false, error: true };
+        const isForeignKeyError =
+            (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2003") ||
+            (err instanceof Error && err.message.includes("foreign key constraint"));
+
+        if (isForeignKeyError) {
+            return {
+                success: false,
+                error: true,
+                message: "Cannot delete this item as it is still in use by other records.",
+            };
+        }
+        return { success: false, error: true, message: "An unexpected error occurred." };
     }
 };

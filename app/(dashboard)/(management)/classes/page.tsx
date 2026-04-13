@@ -215,7 +215,7 @@ const ClassListPage = async (props: {
 
                 <div className="rounded-2xl bg-lamaSky p-4 flex-1 min-w-[130px]">
                     <div className="flex justify-between items-center">
-                        <span className="text-[10px] bg-white px-2 py-1 rounded-full text-gray-600 font-bold uppercase">
+                        <span className="text-[10px] bg-white card-badge px-2 py-1 rounded-full text-gray-600 font-bold uppercase">
                             Seats
                         </span>
                         <Users
@@ -233,7 +233,7 @@ const ClassListPage = async (props: {
 
                 <div className="rounded-2xl bg-lamaSkyLight p-4 flex-1 min-w-[130px]">
                     <div className="flex justify-between items-center">
-                        <span className="text-[10px] bg-white px-2 py-1 rounded-full text-gray-600 font-bold uppercase">
+                        <span className="text-[10px] bg-white card-badge px-2 py-1 rounded-full text-gray-600 font-bold uppercase">
                             Rate
                         </span>
                         <BarChart3

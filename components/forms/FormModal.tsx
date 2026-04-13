@@ -15,7 +15,6 @@ import {
     deleteAnnouncement,
 } from "@/lib/actions";
 import dynamic from "next/dynamic";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import {
     Dispatch,
@@ -26,6 +25,7 @@ import {
 } from "react";
 import { toast } from "react-toastify";
 import { FormContainerProps } from "./FormContainer";
+import { Plus, Pencil, Trash2, X } from "lucide-react";
 
 const deleteActionMap = {
     subject: deleteSubject,
@@ -195,6 +195,12 @@ const forms: {
     ),
 };
 
+const actionIcons = {
+    create: Plus,
+    update: Pencil,
+    delete: Trash2,
+};
+
 const FormModal = ({
     table,
     type,
@@ -207,14 +213,16 @@ const FormModal = ({
     variant?: "default" | "assign";
 }) => {
     const size = type === "create" ? "w-8 h-8" : "w-7 h-7";
-    const bgColor =
+    const bgColorVar =
         type === "create"
-            ? "bg-lamaYellow"
+            ? "var(--theme-accent)"
             : type === "update"
-              ? "bg-lamaSky"
-              : "bg-lamaPurple";
+              ? "var(--theme-primary-light)"
+              : "var(--theme-secondary)";
 
     const [open, setOpen] = useState(false);
+
+    const ActionIcon = actionIcons[type] || Plus;
 
     const Form = () => {
         const [state, formAction, isPending] = useActionState(deleteActionMap[table], {
@@ -243,9 +251,9 @@ const FormModal = ({
                    </svg>
                 </div>
                 
-                <h2 className="text-lg font-bold text-gray-900 mb-2">Confirm Deletion</h2>
-                <p className="text-sm text-gray-500 mb-8 max-w-[280px]">
-                    Are you sure you want to delete this <span className="font-bold text-gray-700 capitalize">{table}</span>? This action cannot be undone.
+                <h2 className="text-lg font-bold mb-2" style={{ color: "var(--theme-text)" }}>Confirm Deletion</h2>
+                <p className="text-sm mb-8 max-w-[280px]" style={{ color: "var(--theme-text-secondary)" }}>
+                    Are you sure you want to delete this <span className="font-bold capitalize" style={{ color: "var(--theme-text)" }}>{table}</span>? This action cannot be undone.
                 </p>
 
                 <form action={formAction} className="flex gap-3 w-full justify-center">
@@ -254,7 +262,8 @@ const FormModal = ({
                     <button 
                       type="button"
                       onClick={() => setOpen(false)}
-                      className="px-6 py-2 border border-gray-200 text-gray-600 font-bold text-xs rounded-md hover:bg-gray-50 transition-colors uppercase tracking-wider"
+                      className="px-6 py-2 font-bold text-xs rounded-md transition-colors uppercase tracking-wider"
+                      style={{ border: "1px solid var(--theme-border)", color: "var(--theme-text-secondary)" }}
                     >
                       Cancel
                     </button>
@@ -282,33 +291,36 @@ const FormModal = ({
         <>
             {variant === "assign" ? (
                 <button
-                    className="px-2 py-1 border border-dashed border-gray-300 rounded-none text-gray-400 font-medium hover:border-gray-400 hover:text-gray-600 transition-all flex items-center gap-1 text-[10px] w-fit"
+                    className="px-2 py-1 border border-dashed rounded-none font-medium transition-all flex items-center gap-1 text-[10px] w-fit"
+                    style={{
+                        borderColor: "var(--theme-border)",
+                        color: "var(--theme-text-secondary)",
+                    }}
                     onClick={() => setOpen(true)}
                 >
                     <span className="text-xs font-bold">+</span> Assign Teacher
                 </button>
             ) : (
                 <button
-                    className={`${size} flex items-center justify-center rounded-full ${bgColor}`}
+                    className={`${size} flex items-center justify-center rounded-full`}
+                    style={{ backgroundColor: bgColorVar }}
                     onClick={() => setOpen(true)}
                 >
-                    <Image src={`/${type}.png`} alt="" width={16} height={16} />
+                    <ActionIcon size={16} style={{ color: "var(--theme-text)" }} />
                 </button>
             )}
             {open && (
                 <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center">
-                    <div className={`bg-white p-8 rounded-md relative ${type === "delete" ? "w-[90%] md:w-[40%] lg:w-[30%] xl:w-[25%]" : "w-[90%] md:w-[70%] lg:w-[60%] xl:w-[50%] 2xl:w-[40%]"}`}>
+                    <div
+                        className={`p-8 rounded-md relative ${type === "delete" ? "w-[90%] md:w-[40%] lg:w-[30%] xl:w-[25%]" : "w-[90%] md:w-[70%] lg:w-[60%] xl:w-[50%] 2xl:w-[40%]"}`}
+                        style={{ backgroundColor: "var(--theme-surface)" }}
+                    >
                         <Form />
                         <div
                             className="absolute top-4 right-4 cursor-pointer"
                             onClick={() => setOpen(false)}
                         >
-                            <Image
-                                src="/close.png"
-                                alt=""
-                                width={14}
-                                height={14}
-                            />
+                            <X size={14} style={{ color: "var(--theme-text-secondary)" }} />
                         </div>
                     </div>
                 </div>

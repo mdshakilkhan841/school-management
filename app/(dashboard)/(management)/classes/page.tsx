@@ -4,7 +4,7 @@ import Table from "@/components/list/Table";
 import TableSearch from "@/components/list/TableSearch";
 import FilterAndSort from "@/components/list/FilterSort";
 import { Class, Section, Teacher } from "@/app/generated/prisma";
-import Image from "next/image";
+import { School, GitBranch, Users, BarChart3 } from "lucide-react";
 import Link from "next/link";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
@@ -150,7 +150,7 @@ const ClassListPage = async (props: {
         <div className="rounded-2xl bg-lamaPurple p-4 flex-1 min-w-[130px]">
           <div className="flex justify-between items-center">
              <span className="text-[10px] bg-white px-2 py-1 rounded-full text-gray-600 font-bold uppercase">Total</span>
-             <Image src="/class.png" alt="" width={20} height={20} />
+             <School size={20} style={{ color: "var(--theme-text)" }} />
           </div>
           <h1 className="text-2xl font-semibold my-4">{totalClasses}</h1>
           <h2 className="capitalize text-sm font-medium text-gray-500">Classes</h2>
@@ -159,7 +159,7 @@ const ClassListPage = async (props: {
         <div className="rounded-2xl bg-lamaYellow p-4 flex-1 min-w-[130px]">
           <div className="flex justify-between items-center">
              <span className="text-[10px] bg-white px-2 py-1 rounded-full text-gray-600 font-bold uppercase">Total</span>
-             <Image src="/singleBranch.png" alt="" width={20} height={20} />
+             <GitBranch size={20} style={{ color: "var(--theme-text)" }} />
           </div>
           <h1 className="text-2xl font-semibold my-4">{totalSections}</h1>
           <h2 className="capitalize text-sm font-medium text-gray-500">Sections</h2>
@@ -168,7 +168,7 @@ const ClassListPage = async (props: {
         <div className="rounded-2xl bg-lamaSky p-4 flex-1 min-w-[130px]">
           <div className="flex justify-between items-center">
              <span className="text-[10px] bg-white px-2 py-1 rounded-full text-gray-600 font-bold uppercase">Seats</span>
-             <Image src="/student.png" alt="" width={20} height={20} />
+             <Users size={20} style={{ color: "var(--theme-text)" }} />
           </div>
           <h1 className="text-2xl font-semibold my-4">{totalCapacity}</h1>
           <h2 className="capitalize text-sm font-medium text-gray-500">Capacity</h2>
@@ -177,17 +177,17 @@ const ClassListPage = async (props: {
         <div className="rounded-2xl bg-lamaSkyLight p-4 flex-1 min-w-[130px]">
           <div className="flex justify-between items-center">
              <span className="text-[10px] bg-white px-2 py-1 rounded-full text-gray-600 font-bold uppercase">Rate</span>
-             <Image src="/result.png" alt="" width={20} height={20} />
+             <BarChart3 size={20} style={{ color: "var(--theme-text)" }} />
           </div>
           <h1 className="text-2xl font-semibold my-4">{occupancyRate}%</h1>
           <h2 className="capitalize text-sm font-medium text-gray-500">Occupancy</h2>
         </div>
       </div>
 
-      <div className="bg-white p-4 rounded-md flex-1">
+      <div className="p-4 rounded-md flex-1" style={{ backgroundColor: "var(--theme-surface)" }}>
         {/* TOP */}
         <div className="flex items-center justify-between">
-          <h1 className="hidden md:block text-lg font-semibold">All Academic Classes</h1>
+          <h1 className="hidden md:block text-lg font-semibold" style={{ color: "var(--theme-text)" }}>All Academic Classes</h1>
           <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
             <TableSearch />
             <div className="flex items-center gap-4 self-end">

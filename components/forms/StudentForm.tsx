@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import InputField from "./InputField";
-import Image from "next/image";
+import { Upload } from "lucide-react";
 import { Dispatch, SetStateAction, useActionState, useEffect, useState, startTransition } from "react";
 import {
   studentSchema,
@@ -33,7 +33,7 @@ const StudentForm = ({
     handleSubmit,
     formState: { errors },
   } = useForm<StudentSchema>({
-    resolver: zodResolver(studentSchema),
+    resolver: zodResolver(studentSchema) as any,
     defaultValues: data
   });
 
@@ -49,7 +49,7 @@ const StudentForm = ({
 
   const onSubmit = handleSubmit((data) => {
     startTransition(() => {
-      formAction({ ...data, img: img?.secure_url });
+      formAction({ ...data, img: img?.secure_url } as StudentSchema);
     });
   });
 
@@ -115,7 +115,7 @@ const StudentForm = ({
                 className="text-xs text-gray-500 flex items-center gap-2 cursor-pointer"
                 onClick={() => open()}
               >
-                <Image src="/upload.png" alt="" width={28} height={28} />
+                <Upload size={28} className="text-gray-500" />
                 <span>Upload a photo</span>
               </div>
             );

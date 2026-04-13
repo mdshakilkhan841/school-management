@@ -1,8 +1,31 @@
 @import "tailwindcss";
 
+/* ────────────────────────────────────────────────────────────
+   DEFAULT CSS VARIABLES (Academic Blue Light)
+   These are overridden at runtime by ThemeProvider.
+   ──────────────────────────────────────────────────────────── */
 :root {
     --background: #ffffff;
     --foreground: #171717;
+
+    /* Theme variables – defaults (Academic Blue / Light) */
+    --theme-primary: #3B82F6;
+    --theme-primary-hover: #2563EB;
+    --theme-primary-light: #BFDBFE;
+    --theme-primary-lighter: #EFF6FF;
+    --theme-secondary: #A5B4FC;
+    --theme-secondary-light: #EEF2FF;
+    --theme-accent: #FBBF24;
+    --theme-accent-light: #FFFBEB;
+    --theme-bg: #FFFFFF;
+    --theme-surface: #FFFFFF;
+    --theme-surface-alt: #F8FAFC;
+    --theme-text: #1E293B;
+    --theme-text-secondary: #64748B;
+    --theme-border: #E2E8F0;
+    --theme-success: #22C55E;
+    --theme-warning: #F59E0B;
+    --theme-danger: #EF4444;
 }
 
 @theme inline {
@@ -11,26 +34,20 @@
     --font-sans: var(--font-geist-sans);
     --font-mono: var(--font-geist-mono);
 
-    /* Lama Theme Colors */
-    --color-lamaSky: #c3ebfa;
-    --color-lamaSkyLight: #edf9fd;
-    --color-lamaPurple: #cfceff;
-    --color-lamaPurpleLight: #f1f0ff;
-    --color-lamaYellow: #fae27c;
-    --color-lamaYellowLight: #fefce8;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --background: #0a0a0a;
-        --foreground: #ededed;
-    }
+    /* Dynamic Theme Colors – usable as Tailwind classes */
+    --color-lamaSky: var(--theme-primary-light);
+    --color-lamaSkyLight: var(--theme-primary-lighter);
+    --color-lamaPurple: var(--theme-secondary);
+    --color-lamaPurpleLight: var(--theme-secondary-light);
+    --color-lamaYellow: var(--theme-accent);
+    --color-lamaYellowLight: var(--theme-accent-light);
 }
 
 body {
-    background: var(--background);
-    color: var(--foreground);
+    background: var(--theme-bg);
+    color: var(--theme-text);
     font-family: var(--font-sans);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Calendar Styles */
@@ -38,6 +55,8 @@ body {
     width: 100% !important;
     border: none !important;
     font-family: inherit !important;
+    background: var(--theme-surface) !important;
+    color: var(--theme-text) !important;
 }
 
 .react-calendar__navigation__label__labelText {
@@ -45,8 +64,16 @@ body {
 }
 
 .react-calendar__tile--active {
-    background-color: #c3ebfa !important;
-    color: black !important;
+    background-color: var(--theme-primary-light) !important;
+    color: var(--theme-text) !important;
+}
+
+.react-calendar__tile:hover {
+    background-color: var(--theme-primary-lighter) !important;
+}
+
+.react-calendar__navigation button:hover {
+    background-color: var(--theme-primary-lighter) !important;
 }
 
 /* Big Calendar Styles */
@@ -65,17 +92,17 @@ body {
 
 .rbc-btn-group:last-child button {
     border: none !important;
-    background-color: #f1f0ff !important;
+    background-color: var(--theme-secondary-light) !important;
     margin-left: 2px !important;
 }
 
 .rbc-toolbar button.rbc-active {
-    background-color: #dbdafe !important;
+    background-color: var(--theme-secondary) !important;
     box-shadow: none !important;
 }
 
 .rbc-time-view {
-    border-color: #eee !important;
+    border-color: var(--theme-border) !important;
 }
 
 .rbc-time-header {
@@ -95,7 +122,7 @@ body {
 }
 
 .rbc-timeslot-group {
-    background-color: #f7fdff !important;
+    background-color: var(--theme-primary-lighter) !important;
 }
 
 .rbc-day-slot {
@@ -104,39 +131,39 @@ body {
 
 .rbc-event {
     border: none !important;
-    color: black !important;
+    color: var(--theme-text) !important;
     padding: 10px !important;
     margin: 10px !important;
     width: 99% !important;
 }
 
 .rbc-event:nth-child(1) {
-    background-color: #e2f8ff !important;
+    background-color: var(--theme-primary-lighter) !important;
 }
 .rbc-event:nth-child(2) {
-    background-color: #fefce8 !important;
+    background-color: var(--theme-accent-light) !important;
 }
 .rbc-event:nth-child(3) {
-    background-color: #f2f1ff !important;
+    background-color: var(--theme-secondary-light) !important;
 }
 .rbc-event:nth-child(4) {
-    background-color: #fdf2fb !important;
+    background-color: var(--theme-primary-lighter) !important;
 }
 .rbc-event:nth-child(5) {
-    background-color: #e2f8ff !important;
+    background-color: var(--theme-primary-lighter) !important;
 }
 .rbc-event:nth-child(6) {
-    background-color: #fefce8 !important;
+    background-color: var(--theme-accent-light) !important;
 }
 .rbc-event:nth-child(7) {
-    background-color: #f2f1ff !important;
+    background-color: var(--theme-secondary-light) !important;
 }
 .rbc-event:nth-child(8) {
-    background-color: #fdf2fb !important;
+    background-color: var(--theme-primary-lighter) !important;
 }
 
 .rbc-event-label {
-    color: gray !important;
+    color: var(--theme-text-secondary) !important;
     margin-bottom: 5px;
 }
 
@@ -150,4 +177,3 @@ body {
     scrollbar-width: none;
   }
 }
-

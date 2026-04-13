@@ -1,9 +1,7 @@
 "use client";
-import Image from "next/image";
 import {
   BarChart,
   Bar,
-  Rectangle,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -20,16 +18,21 @@ const AttendanceChart = ({
   return (
     <ResponsiveContainer width="100%" height="90%">
       <BarChart width={500} height={300} data={data} barSize={20}>
-        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#ddd" />
+        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--theme-border)" />
         <XAxis
           dataKey="name"
           axisLine={false}
-          tick={{ fill: "#d1d5db" }}
+          tick={{ fill: "var(--theme-text-secondary)" }}
           tickLine={false}
         />
-        <YAxis axisLine={false} tick={{ fill: "#d1d5db" }} tickLine={false} />
+        <YAxis axisLine={false} tick={{ fill: "var(--theme-text-secondary)" }} tickLine={false} />
         <Tooltip
-          contentStyle={{ borderRadius: "10px", borderColor: "lightgray" }}
+          contentStyle={{
+            borderRadius: "10px",
+            borderColor: "var(--theme-border)",
+            backgroundColor: "var(--theme-surface)",
+            color: "var(--theme-text)",
+          }}
         />
         <Legend
           align="left"
@@ -38,13 +41,13 @@ const AttendanceChart = ({
         />
         <Bar
           dataKey="present"
-          fill="#FAE27C"
+          fill="var(--theme-accent)"
           legendType="circle"
           radius={[10, 10, 0, 0]}
         />
         <Bar
           dataKey="absent"
-          fill="#C3EBFA"
+          fill="var(--theme-primary-light)"
           legendType="circle"
           radius={[10, 10, 0, 0]}
         />

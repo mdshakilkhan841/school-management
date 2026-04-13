@@ -1,7 +1,7 @@
 import FormContainer from "@/components/forms/FormContainer";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
-import Image from "next/image";
+import { ArrowLeft, School, GraduationCap, Users, GitBranch, BarChart3, Search, CalendarDays } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { headers } from "next/headers";
@@ -63,12 +63,7 @@ const SectionViewPage = async (props: {
                         href="/classes"
                         className="w-10 h-10 flex items-center justify-center rounded-md border border-gray-200 hover:bg-gray-50 transition-colors"
                     >
-                        <Image
-                            src="/arrow-left.png"
-                            alt=""
-                            width={16}
-                            height={16}
-                        />
+                        <ArrowLeft size={16} />
                     </Link>
                     <div>
                         <div className="flex items-center gap-2">
@@ -80,13 +75,7 @@ const SectionViewPage = async (props: {
                             </span>
                         </div>
                         <p className="text-sm text-gray-500 mt-1 flex items-center gap-2">
-                            <Image
-                                src="/class.png"
-                                alt=""
-                                width={14}
-                                height={14}
-                                className="opacity-50"
-                            />
+                            <School size={14} className="opacity-50" />
                             Class: {section.class.name} • Level{" "}
                             {section.class.level} • ID: {section.id}
                         </p>
@@ -107,12 +96,7 @@ const SectionViewPage = async (props: {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="bg-white p-4 rounded-md border border-gray-100 flex items-center gap-4">
                     <div className="w-12 h-12 rounded-md bg-lamaYellowLight flex items-center justify-center">
-                        <Image
-                            src="/teacher.png"
-                            alt=""
-                            width={24}
-                            height={24}
-                        />
+                        <GraduationCap size={24} style={{ color: "var(--theme-text)" }} />
                     </div>
                     <div>
                         <span className="text-[10px] uppercase text-gray-400 font-bold block">
@@ -127,12 +111,7 @@ const SectionViewPage = async (props: {
                 </div>
                 <div className="bg-white p-4 rounded-md border border-gray-100 flex items-center gap-4">
                     <div className="w-12 h-12 rounded-md bg-lamaSkyLight flex items-center justify-center">
-                        <Image
-                            src="/student.png"
-                            alt=""
-                            width={24}
-                            height={24}
-                        />
+                        <Users size={24} style={{ color: "var(--theme-text)" }} />
                     </div>
                     <div>
                         <span className="text-[10px] uppercase text-gray-400 font-bold block">
@@ -145,12 +124,7 @@ const SectionViewPage = async (props: {
                 </div>
                 <div className="bg-white p-4 rounded-md border border-gray-100 flex items-center gap-4 opacity-50">
                     <div className="w-12 h-12 rounded-md bg-gray-100 flex items-center justify-center">
-                        <Image
-                            src="/singleBranch.png"
-                            alt=""
-                            width={24}
-                            height={24}
-                        />
+                        <GitBranch size={24} style={{ color: "var(--theme-text)" }} />
                     </div>
                     <div>
                         <span className="text-[10px] uppercase text-gray-400 font-bold block">
@@ -163,12 +137,7 @@ const SectionViewPage = async (props: {
                 </div>
                 <div className="bg-white p-4 rounded-md border border-gray-100 flex items-center gap-4 opacity-50">
                     <div className="w-12 h-12 rounded-md bg-lamaPurpleLight flex items-center justify-center">
-                        <Image
-                            src="/result.png"
-                            alt=""
-                            width={24}
-                            height={24}
-                        />
+                        <BarChart3 size={24} style={{ color: "var(--theme-text)" }} />
                     </div>
                     <div>
                         <span className="text-[10px] uppercase text-gray-400 font-bold block">
@@ -202,19 +171,13 @@ const SectionViewPage = async (props: {
                     <div className="flex flex-col lg:flex-row gap-6">
                         {/* LEFT: ROOM CARD */}
                         <div className="flex-1 flex flex-col gap-6">
-                            <div className="bg-white p-8 rounded-md border border-gray-100 relative group">
+                            <div className="p-8 rounded-md border border-gray-100 relative group" style={{ backgroundColor: "var(--theme-surface)" }}>
                                 <div className="flex items-center justify-between mb-8">
                                     <h2 className="text-lg font-bold text-gray-800">
                                         Assigned Room
                                     </h2>
                                     <div className="w-10 h-10 rounded-md bg-gray-50 flex items-center justify-center border border-gray-100">
-                                        <Image
-                                            src="/singleBranch.png"
-                                            alt=""
-                                            width={20}
-                                            height={20}
-                                            className="opacity-40"
-                                        />
+                                        <GitBranch size={20} className="opacity-40" />
                                     </div>
                                 </div>
                                 <p className="text-sm text-gray-400 mb-8 max-w-[280px]">
@@ -231,18 +194,15 @@ const SectionViewPage = async (props: {
                         {/* RIGHT: TEACHER CARD */}
                         <div className="w-full lg:w-1/3">
                             <div
-                                className={`p-6 rounded-xl border border-gray-100 flex flex-col gap-6 ${section.supervisor ? "bg-white" : "bg-orange-50 border-orange-100"}`}
+                                className={`p-6 rounded-xl border border-gray-100 flex flex-col gap-6 ${section.supervisor ? "" : "bg-orange-50 border-orange-100"}`}
+                                style={{ backgroundColor: section.supervisor ? "var(--theme-surface)" : undefined }}
                             >
                                 <div className="flex items-center justify-between">
                                     <div
-                                        className={`w-12 h-12 rounded-lg flex items-center justify-center ${section.supervisor ? "bg-lamaYellowLight" : "bg-white border border-orange-100"}`}
+                                        className={`w-12 h-12 rounded-lg flex items-center justify-center ${section.supervisor ? "bg-lamaYellowLight" : "border border-orange-100"}`}
+                                        style={{ backgroundColor: section.supervisor ? undefined : "var(--theme-surface)" }}
                                     >
-                                        <Image
-                                            src="/teacher.png"
-                                            alt=""
-                                            width={24}
-                                            height={24}
-                                        />
+                                        <GraduationCap size={24} style={{ color: "var(--theme-text)" }} />
                                     </div>
                                     {role === "admin" && (
                                         <FormContainer
@@ -264,17 +224,13 @@ const SectionViewPage = async (props: {
                                         <div className="mt-4 flex flex-col gap-4">
                                             <div className="flex items-center gap-4">
                                                 <div className="w-16 h-16 rounded-full bg-gray-50 border border-gray-100 overflow-hidden">
-                                                    <Image
-                                                        src={
-                                                            section.supervisor
-                                                                .img ||
-                                                            "/noAvatar.png"
-                                                        }
-                                                        alt=""
-                                                        width={64}
-                                                        height={64}
-                                                        className="object-cover"
-                                                    />
+                                                <img 
+                                                    src={section.supervisor.img || "/noAvatar.png"}
+                                                    alt=""
+                                                    width={64}
+                                                    height={64}
+                                                    className="object-cover"
+                                                />
                                                 </div>
                                                 <div>
                                                     <h4 className="text-lg font-bold text-gray-900 leading-tight">
@@ -300,15 +256,9 @@ const SectionViewPage = async (props: {
                                             </Link>
                                         </div>
                                     ) : (
-                                        <div className="mt-4 p-8 border-2 border-dashed border-orange-100 rounded-xl flex flex-col items-center justify-center text-center bg-white/50">
+                                        <div className="mt-4 p-8 border-2 border-dashed border-orange-100 rounded-xl flex flex-col items-center justify-center text-center" style={{ backgroundColor: "var(--theme-surface)" }}>
                                             <div className="w-10 h-10 rounded-full bg-orange-100/50 flex items-center justify-center mb-3">
-                                                <Image
-                                                    src="/teacher.png"
-                                                    alt=""
-                                                    width={16}
-                                                    height={16}
-                                                    className="opacity-30"
-                                                />
+                                                <GraduationCap size={16} className="opacity-30" />
                                             </div>
                                             <p className="text-sm font-bold text-orange-400">
                                                 No Teacher Assigned
@@ -326,7 +276,7 @@ const SectionViewPage = async (props: {
                 )}
 
                 {tab === "students" && (
-                    <div className="bg-white p-6 rounded-md border border-gray-100">
+                    <div className="p-6 rounded-md border border-gray-100" style={{ backgroundColor: "var(--theme-surface)" }}>
                         <div className="flex items-center justify-between mb-8">
                             <div>
                                 <h2 className="text-lg font-bold text-gray-800 leading-none">
@@ -342,13 +292,7 @@ const SectionViewPage = async (props: {
                                     placeholder="Search students..."
                                     className="pl-8 pr-4 py-2 bg-gray-50 border border-gray-100 rounded-md text-xs outline-none focus:ring-1 focus:ring-lamaSky w-64"
                                 />
-                                <Image
-                                    src="/search.png"
-                                    alt=""
-                                    width={14}
-                                    height={14}
-                                    className="absolute left-2.5 top-1/2 -translate-y-1/2 opacity-30"
-                                />
+                                <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 opacity-30" size={14} />
                             </div>
                         </div>
 
@@ -380,7 +324,7 @@ const SectionViewPage = async (props: {
                 )}
 
                 {tab === "timetable" && (
-                    <div className="bg-white p-6 rounded-md border border-gray-100">
+                    <div className="p-6 rounded-md border border-gray-100" style={{ backgroundColor: "var(--theme-surface)" }}>
                         <div className="mb-8">
                             <h2 className="text-lg font-bold text-gray-800 leading-none">
                                 Weekly Timetable
@@ -406,13 +350,7 @@ const SectionViewPage = async (props: {
                                     >
                                         <div className="flex items-center justify-between px-2">
                                             <div className="flex items-center gap-2">
-                                                <Image
-                                                    src="/calendar.png"
-                                                    alt=""
-                                                    width={14}
-                                                    height={14}
-                                                    className="opacity-40"
-                                                />
+                                                <CalendarDays size={14} className="opacity-40" />
                                                 <span className="text-xs font-bold uppercase tracking-wider text-gray-900">
                                                     {day}
                                                 </span>
@@ -425,7 +363,8 @@ const SectionViewPage = async (props: {
                                             {dayLessons.map((lesson) => (
                                                 <div
                                                     key={lesson.id}
-                                                    className="bg-white p-3 border border-gray-100 rounded-md shadow-sm flex flex-col gap-1"
+                                                    className="p-3 border border-gray-100 rounded-md shadow-sm flex flex-col gap-1"
+                                                    style={{ backgroundColor: "var(--theme-surface)" }}
                                                 >
                                                     <div className="flex justify-between items-start">
                                                         <span className="text-[10px] font-bold text-lamaSky">
@@ -469,7 +408,7 @@ const SectionViewPage = async (props: {
 
                 {tab === "settings" && (
                     <div className="flex flex-col gap-6 max-w-2xl">
-                        <div className="bg-white p-8 rounded-sm border border-gray-100">
+                        <div className="p-8 rounded-sm border border-gray-100" style={{ backgroundColor: "var(--theme-surface)" }}>
                             <h2 className="text-lg font-bold text-gray-800 mb-8 leading-none">
                                 General Settings
                             </h2>

@@ -15,10 +15,11 @@ const Pagination = ({ page, count }: { page: number; count: number }) => {
     router.push(`${window.location.pathname}?${params}`);
   };
   return (
-    <div className="p-4 flex items-center justify-between text-gray-500">
+    <div className="p-4 flex items-center justify-between" style={{ color: "var(--theme-text-secondary)" }}>
       <button
         disabled={!hasPrev}
-        className="py-2 px-4 rounded-md bg-slate-200 text-xs font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+        className="py-2 px-4 rounded-md text-xs font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        style={{ backgroundColor: "var(--theme-primary-lighter)", color: "var(--theme-text)" }}
         onClick={() => {
           changePage(page - 1);
         }}
@@ -33,9 +34,11 @@ const Pagination = ({ page, count }: { page: number; count: number }) => {
             return (
               <button
                 key={pageIndex}
-                className={`px-2 rounded-sm ${
-                  page === pageIndex ? "bg-lamaSky" : ""
-                }`}
+                className="px-2 rounded-sm transition-colors"
+                style={{
+                  backgroundColor: page === pageIndex ? "var(--theme-primary-light)" : "transparent",
+                  color: page === pageIndex ? "var(--theme-text)" : "var(--theme-text-secondary)",
+                }}
                 onClick={() => {
                   changePage(pageIndex);
                 }}
@@ -47,7 +50,8 @@ const Pagination = ({ page, count }: { page: number; count: number }) => {
         )}
       </div>
       <button
-        className="py-2 px-4 rounded-md bg-slate-200 text-xs font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+        className="py-2 px-4 rounded-md text-xs font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        style={{ backgroundColor: "var(--theme-primary-lighter)", color: "var(--theme-text)" }}
         disabled={!hasNext}
         onClick={() => {
           changePage(page + 1);

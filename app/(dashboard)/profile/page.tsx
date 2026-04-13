@@ -2,6 +2,7 @@ import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { headers } from "next/headers";
 import Image from "next/image";
+import { Droplets, Calendar, Mail, Phone, CheckCircle, GitBranch, Lightbulb, School } from "lucide-react";
 import { notFound } from "next/navigation";
 
 const ProfilePage = async () => {
@@ -64,19 +65,19 @@ const ProfilePage = async () => {
               </p>
               <div className="flex items-center justify-between gap-2 flex-wrap text-xs font-medium">
                 <div className="w-full md:w-1/3 lg:w-full 2xl:w-1/3 flex items-center gap-2">
-                  <Image src="/blood.png" alt="" width={14} height={14} />
+                  <Droplets size={14} style={{ color: "var(--theme-text-secondary)" }} />
                   <span>{userData.bloodType || "N/A"}</span>
                 </div>
                 <div className="w-full md:w-1/3 lg:w-full 2xl:w-1/3 flex items-center gap-2">
-                  <Image src="/date.png" alt="" width={14} height={14} />
+                  <Calendar size={14} style={{ color: "var(--theme-text-secondary)" }} />
                   <span>{userData.birthday ? new Intl.DateTimeFormat("en-US").format(userData.birthday) : "N/A"}</span>
                 </div>
                 <div className="w-full md:w-1/3 lg:w-full 2xl:w-1/3 flex items-center gap-2">
-                  <Image src="/mail.png" alt="" width={14} height={14} />
+                  <Mail size={14} style={{ color: "var(--theme-text-secondary)" }} />
                   <span>{userData.email || "N/A"}</span>
                 </div>
                 <div className="w-full md:w-1/3 lg:w-full 2xl:w-1/3 flex items-center gap-2">
-                  <Image src="/phone.png" alt="" width={14} height={14} />
+                  <Phone size={14} style={{ color: "var(--theme-text-secondary)" }} />
                   <span>{userData.phone || "N/A"}</span>
                 </div>
               </div>
@@ -84,27 +85,15 @@ const ProfilePage = async () => {
           </div>
           {/* SMALL CARDS */}
           <div className="flex-1 flex gap-4 justify-between flex-wrap">
-            <div className="bg-white p-4 rounded-md flex gap-4 w-full md:w-[48%] xl:w-[45%] 2xl:w-[48%]">
-              <Image
-                src="/singleAttendance.png"
-                alt=""
-                width={24}
-                height={24}
-                className="w-6 h-6"
-              />
+            <div className="p-4 rounded-md flex gap-4 w-full md:w-[48%] xl:w-[45%] 2xl:w-[48%]" style={{ backgroundColor: "var(--theme-surface)" }}>
+              <CheckCircle size={24} style={{ color: "var(--theme-primary)" }} />
               <div>
                 <h1 className="text-xl font-semibold">90%</h1>
                 <span className="text-sm text-gray-400">Attendance</span>
               </div>
             </div>
-            <div className="bg-white p-4 rounded-md flex gap-4 w-full md:w-[48%] xl:w-[45%] 2xl:w-[48%]">
-              <Image
-                src="/singleBranch.png"
-                alt=""
-                width={24}
-                height={24}
-                className="w-6 h-6"
-              />
+            <div className="p-4 rounded-md flex gap-4 w-full md:w-[48%] xl:w-[45%] 2xl:w-[48%]" style={{ backgroundColor: "var(--theme-surface)" }}>
+              <GitBranch size={24} style={{ color: "var(--theme-primary)" }} />
               <div>
                 <h1 className="text-xl font-semibold">
                   {role === "teacher"
@@ -118,14 +107,8 @@ const ProfilePage = async () => {
                 </span>
               </div>
             </div>
-            <div className="bg-white p-4 rounded-md flex gap-4 w-full md:w-[48%] xl:w-[45%] 2xl:w-[48%]">
-              <Image
-                src="/singleLesson.png"
-                alt=""
-                width={24}
-                height={24}
-                className="w-6 h-6"
-              />
+            <div className="p-4 rounded-md flex gap-4 w-full md:w-[48%] xl:w-[45%] 2xl:w-[48%]" style={{ backgroundColor: "var(--theme-surface)" }}>
+              <Lightbulb size={24} style={{ color: "var(--theme-primary)" }} />
               <div>
                 <h1 className="text-xl font-semibold">
                   {role === "teacher"
@@ -137,14 +120,8 @@ const ProfilePage = async () => {
                 <span className="text-sm text-gray-400">Lessons</span>
               </div>
             </div>
-            <div className="bg-white p-4 rounded-md flex gap-4 w-full md:w-[48%] xl:w-[45%] 2xl:w-[48%]">
-              <Image
-                src="/singleClass.png"
-                alt=""
-                width={24}
-                height={24}
-                className="w-6 h-6"
-              />
+            <div className="p-4 rounded-md flex gap-4 w-full md:w-[48%] xl:w-[45%] 2xl:w-[48%]" style={{ backgroundColor: "var(--theme-surface)" }}>
+              <School size={24} style={{ color: "var(--theme-primary)" }} />
               <div>
                 <h1 className="text-xl font-semibold">
                   {role === "teacher" ? userData._count.classes : "-"}
@@ -155,7 +132,7 @@ const ProfilePage = async () => {
           </div>
         </div>
         {/* BOTTOM */}
-        <div className="mt-4 bg-white rounded-md p-4 h-[800px]">
+        <div className="mt-4 rounded-md p-4 h-[800px]" style={{ backgroundColor: "var(--theme-surface)" }}>
           <h1 className="text-xl font-semibold">User Activity & Info</h1>
           <div className="mt-4 p-4 border rounded-md">
             <h2 className="font-medium">Bio / Address</h2>
@@ -179,7 +156,7 @@ const ProfilePage = async () => {
       </div>
       {/* RIGHT */}
       <div className="w-full xl:w-1/3 flex flex-col gap-4">
-        <div className="bg-white p-4 rounded-md">
+        <div className="p-4 rounded-md" style={{ backgroundColor: "var(--theme-surface)" }}>
           <h1 className="text-xl font-semibold">Shortcuts</h1>
           <div className="mt-4 flex gap-4 flex-wrap text-xs text-gray-500">
             <span className="p-3 rounded-md bg-lamaSkyLight">User's Lessons</span>

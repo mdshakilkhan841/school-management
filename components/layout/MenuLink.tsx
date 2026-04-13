@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
+import ThemeIcon from "./ThemeIcon";
 
 type MenuLinkProps = {
   item: {
@@ -20,13 +20,28 @@ const MenuLink = ({ item }: MenuLinkProps) => {
   return (
     <Link
       href={item.href}
-      className={`flex items-center justify-center lg:justify-start gap-4 py-2 md:px-2 rounded-md transition-colors ${
-        isActive
-          ? "bg-lamaSkyLight text-black font-medium"
-          : "text-gray-500 hover:bg-lamaSkyLight"
-      }`}
+      className="flex items-center justify-center lg:justify-start gap-4 py-2 md:px-2 rounded-md transition-colors"
+      style={{
+        backgroundColor: isActive ? "var(--theme-primary-lighter)" : "transparent",
+        color: isActive ? "var(--theme-text)" : "var(--theme-text-secondary)",
+        fontWeight: isActive ? 500 : 400,
+      }}
+      onMouseEnter={(e) => {
+        if (!isActive) {
+          (e.currentTarget as HTMLElement).style.backgroundColor = "var(--theme-primary-lighter)";
+        }
+      }}
+      onMouseLeave={(e) => {
+        if (!isActive) {
+          (e.currentTarget as HTMLElement).style.backgroundColor = "transparent";
+        }
+      }}
     >
-      <Image src={item.icon} alt="" width={20} height={20} />
+      <ThemeIcon
+        src={item.icon}
+        size={20}
+        className={isActive ? "!text-[var(--theme-primary)]" : ""}
+      />
       <span className="hidden lg:block">{item.label}</span>
     </Link>
   );

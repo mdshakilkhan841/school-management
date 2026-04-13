@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { SlidersHorizontal, ArrowUpDown } from "lucide-react";
 
 const FilterAndSort = ({ 
   sortField = "name", 
@@ -47,15 +47,24 @@ const FilterAndSort = ({
           onClick={() => setShowFilter(!showFilter)}
           className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow"
         >
-          <Image src="/filter.png" alt="" width={14} height={14} />
+          <SlidersHorizontal size={14} style={{ color: "var(--theme-text)" }} />
         </button>
         {showFilter && filterOptions.length > 0 && (
-          <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50 p-2">
-            <h3 className="text-xs font-semibold mb-2 px-2">Filter By</h3>
+          <div
+            className="absolute right-0 mt-2 w-48 rounded-md shadow-lg z-50 p-2"
+            style={{
+              backgroundColor: "var(--theme-surface)",
+              border: "1px solid var(--theme-border)",
+            }}
+          >
+            <h3 className="text-xs font-semibold mb-2 px-2" style={{ color: "var(--theme-text)" }}>Filter By</h3>
             <div className="flex flex-col gap-1">
               <button 
                 onClick={() => handleFilter("", "")}
-                className="text-left text-xs p-2 hover:bg-gray-100 rounded"
+                className="text-left text-xs p-2 rounded transition-colors"
+                style={{ color: "var(--theme-text)" }}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--theme-primary-lighter)")}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
               >
                 Clear Filters
               </button>
@@ -63,7 +72,10 @@ const FilterAndSort = ({
                 <button 
                   key={`${opt.field}-${opt.value}`}
                   onClick={() => handleFilter(opt.field, opt.value)}
-                  className="text-left text-xs p-2 hover:bg-gray-100 rounded"
+                  className="text-left text-xs p-2 rounded transition-colors"
+                  style={{ color: "var(--theme-text)" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--theme-primary-lighter)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
                 >
                   {opt.label}
                 </button>
@@ -78,7 +90,7 @@ const FilterAndSort = ({
         onClick={handleSort}
         className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow"
       >
-        <Image src="/sort.png" alt="" width={14} height={14} />
+        <ArrowUpDown size={14} style={{ color: "var(--theme-text)" }} />
       </button>
     </div>
   );

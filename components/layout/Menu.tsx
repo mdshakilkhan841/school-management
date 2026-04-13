@@ -1,6 +1,5 @@
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
-import Image from "next/image";
 import Link from "next/link";
 import MenuLink from "./MenuLink";
 
@@ -220,7 +219,10 @@ const Menu = async () => {
     <div className="mt-4 text-sm">
       {menuItems.map((i) => (
         <div className="flex flex-col gap-2" key={i.title}>
-          <span className="hidden lg:block text-gray-400 font-light my-4">
+          <span
+            className="hidden lg:block font-light my-4"
+            style={{ color: "var(--theme-text-secondary)" }}
+          >
             {i.title}
           </span>
           {i.items.map((item) => {

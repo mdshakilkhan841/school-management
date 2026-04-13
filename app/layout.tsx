@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import NextTopLoader from "nextjs-toploader";
+import { ThemeProvider } from "@/components/layout/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,8 +23,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NextTopLoader color="#c3ebfa" showSpinner={false} />
-        {children} <ToastContainer position="bottom-right" theme="dark" />
+        <ThemeProvider>
+          <NextTopLoader color="var(--theme-primary)" showSpinner={false} />
+          {children} <ToastContainer position="bottom-right" theme="dark" />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import {
   LineChart,
   Line,
@@ -11,6 +10,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { MoreHorizontal } from "lucide-react";
 
 const data = [
   {
@@ -77,10 +77,10 @@ const data = [
 
 const FinanceChart = () => {
   return (
-    <div className="bg-white rounded-xl w-full h-full p-4">
+    <div className="rounded-xl w-full h-full p-4" style={{ backgroundColor: "var(--theme-surface)" }}>
       <div className="flex justify-between items-center">
-        <h1 className="text-lg font-semibold">Finance</h1>
-        <Image src="/moreDark.png" alt="" width={20} height={20} />
+        <h1 className="text-lg font-semibold" style={{ color: "var(--theme-text)" }}>Finance</h1>
+        <MoreHorizontal size={20} style={{ color: "var(--theme-text-secondary)" }} />
       </div>
       <ResponsiveContainer width="100%" height="90%">
         <LineChart
@@ -94,16 +94,23 @@ const FinanceChart = () => {
             bottom: 5,
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" stroke="#ddd" />
+          <CartesianGrid strokeDasharray="3 3" stroke="var(--theme-border)" />
           <XAxis
             dataKey="name"
             axisLine={false}
-            tick={{ fill: "#d1d5db" }}
+            tick={{ fill: "var(--theme-text-secondary)" }}
             tickLine={false}
             tickMargin={10}
           />
-          <YAxis axisLine={false} tick={{ fill: "#d1d5db" }} tickLine={false}  tickMargin={20}/>
-          <Tooltip />
+          <YAxis axisLine={false} tick={{ fill: "var(--theme-text-secondary)" }} tickLine={false}  tickMargin={20}/>
+          <Tooltip
+            contentStyle={{
+              borderRadius: "10px",
+              borderColor: "var(--theme-border)",
+              backgroundColor: "var(--theme-surface)",
+              color: "var(--theme-text)",
+            }}
+          />
           <Legend
             align="center"
             verticalAlign="top"
@@ -112,10 +119,10 @@ const FinanceChart = () => {
           <Line
             type="monotone"
             dataKey="income"
-            stroke="#C3EBFA"
+            stroke="var(--theme-primary-light)"
             strokeWidth={5}
           />
-          <Line type="monotone" dataKey="expense" stroke="#CFCEFF" strokeWidth={5}/>
+          <Line type="monotone" dataKey="expense" stroke="var(--theme-secondary)" strokeWidth={5}/>
         </LineChart>
       </ResponsiveContainer>
     </div>

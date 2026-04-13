@@ -6,6 +6,7 @@ import FilterAndSort from "@/components/list/FilterSort";
 import { getTeachersList } from "@/services/teacherService";
 import { Teacher, Subject, Class } from "@prisma/client";
 import Image from "next/image";
+import { Eye } from "lucide-react";
 import Link from "next/link";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
@@ -62,7 +63,8 @@ const TeacherListPage = async (props: {
   const renderRow = (item: TeacherList) => (
     <tr
       key={item.id}
-      className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-lamaPurpleLight"
+      className="text-sm hover:bg-lamaPurpleLight"
+      style={{ borderBottom: "1px solid var(--theme-border)" }}
     >
       <td className="flex items-center gap-4 p-4">
         <Image
@@ -90,7 +92,7 @@ const TeacherListPage = async (props: {
         <div className="flex items-center gap-2">
           <Link href={`/teachers/${item.id}`}>
             <button className="w-7 h-7 flex items-center justify-center rounded-full bg-lamaSky">
-              <Image src="/view.png" alt="" width={16} height={16} />
+              <Eye size={16} style={{ color: "var(--theme-text)" }} />
             </button>
           </Link>
           {role === "admin" && (
@@ -118,10 +120,10 @@ const TeacherListPage = async (props: {
   }));
 
   return (
-    <div className="bg-white p-4 rounded-md flex-1 m-4 mt-0">
+    <div className="p-4 rounded-md flex-1 m-4 mt-0" style={{ backgroundColor: "var(--theme-surface)" }}>
       {/* TOP */}
       <div className="flex items-center justify-between">
-        <h1 className="hidden md:block text-lg font-semibold">All Teachers</h1>
+        <h1 className="hidden md:block text-lg font-semibold" style={{ color: "var(--theme-text)" }}>All Teachers</h1>
         <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
           <TableSearch />
           <div className="flex items-center gap-4 self-end">

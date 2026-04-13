@@ -1,11 +1,10 @@
 "use client";
-import Image from "next/image";
 import {
   RadialBarChart,
   RadialBar,
-  Legend,
   ResponsiveContainer,
 } from "recharts";
+import { UsersRound } from "lucide-react";
 
 
 const CountChart = ({ boys, girls }: { boys: number; girls: number }) => {
@@ -18,12 +17,12 @@ const CountChart = ({ boys, girls }: { boys: number; girls: number }) => {
     {
       name: "Girls",
       count: girls,
-      fill: "#FAE27C",
+      fill: "var(--theme-accent)",
     },
     {
       name: "Boys",
       count: boys,
-      fill: "#C3EBFA",
+      fill: "var(--theme-primary-light)",
     },
   ];
   return (
@@ -40,13 +39,9 @@ const CountChart = ({ boys, girls }: { boys: number; girls: number }) => {
           <RadialBar background dataKey="count" />
         </RadialBarChart>
       </ResponsiveContainer>
-      <Image
-        src="/maleFemale.png"
-        alt=""
-        width={50}
-        height={50}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-      />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <UsersRound size={50} style={{ color: "var(--theme-text-secondary)" }} />
+      </div>
     </div>
   );
 };

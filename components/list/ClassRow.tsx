@@ -1,9 +1,9 @@
 "use client";
 
 import { Class, Section, Teacher } from "@/app/generated/prisma";
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { Eye, ChevronRight } from "lucide-react";
 
 type AcademicClassList = Class & {
     sections: (Section & { supervisor: Teacher | null })[];
@@ -48,29 +48,20 @@ const ClassRow = ({
     return (
         <>
             <tr
-                className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-lamaPurpleLight cursor-pointer transition-all"
+                className="text-sm cursor-pointer transition-all"
+                style={{ borderBottom: "1px solid var(--theme-border)" }}
                 onClick={() => setIsOpen(!isOpen)}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--theme-secondary-light)")}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
             >
                 <td className="p-4">
                     <div className="flex items-center gap-3">
                         <div
                             className={`transition-transform duration-200 ${isOpen ? "rotate-90" : ""}`}
                         >
-                            <svg
-                                width="12"
-                                height="12"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="3"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                className="text-gray-400"
-                            >
-                                <path d="m9 18 6-6-6-6" />
-                            </svg>
+                            <ChevronRight size={12} style={{ color: "var(--theme-text-secondary)" }} />
                         </div>
-                        <span className="font-bold text-gray-800">
+                        <span className="font-bold" style={{ color: "var(--theme-text)" }}>
                             {item.name || `Level ${item.level}`}
                         </span>
                     </div>
@@ -89,34 +80,31 @@ const ClassRow = ({
                             );
                         })}
                         {item.sections.length === 0 && (
-                            <span className="text-gray-300 italic text-xs font-normal">
+                            <span className="italic text-xs font-normal" style={{ color: "var(--theme-text-secondary)" }}>
                                 No sections
                             </span>
                         )}
                     </div>
                 </td>
-                <td className="hidden md:table-cell font-medium text-gray-600 uppercase text-[10px]">
+                <td className="hidden md:table-cell font-medium uppercase text-[10px]" style={{ color: "var(--theme-text-secondary)" }}>
                     {item.bellSchedule || "Not Assigned"}
                 </td>
-                <td className="hidden md:table-cell font-bold text-gray-700">
+                <td className="hidden md:table-cell font-bold" style={{ color: "var(--theme-text)" }}>
                     {item._count.students}
                 </td>
-                <td className="hidden md:table-cell font-bold text-gray-700">
+                <td className="hidden md:table-cell font-bold" style={{ color: "var(--theme-text)" }}>
                     {item.capacity || "-"}
                 </td>
-                <td className="hidden lg:table-cell text-gray-500 uppercase text-[10px] font-bold">
+                <td className="hidden lg:table-cell uppercase text-[10px] font-bold" style={{ color: "var(--theme-text-secondary)" }}>
                     {item.stage || "-"}
                 </td>
                 <td onClick={(e) => e.stopPropagation()}>
                     <div className="flex items-center gap-2">
                         <Link href={`/classes/${item.id}`}>
-                            <button className="w-7 h-7 flex items-center justify-center rounded-full bg-lamaSky">
-                                <Image
-                                    src="/view.png"
-                                    alt=""
-                                    width={16}
-                                    height={16}
-                                />
+                            <button
+                                className="w-7 h-7 flex items-center justify-center rounded-full bg-lamaSky"
+                            >
+                                <Eye size={16} style={{ color: "var(--theme-text)" }} />
                             </button>
                         </Link>
                         {classActions}
@@ -124,12 +112,26 @@ const ClassRow = ({
                 </td>
             </tr>
             {isOpen && (
-                <tr className="bg-gray-50/10">
+                <tr style={{ backgroundColor: "var(--theme-surface-alt)" }}>
                     <td colSpan={7} className="p-0">
-                        <div className="bg-white mx-24 border-x border-b border-gray-100 shadow-sm overflow-hidden">
+                        <div
+                            className="mx-24 shadow-sm overflow-hidden"
+                            style={{
+                                backgroundColor: "var(--theme-surface)",
+                                borderLeft: "1px solid var(--theme-border)",
+                                borderRight: "1px solid var(--theme-border)",
+                                borderBottom: "1px solid var(--theme-border)",
+                            }}
+                        >
                             <table className="w-full text-xs">
                                 <thead>
-                                    <tr className="text-left text-gray-500 border-b border-gray-100 bg-gray-50/50">
+                                    <tr
+                                        className="text-left"
+                                        style={{
+                                            borderBottom: "1px solid var(--theme-border)",
+                                            color: "var(--theme-text-secondary)",
+                                        }}
+                                    >
                                         <th className="pl-10 pr-6 py-4 font-bold uppercase tracking-wider">
                                             Section Details
                                         </th>
@@ -144,11 +146,13 @@ const ClassRow = ({
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody className="divide-y divide-gray-100">
+                                <tbody>
                                     {item.sections.map((section, index) => (
                                         <tr
                                             key={section.id}
-                                            className="hover:bg-gray-50/50 transition-colors"
+                                            className="transition-colors"
+                                            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--theme-primary-lighter)")}
+                                            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
                                         >
                                             <td className="pl-10 pr-6 py-3">
                                                 <div className="flex items-center gap-3">
@@ -157,7 +161,7 @@ const ClassRow = ({
                                                     >
                                                         {section.name}
                                                     </div>
-                                                    <span className="text-gray-700 text-sm">
+                                                    <span className="text-sm" style={{ color: "var(--theme-text)" }}>
                                                         Section {section.name}
                                                     </span>
                                                 </div>
@@ -165,7 +169,7 @@ const ClassRow = ({
                                             <td className="px-6 py-3 text-center">
                                                 <div className="flex items-center justify-center">
                                                     {section.supervisor ? (
-                                                        <span className="text-gray-600 text-sm">
+                                                        <span className="text-sm" style={{ color: "var(--theme-text-secondary)" }}>
                                                             {
                                                                 section
                                                                     .supervisor
@@ -189,7 +193,7 @@ const ClassRow = ({
                                                 </div>
                                             </td>
                                             <td className="px-6 py-3 text-center">
-                                                <span className="text-gray-700 font-medium text-sm">
+                                                <span className="font-medium text-sm" style={{ color: "var(--theme-text)" }}>
                                                     {section.capacity || "-"}
                                                 </span>
                                             </td>
@@ -204,12 +208,7 @@ const ClassRow = ({
                                                         href={`/sections/${section.id}`}
                                                     >
                                                         <button className="w-7 h-7 flex items-center justify-center rounded-full bg-lamaSky">
-                                                            <Image
-                                                                src="/view.png"
-                                                                alt=""
-                                                                width={14}
-                                                                height={14}
-                                                            />
+                                                            <Eye size={14} style={{ color: "var(--theme-text)" }} />
                                                         </button>
                                                     </Link>
                                                     {sectionActions[index]}
@@ -221,7 +220,8 @@ const ClassRow = ({
                                         <tr>
                                             <td
                                                 colSpan={4}
-                                                className="p-12 text-center text-gray-400 italic text-sm"
+                                                className="p-12 text-center italic text-sm"
+                                                style={{ color: "var(--theme-text-secondary)" }}
                                             >
                                                 No sections found for this
                                                 class.
@@ -237,7 +237,7 @@ const ClassRow = ({
                                     className="w-full h-[1px]"
                                     style={{
                                         backgroundImage:
-                                            "linear-gradient(to right, #f3f4f6 50%, transparent 50%)",
+                                            `linear-gradient(to right, var(--theme-border) 50%, transparent 50%)`,
                                         backgroundSize: "12px 1px",
                                         backgroundRepeat: "repeat-x",
                                     }}

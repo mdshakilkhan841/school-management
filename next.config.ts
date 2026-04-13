@@ -1,10 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // @ts-ignore
-  turbopack: {
-    root: ".",
-  },
+    /* config options here */
+    turbopack: {
+        root: ".",
+    },
 };
 
 export default nextConfig;

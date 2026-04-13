@@ -71,7 +71,7 @@ async function main() {
   console.log("Seeding sections...");
   for (let i = 1; i <= 6; i++) {
     await prisma.section.upsert({
-      where: { name: `${i}A` },
+      where: { name_classId: { name: `${i}A`, classId: i } },
       update: {},
       create: {
         name: `${i}A`,
@@ -80,6 +80,7 @@ async function main() {
       },
     });
   }
+  console.log("Sections seeded.");
 
   // 5. SEED TEACHERS
   console.log("Seeding teachers...");

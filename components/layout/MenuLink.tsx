@@ -24,7 +24,7 @@ const MenuLink = ({ item }: MenuLinkProps) => {
             className="flex items-center justify-center lg:justify-start gap-4 py-2 md:px-2 rounded-md transition-colors"
             style={{
                 backgroundColor: isActive
-                    ? "var(--theme-primary-lighter)"
+                    ? "var(--theme-primary-light)"
                     : "transparent",
                 color: isActive
                     ? "var(--theme-text)"
@@ -34,13 +34,15 @@ const MenuLink = ({ item }: MenuLinkProps) => {
             onMouseEnter={(e) => {
                 if (!isActive) {
                     (e.currentTarget as HTMLElement).style.backgroundColor =
-                        "var(--theme-primary-lighter)";
+                        "var(--theme-primary-light)";
+                    (e.currentTarget as HTMLElement).style.opacity = "0.7";
                 }
             }}
             onMouseLeave={(e) => {
                 if (!isActive) {
                     (e.currentTarget as HTMLElement).style.backgroundColor =
                         "transparent";
+                    (e.currentTarget as HTMLElement).style.opacity = "1";
                 }
             }}
         >

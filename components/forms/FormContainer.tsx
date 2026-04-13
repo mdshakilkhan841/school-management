@@ -21,9 +21,10 @@ export type FormContainerProps = {
   type: "create" | "update" | "delete";
   data?: any;
   id?: number | string;
+  variant?: "default" | "assign";
 };
 
-const FormContainer = async ({ table, type, data, id }: FormContainerProps) => {
+const FormContainer = async ({ table, type, data, id, variant }: FormContainerProps) => {
   let relatedData = {};
 
   const session = await auth.api.getSession({ headers: await headers() });
@@ -173,6 +174,7 @@ const FormContainer = async ({ table, type, data, id }: FormContainerProps) => {
         data={data}
         id={id}
         relatedData={relatedData}
+        variant={variant}
       />
     </div>
   );

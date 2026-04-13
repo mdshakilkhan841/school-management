@@ -3,13 +3,15 @@ import Pagination from "@/components/list/Pagination";
 import Table from "@/components/list/Table";
 import TableSearch from "@/components/list/TableSearch";
 import FilterAndSort from "@/components/list/FilterSort";
-import { Class, Section, Teacher } from "@prisma/client";
+import { Class, Section, Teacher } from "@/app/generated/prisma";
 import Image from "next/image";
 import Link from "next/link";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { ITEM_PER_PAGE } from "@/lib/settings";
+import ClassRow from "@/components/list/ClassRow";
+
 
 type AcademicClassList = Class & { 
   sections: (Section & { supervisor: Teacher | null })[] 
@@ -102,62 +104,42 @@ const ClassListPage = async (props: {
   ];
 
   const renderRow = (item: AcademicClassList) => {
+    // Sort sections alphabetically to ensure consistent indexing for actions
+    const sortedSections = [...item.sections].sort((a, b) => a.name.localeCompare(b.name));
+
+    const classActions = role === "admin" && (
+      <>
+        <FormContainer table="class" type="update" data={item} />
+        <FormContainer table="class" type="delete" id={item.id.toString()} />
+      </>
+    );
+
+    const sectionActions = sortedSections.map((section) => (
+      role === "admin" && (
+        <div className="flex items-center gap-2" key={section.id}>
+          <FormContainer table="section" type="update" data={section} />
+          <FormContainer table="section" type="delete" id={section.id} />
+        </div>
+      )
+    ));
+
+    const sectionAssignButtons = sortedSections.map((section) => (
+      role === "admin" && !section.supervisorId && (
+        <FormContainer key={section.id} table="section" type="update" data={section} variant="assign" />
+      )
+    ));
+
+    const itemWithSortedSections = { ...item, sections: sortedSections };
+
     return (
-      <tr
-        key={item.id}
-        className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-lamaPurpleLight"
-      >
-        <td className="p-4 font-bold text-gray-800">
-           {item.name || `Level ${item.level}`}
-        </td>
-        <td className="hidden md:table-cell">
-          <div className="flex flex-wrap gap-1">
-            {item.sections.map((section) => {
-              const bgColors = [
-                "bg-indigo-600", "bg-pink-600", "bg-amber-500", "bg-cyan-600", 
-                "bg-emerald-600", "bg-rose-600", "bg-fuchsia-600", "bg-violet-600", 
-                "bg-orange-600", "bg-sky-600"
-              ];
-              // Use section name CHAR CODE to consistently pick a color for 'A', 'B', etc.
-              const nameValue = section.name.charCodeAt(0) + (section.name.charCodeAt(1) || 0);
-              const bgColor = bgColors[nameValue % bgColors.length];
-              return (
-                <span key={section.id} className={`px-2 py-0.5 ${bgColor} ${bgColor === 'bg-amber-500' ? 'text-gray-800' : 'text-white'} rounded-sm text-[10px] font-bold`}>
-                  {section.name} {section.supervisor && `(${section.supervisor.name[0]})`}
-                </span>
-              );
-            })}
-            {item.sections.length === 0 && <span className="text-gray-300 italic text-xs font-normal">No sections</span>}
-          </div>
-        </td>
-        <td className="hidden md:table-cell font-medium text-gray-600 uppercase text-[10px]">
-           {item.bellSchedule || "Not Assigned"}
-        </td>
-        <td className="hidden md:table-cell font-bold text-gray-700">
-           {item._count.students}
-        </td>
-        <td className="hidden md:table-cell font-bold text-gray-700">
-           {item.capacity || "-"}
-        </td>
-        <td className="hidden lg:table-cell text-gray-500 uppercase text-[10px] font-bold">
-            {item.stage || "-"}
-        </td>
-        <td>
-          <div className="flex items-center gap-2">
-            <Link href={`/classes/${item.id}`}>
-               <button className="w-7 h-7 flex items-center justify-center rounded-full bg-lamaSky">
-                 <Image src="/view.png" alt="" width={16} height={16} />
-               </button>
-            </Link>
-            {role === "admin" && (
-              <>
-                <FormContainer table="class" type="update" data={item} />
-                <FormContainer table="class" type="delete" id={item.id.toString()} />
-              </>
-            )}
-          </div>
-        </td>
-      </tr>
+      <ClassRow 
+        key={item.id} 
+        item={itemWithSortedSections} 
+        role={role} 
+        classActions={classActions} 
+        sectionActions={sectionActions}
+        sectionAssignButtons={sectionAssignButtons}
+      />
     );
   };
 

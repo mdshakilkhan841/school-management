@@ -6,36 +6,36 @@ const ClassesLoading = () => {
                 {[0, 1, 2, 3].map((i) => (
                     <div
                         key={i}
-                        className="rounded-2xl p-4 flex-1 min-w-[130px] animate-pulse"
-                        style={{ backgroundColor: "var(--theme-surface)" }}
+                        className="rounded-xl p-4 flex-1 min-w-[200px] flex items-center gap-4 animate-pulse border"
+                        style={{
+                            backgroundColor: "var(--theme-surface)",
+                            borderColor: "var(--theme-border)",
+                        }}
                     >
-                        <div className="flex justify-between items-center">
+                        {/* Icon Block Placeholder */}
+                        <div
+                            className="w-12 h-12 rounded-lg"
+                            style={{
+                                backgroundColor: "var(--theme-border)",
+                                opacity: 0.5,
+                            }}
+                        />
+                        {/* Text Block Placeholder */}
+                        <div className="flex flex-col gap-2">
                             <div
-                                className="h-5 w-14 rounded-full"
+                                className="h-2 w-16 rounded"
                                 style={{
                                     backgroundColor: "var(--theme-border)",
+                                    opacity: 0.8,
                                 }}
                             />
                             <div
-                                className="h-5 w-5 rounded"
+                                className="h-4 w-10 rounded mt-1"
                                 style={{
                                     backgroundColor: "var(--theme-border)",
                                 }}
                             />
                         </div>
-                        <div
-                            className="h-8 w-16 rounded mt-4 mb-4"
-                            style={{
-                                backgroundColor: "var(--theme-border)",
-                            }}
-                        />
-                        <div
-                            className="h-4 w-20 rounded"
-                            style={{
-                                backgroundColor: "var(--theme-border)",
-                                opacity: 0.6,
-                            }}
-                        />
                     </div>
                 ))}
             </div>

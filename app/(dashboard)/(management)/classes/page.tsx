@@ -177,76 +177,112 @@ const ClassListPage = async (props: {
         <div className="flex-1 m-4 flex flex-col gap-4">
             {/* STATS CARDS */}
             <div className="flex gap-4 justify-between flex-wrap">
-                <div className="rounded-2xl bg-lamaPurple p-4 flex-1 min-w-[130px]">
-                    <div className="flex justify-between items-center">
-                        <span className="text-[10px] bg-white px-2 py-1 rounded-full text-gray-600 font-bold uppercase">
-                            Total
-                        </span>
+                {/* Total Classes */}
+                <div
+                    className="rounded-xl p-4 flex-1 min-w-[200px] flex items-center gap-4 border"
+                    style={{
+                        backgroundColor: "var(--theme-surface)",
+                        borderColor: "var(--theme-border)",
+                    }}
+                >
+                    <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-lamaPurpleLight">
                         <School
-                            size={20}
+                            size={24}
                             style={{ color: "var(--theme-text)" }}
                         />
                     </div>
-                    <h1 className="text-2xl font-semibold my-4">
-                        {totalClasses}
-                    </h1>
-                    <h2 className="capitalize text-sm font-medium text-gray-500">
-                        Classes
-                    </h2>
+                    <div className="flex flex-col">
+                        <span className="text-[10px] font-bold uppercase text-gray-500 tracking-wider">
+                            Total Classes
+                        </span>
+                        <h1
+                            className="text-lg font-semibold"
+                            style={{ color: "var(--theme-text)" }}
+                        >
+                            {totalClasses}
+                        </h1>
+                    </div>
                 </div>
 
-                <div className="rounded-2xl bg-lamaYellow p-4 flex-1 min-w-[130px]">
-                    <div className="flex justify-between items-center">
-                        <span className="text-[10px] bg-white px-2 py-1 rounded-full text-gray-600 font-bold uppercase">
-                            Total
-                        </span>
+                {/* Total Sections */}
+                <div
+                    className="rounded-xl p-4 flex-1 min-w-[200px] flex items-center gap-4 border"
+                    style={{
+                        backgroundColor: "var(--theme-surface)",
+                        borderColor: "var(--theme-border)",
+                    }}
+                >
+                    <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-lamaYellowLight">
                         <GitBranch
-                            size={20}
+                            size={24}
                             style={{ color: "var(--theme-text)" }}
                         />
                     </div>
-                    <h1 className="text-2xl font-semibold my-4">
-                        {totalSections}
-                    </h1>
-                    <h2 className="capitalize text-sm font-medium text-gray-500">
-                        Sections
-                    </h2>
+                    <div className="flex flex-col">
+                        <span className="text-[10px] font-bold uppercase text-gray-500 tracking-wider">
+                            Total Sections
+                        </span>
+                        <h1
+                            className="text-lg font-semibold"
+                            style={{ color: "var(--theme-text)" }}
+                        >
+                            {totalSections}
+                        </h1>
+                    </div>
                 </div>
 
-                <div className="rounded-2xl bg-lamaSky p-4 flex-1 min-w-[130px]">
-                    <div className="flex justify-between items-center">
-                        <span className="text-[10px] bg-white card-badge px-2 py-1 rounded-full text-gray-600 font-bold uppercase">
-                            Seats
-                        </span>
+                {/* Seats Capacity */}
+                <div
+                    className="rounded-xl p-4 flex-1 min-w-[200px] flex items-center gap-4 border"
+                    style={{
+                        backgroundColor: "var(--theme-surface)",
+                        borderColor: "var(--theme-border)",
+                    }}
+                >
+                    <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-lamaSkyLight">
                         <Users
-                            size={20}
+                            size={24}
                             style={{ color: "var(--theme-text)" }}
                         />
                     </div>
-                    <h1 className="text-2xl font-semibold my-4">
-                        {totalCapacity}
-                    </h1>
-                    <h2 className="capitalize text-sm font-medium text-gray-500">
-                        Capacity
-                    </h2>
+                    <div className="flex flex-col">
+                        <span className="text-[10px] font-bold uppercase text-gray-500 tracking-wider">
+                            Capacity (Seats)
+                        </span>
+                        <h1
+                            className="text-lg font-semibold"
+                            style={{ color: "var(--theme-text)" }}
+                        >
+                            {totalCapacity}
+                        </h1>
+                    </div>
                 </div>
 
-                <div className="rounded-2xl bg-lamaSkyLight p-4 flex-1 min-w-[130px]">
-                    <div className="flex justify-between items-center">
-                        <span className="text-[10px] bg-white card-badge px-2 py-1 rounded-full text-gray-600 font-bold uppercase">
-                            Rate
-                        </span>
+                {/* Occupancy Rate */}
+                <div
+                    className="rounded-xl p-4 flex-1 min-w-[200px] flex items-center gap-4 border"
+                    style={{
+                        backgroundColor: "var(--theme-surface)",
+                        borderColor: "var(--theme-border)",
+                    }}
+                >
+                    <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-lamaSky">
                         <BarChart3
-                            size={20}
+                            size={24}
                             style={{ color: "var(--theme-text)" }}
                         />
                     </div>
-                    <h1 className="text-2xl font-semibold my-4">
-                        {occupancyRate}%
-                    </h1>
-                    <h2 className="capitalize text-sm font-medium text-gray-500">
-                        Occupancy
-                    </h2>
+                    <div className="flex flex-col">
+                        <span className="text-[10px] font-bold uppercase text-gray-500 tracking-wider">
+                            Occupancy Rate
+                        </span>
+                        <h1
+                            className="text-lg font-semibold"
+                            style={{ color: "var(--theme-text)" }}
+                        >
+                            {occupancyRate}%
+                        </h1>
+                    </div>
                 </div>
             </div>
 

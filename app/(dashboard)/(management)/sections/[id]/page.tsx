@@ -94,7 +94,13 @@ const SectionViewPage = async (props: {
 
             {/* TOP STATS */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="bg-white p-4 rounded-md border border-gray-100 flex items-center gap-4">
+                <div
+                    className="rounded-xl p-4 flex items-center gap-4 border"
+                    style={{
+                        backgroundColor: "var(--theme-surface)",
+                        borderColor: "var(--theme-border)",
+                    }}
+                >
                     <div className="w-12 h-12 rounded-md bg-lamaYellowLight flex items-center justify-center">
                         <GraduationCap size={24} style={{ color: "var(--theme-text)" }} />
                     </div>
@@ -109,7 +115,13 @@ const SectionViewPage = async (props: {
                         </span>
                     </div>
                 </div>
-                <div className="bg-white p-4 rounded-md border border-gray-100 flex items-center gap-4">
+                <div
+                    className="rounded-xl p-4 flex items-center gap-4 border"
+                    style={{
+                        backgroundColor: "var(--theme-surface)",
+                        borderColor: "var(--theme-border)",
+                    }}
+                >
                     <div className="w-12 h-12 rounded-md bg-lamaSkyLight flex items-center justify-center">
                         <Users size={24} style={{ color: "var(--theme-text)" }} />
                     </div>
@@ -122,7 +134,13 @@ const SectionViewPage = async (props: {
                         </span>
                     </div>
                 </div>
-                <div className="bg-white p-4 rounded-md border border-gray-100 flex items-center gap-4 opacity-50">
+                <div
+                    className="rounded-xl p-4 flex items-center gap-4 border opacity-50"
+                    style={{
+                        backgroundColor: "var(--theme-surface)",
+                        borderColor: "var(--theme-border)",
+                    }}
+                >
                     <div className="w-12 h-12 rounded-md bg-gray-100 flex items-center justify-center">
                         <GitBranch size={24} style={{ color: "var(--theme-text)" }} />
                     </div>
@@ -135,7 +153,13 @@ const SectionViewPage = async (props: {
                         </span>
                     </div>
                 </div>
-                <div className="bg-white p-4 rounded-md border border-gray-100 flex items-center gap-4 opacity-50">
+                <div
+                    className="rounded-xl p-4 flex items-center gap-4 border opacity-50"
+                    style={{
+                        backgroundColor: "var(--theme-surface)",
+                        borderColor: "var(--theme-border)",
+                    }}
+                >
                     <div className="w-12 h-12 rounded-md bg-lamaPurpleLight flex items-center justify-center">
                         <BarChart3 size={24} style={{ color: "var(--theme-text)" }} />
                     </div>

@@ -142,7 +142,7 @@ const SectionViewPage = async (props: {
                             >
                                 Section {section.name}
                             </h1>
-                            <span className="px-2 py-0.5 bg-lamaPurpleLight text-lamaPurple text-[10px] font-bold uppercase rounded-md">
+                            <span className="px-2 py-0.5 bg-lamaPurpleLight text-[10px] font-bold uppercase rounded-md" style={{ color: "var(--theme-text)" }}>
                                 General
                             </span>
                         </div>

@@ -1,7 +1,7 @@
 import FormContainer from "@/components/forms/FormContainer";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
-import { ArrowLeft, School, GraduationCap, Users, GitBranch, BarChart3, Search, CalendarDays, Eye } from "lucide-react";
+import { ArrowLeft, School, GraduationCap, Users, GitBranch, BarChart3, Search, CalendarDays, Eye, Sliders, Trash2 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -156,15 +156,7 @@ const SectionViewPage = async (props: {
                         </p>
                     </div>
                 </div>
-                {role === "admin" && (
-                    <div className="flex items-center gap-2">
-                        <FormContainer
-                            table="section"
-                            type="delete"
-                            id={section.id.toString()}
-                        />
-                    </div>
-                )}
+                {/* Header actions can be added here if needed */}
             </div>
 
             {/* TOP STATS */}
@@ -628,47 +620,43 @@ const SectionViewPage = async (props: {
                 )}
 
                 {tab === "settings" && (
-                    <div className="flex flex-col gap-6 max-w-2xl">
-                        <div
-                            className="p-8 rounded-sm border"
-                            style={{
-                                backgroundColor: "var(--theme-surface)",
-                                borderColor: "var(--theme-border)",
-                            }}
-                        >
-                            <h2
-                                className="text-lg font-bold mb-8 leading-none"
-                                style={{ color: "var(--theme-text)" }}
-                            >
-                                General Settings
-                            </h2>
-                            <FormContainer
-                                table="section"
-                                type="update"
-                                data={section}
-                            />
+                    <div className="flex flex-col gap-6 max-w-4xl">
+                        {/* GENERAL CONFIGURATION */}
+                        <div className="p-8 rounded-xl border flex flex-col gap-8" style={{ backgroundColor: "var(--theme-surface)", borderColor: "var(--theme-border)" }}>
+                            <div className="flex items-center gap-4 pb-4 border-b" style={{ borderColor: "var(--theme-border)" }}>
+                                <div className="w-10 h-10 rounded-lg bg-lamaSkyLight flex items-center justify-center text-lamaSky">
+                                    <Sliders size={20} />
+                                </div>
+                                <div>
+                                    <h2 className="text-lg font-bold" style={{ color: "var(--theme-text)" }}>General Configuration</h2>
+                                    <p className="text-xs" style={{ color: "var(--theme-text-secondary)" }}>Manage basic section metadata and classroom assignments</p>
+                                </div>
+                            </div>
+                            <div className="px-2">
+                                <FormContainer table="section" type="update" data={section} />
+                            </div>
                         </div>
-
-                        <div
-                            className="p-8 rounded-sm border"
-                            style={{
-                                backgroundColor: "rgba(239, 68, 68, 0.08)",
-                                borderColor: "rgba(239, 68, 68, 0.2)",
-                            }}
-                        >
-                            <h3 className="text-md font-bold leading-none" style={{ color: "var(--theme-danger)" }}>
-                                Danger Zone
-                            </h3>
-                            <p className="text-xs mt-2 font-medium" style={{ color: "var(--theme-danger)", opacity: 0.7 }}>
-                                Deleting this section will remove all student
-                                associations and timetable data.
-                            </p>
-                            <div className="mt-8">
-                                <FormContainer
-                                    table="section"
-                                    type="delete"
-                                    id={section.id.toString()}
-                                />
+                        
+                        {/* DANGER ZONE */}
+                        <div className="p-8 rounded-xl border flex flex-col gap-8" style={{ backgroundColor: "var(--theme-surface)", borderColor: "var(--theme-border)" }}>
+                            <div className="flex items-center gap-4 pb-4 border-b" style={{ borderColor: "var(--theme-border)" }}>
+                                <div className="w-10 h-10 rounded-lg bg-red-50 flex items-center justify-center text-red-500">
+                                    <Trash2 size={20} />
+                                </div>
+                                <div>
+                                    <h2 className="text-lg font-bold" style={{ color: "var(--theme-text)" }}>Danger Zone</h2>
+                                    <p className="text-xs" style={{ color: "var(--theme-text-secondary)" }}>Critical actions that cannot be undone</p>
+                                </div>
+                            </div>
+                            
+                            <div className="p-6 rounded-lg bg-red-50/10 border border-red-500/20">
+                                <h3 className="text-sm font-bold text-red-500 mb-2">Delete this Section</h3>
+                                <p className="text-xs mb-6 max-w-xl" style={{ color: "var(--theme-text-secondary)" }}>
+                                    Warning: Deleting this section will permanently remove all student assignments, 
+                                    timetable data, and attendance records associated with it. This action is 
+                                    irreversible and may affect academic reporting.
+                                </p>
+                                <FormContainer table="section" type="delete" id={section.id.toString()} />
                             </div>
                         </div>
                     </div>

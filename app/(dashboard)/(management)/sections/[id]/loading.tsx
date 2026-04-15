@@ -38,14 +38,7 @@ const SectionDetailLoading = () => {
                         />
                     </div>
                 </div>
-                {/* Delete Button Placeholder */}
-                <div
-                    className="h-8 w-8 rounded-full animate-pulse"
-                    style={{
-                        backgroundColor: "var(--theme-border)",
-                        opacity: 0.4,
-                    }}
-                />
+                {/* Action Placeholder removed */}
             </div>
 
             {/* ─── STAT CARDS SKELETON ─── */}

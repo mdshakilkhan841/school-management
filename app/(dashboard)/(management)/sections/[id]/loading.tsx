@@ -50,23 +50,28 @@ const SectionDetailLoading = () => {
 
             {/* ─── STAT CARDS SKELETON ─── */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                {[0, 1, 2, 3].map((i) => (
+                {[
+                    { color: "var(--theme-primary)", delay: "0ms" },
+                    { color: "var(--theme-secondary)", delay: "100ms" },
+                    { color: "var(--theme-success)", delay: "200ms" },
+                    { color: "var(--theme-accent)", delay: "300ms" },
+                ].map((item, i) => (
                     <div
                         key={i}
                         className="rounded-xl p-4 flex items-center gap-4 animate-pulse border"
                         style={{
                             backgroundColor: "var(--theme-surface)",
                             borderColor: "var(--theme-border)",
-                            animationDelay: `${i * 100}ms`,
+                            animationDelay: item.delay,
                             animationDuration: "1.5s",
                         }}
                     >
-                        {/* Icon Block */}
+                        {/* Colorful Icon Block */}
                         <div
-                            className="w-12 h-12 rounded-md"
+                            className="w-12 h-12 rounded-lg"
                             style={{
-                                backgroundColor: "var(--theme-border)",
-                                opacity: 0.5,
+                                backgroundColor: item.color,
+                                opacity: 0.15,
                             }}
                         />
                         {/* Text Block */}
@@ -173,8 +178,8 @@ const SectionDetailLoading = () => {
                             <div
                                 className="h-9 w-32 rounded-md"
                                 style={{
-                                    backgroundColor: "var(--theme-border)",
-                                    opacity: 0.7,
+                                    backgroundColor: "var(--theme-primary-light)",
+                                    opacity: 0.3,
                                 }}
                             />
                         </div>
@@ -196,8 +201,8 @@ const SectionDetailLoading = () => {
                                 <div
                                     className="w-12 h-12 rounded-lg"
                                     style={{
-                                        backgroundColor: "var(--theme-border)",
-                                        opacity: 0.5,
+                                        backgroundColor: "var(--theme-secondary)",
+                                        opacity: 0.15,
                                     }}
                                 />
                                 <div
@@ -237,10 +242,10 @@ const SectionDetailLoading = () => {
                                                 }}
                                             />
                                             <div
-                                                className="h-3 w-16 rounded"
+                                                className="h-3 w-16 rounded shadow-sm"
                                                 style={{
-                                                    backgroundColor: "var(--theme-border)",
-                                                    opacity: 0.5,
+                                                    backgroundColor: "var(--theme-primary-light)",
+                                                    opacity: 0.2,
                                                 }}
                                             />
                                         </div>

@@ -1,10 +1,12 @@
 import FormContainer from "@/components/forms/FormContainer";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
-import { ArrowLeft, School, GraduationCap, Users, GitBranch, BarChart3, Search, CalendarDays } from "lucide-react";
+import { ArrowLeft, School, GraduationCap, Users, GitBranch, BarChart3, Search, CalendarDays, Eye } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { headers } from "next/headers";
+import Table from "@/components/list/Table";
 
 const SectionViewPage = async (props: {
     params: Promise<{ id: string }>;
@@ -53,6 +55,69 @@ const SectionViewPage = async (props: {
         "FRIDAY",
         "SATURDAY",
     ];
+
+    const columns = [
+        {
+            header: "Info",
+            accessor: "info",
+        },
+        {
+            header: "Student ID",
+            accessor: "studentId",
+            className: "hidden md:table-cell",
+        },
+        {
+            header: "Username",
+            accessor: "username",
+            className: "hidden lg:table-cell",
+        },
+        {
+            header: "Phone",
+            accessor: "phone",
+            className: "hidden lg:table-cell",
+        },
+        {
+            header: "Actions",
+            accessor: "action",
+        },
+    ];
+
+    const renderRow = (item: any) => (
+        <tr
+            key={item.id}
+            className="text-sm hover:bg-lamaSkyLight transition-colors list-row-hover"
+            style={{ borderBottom: "1px solid var(--theme-border)" }}
+        >
+            <td className="flex items-center gap-4 p-4">
+                <Image
+                    src={item.img || "/noAvatar.png"}
+                    alt=""
+                    width={40}
+                    height={40}
+                    className="w-10 h-10 rounded-full object-cover"
+                />
+                <div className="flex flex-col">
+                    <h3 className="font-semibold" style={{ color: "var(--theme-text)" }}>{item.name} {item.surname}</h3>
+                    <p className="text-xs" style={{ color: "var(--theme-text-secondary)" }}>Section {section.name}</p>
+                </div>
+            </td>
+            <td className="hidden md:table-cell" style={{ color: "var(--theme-text-secondary)" }}>#{item.id}</td>
+            <td className="hidden lg:table-cell" style={{ color: "var(--theme-text-secondary)" }}>{item.username}</td>
+            <td className="hidden lg:table-cell" style={{ color: "var(--theme-text-secondary)" }}>{item.phone || "-"}</td>
+            <td>
+                <div className="flex items-center gap-2">
+                    <Link href={`/students/${item.id}`}>
+                        <button className="w-7 h-7 flex items-center justify-center rounded-full bg-lamaSky transition-all hover:scale-110">
+                            <Eye size={16} style={{ color: "var(--theme-text)" }} />
+                        </button>
+                    </Link>
+                    {role === "admin" && (
+                        <FormContainer table="student" type="delete" id={item.id} />
+                    )}
+                </div>
+            </td>
+        </tr>
+    );
 
     return (
         <div className="flex-1 p-4 flex flex-col gap-6">
@@ -436,45 +501,7 @@ const SectionViewPage = async (props: {
                             </div>
                         </div>
 
-                        <div className="flex flex-col gap-1">
-                            {students.map((student, idx) => (
-                                <Link
-                                    href={`/students/${student.id}`}
-                                    key={student.id}
-                                    className="flex items-center justify-between p-3 transition-colors last:border-0 group list-row-hover"
-                                    style={{
-                                        borderBottom: "1px solid var(--theme-border)",
-                                    }}
-                                >
-                                    <div className="flex items-center gap-4">
-                                        <span
-                                            className="text-[10px] font-bold w-4"
-                                            style={{ color: "var(--theme-text-secondary)", opacity: 0.5 }}
-                                        >
-                                            {String(idx + 1).padStart(2, "0")}
-                                        </span>
-                                        <div className="w-8 h-8 rounded-full bg-lamaSkyLight flex items-center justify-center text-[10px] font-bold text-lamaSky group-hover:bg-lamaSky group-hover:text-white transition-colors">
-                                            {student.name.charAt(0)}
-                                        </div>
-                                        <span
-                                            className="font-bold text-sm group-hover:text-lamaSky transition-colors"
-                                            style={{ color: "var(--theme-text)" }}
-                                        >
-                                            {student.name} {student.surname}
-                                        </span>
-                                    </div>
-                                    <span
-                                        className="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 rounded-md"
-                                        style={{
-                                            color: "var(--theme-text-secondary)",
-                                            backgroundColor: "var(--theme-surface-alt)",
-                                        }}
-                                    >
-                                        #{student.id}
-                                    </span>
-                                </Link>
-                            ))}
-                        </div>
+                        <Table columns={columns} renderRow={renderRow} data={students} />
                     </div>
                 )}
 

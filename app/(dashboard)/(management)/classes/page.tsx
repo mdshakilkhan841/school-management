@@ -192,7 +192,7 @@ const ClassListPage = async (props: {
                         />
                     </div>
                     <div className="flex flex-col">
-                        <span className="text-[10px] font-bold uppercase text-gray-500 tracking-wider">
+                        <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: "var(--theme-text-secondary)" }}>
                             Total Classes
                         </span>
                         <h1
@@ -219,7 +219,7 @@ const ClassListPage = async (props: {
                         />
                     </div>
                     <div className="flex flex-col">
-                        <span className="text-[10px] font-bold uppercase text-gray-500 tracking-wider">
+                        <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: "var(--theme-text-secondary)" }}>
                             Total Sections
                         </span>
                         <h1
@@ -246,7 +246,7 @@ const ClassListPage = async (props: {
                         />
                     </div>
                     <div className="flex flex-col">
-                        <span className="text-[10px] font-bold uppercase text-gray-500 tracking-wider">
+                        <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: "var(--theme-text-secondary)" }}>
                             Capacity (Seats)
                         </span>
                         <h1
@@ -273,7 +273,7 @@ const ClassListPage = async (props: {
                         />
                     </div>
                     <div className="flex flex-col">
-                        <span className="text-[10px] font-bold uppercase text-gray-500 tracking-wider">
+                        <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: "var(--theme-text-secondary)" }}>
                             Occupancy Rate
                         </span>
                         <h1
